@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ensure.That" Version="10.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Petify.Common\Petify.Common.csproj" />
+    <ProjectReference Include="..\Petify.Domain\Petify.Domain.csproj" />
+    <ProjectReference Include="..\Petify.PublishedLanguage\Petify.PublishedLanguage.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Boundaries\" />
+    <Folder Include="UseCases\" />
+  </ItemGroup>
+
+</Project>
