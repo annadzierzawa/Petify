@@ -340,3 +340,6 @@ ASALocalRun/
 healthchecksdb
 /Petify.Web/dist/out-tsc
 /Petify.Web/wwwroot
+/Petify.IdentityServer/tempkey.jwk
+/Petify.IdentityServer/authserver_log.txt
+/Petify.Api/api_log.txt

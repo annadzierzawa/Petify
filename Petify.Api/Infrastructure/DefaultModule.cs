@@ -1,18 +1,13 @@
-﻿using System;
-using System.Data;
-using System.Reflection;
-using Autofac;
+﻿using Autofac;
 using EnsureThat;
-using Petify.Api.Controllers;
-using Petify.ApplicationServices;
-using Petify.ApplicationServices.UseCases;
-using Petify.Common.Auth;
-using Petify.Infrastructure.DataModel.Context;
-using Petify.Infrastructure.Domain;
-using Petify.Infrastructure.Queries;
-using Petify.Infrastructure.QueryBuilder;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Petify.Common.Auth;
+using Petify.Infrastructure.DataModel.Context;
+using Petify.Infrastructure.QueryBuilder;
+using System;
+using System.Data;
+using System.Reflection;
 using Module = Autofac.Module;
 
 namespace Petify.Api.Infrastructure
@@ -79,34 +74,34 @@ namespace Petify.Api.Infrastructure
 
         private static void RegisterControllers(ContainerBuilder builder)
         {
-            RegisterTransientDependenciesAutomatically(
-                builder,
-                typeof(ValuesController).Assembly,
-                "Petify.Api.Controllers");
+            //RegisterTransientDependenciesAutomatically(
+            //    builder,
+            //    typeof(ValuesController).Assembly,
+            //    "Petify.Api.Controllers");
         }
 
         private static void RegisterUseCases(ContainerBuilder builder)
         {
-            RegisterTransientDependenciesAutomatically(
-                builder,
-                typeof(GetSampleUseCase).Assembly,
-                "Petify.ApplicationServices.UseCases");
+            //RegisterTransientDependenciesAutomatically(
+            //    builder,
+            //    typeof(GetSampleUseCase).Assembly,
+            //    "Petify.ApplicationServices.UseCases");
         }
 
         private static void RegisterQueries(ContainerBuilder builder)
         {
-            RegisterTransientDependenciesAutomatically(
-                builder,
-                typeof(SampleQuery).Assembly,
-                "Petify.Infrastructure.Queries");
+            //RegisterTransientDependenciesAutomatically(
+            //    builder,
+            //    typeof(SampleQuery).Assembly,
+            //    "Petify.Infrastructure.Queries");
         }
 
         private void RegisterRepositories(ContainerBuilder builder)
         {
-            RegisterTransientDependenciesAutomatically(
-                builder,
-                typeof(SampleRepository).Assembly,
-                "Petify.Infrastructure.Domain");
+            //RegisterTransientDependenciesAutomatically(
+            //    builder,
+            //    typeof(SampleRepository).Assembly,
+            //    "Petify.Infrastructure.Domain");
         }
     }
 }

@@ -1,14 +1,13 @@
-﻿using System;
-using System.IO;
-using Autofac.Extensions.DependencyInjection;
-using Petify.Infrastructure.DataModel.Context;
-using Petify.Integration.Tests.Data;
+﻿using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Petify.Infrastructure.DataModel.Context;
+using System;
+using System.IO;
 
 namespace Petify.Integration.Tests.Utility
 {

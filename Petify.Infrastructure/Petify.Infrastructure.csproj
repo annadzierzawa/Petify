@@ -38,6 +38,7 @@
   <ItemGroup>
     <Folder Include="DataModel\Mappings\" />
     <Folder Include="Migrations\" />
+    <Folder Include="Queries\" />
   </ItemGroup>
 
 </Project>
