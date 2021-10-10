@@ -1,11 +1,15 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Petify.Common.Auth;
+using Petify.Domain.Access;
+using Petify.Domain.Common;
+using Petify.Infrastructure.DataModel.Mappings.Access;
+using SRW_CRM.Infrastructure.DataModel.Mappings.Access;
+using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Petify.Common.Auth;
-using Petify.Domain.Common;
+using Action = Petify.Domain.Access.Action;
 
 namespace Petify.Infrastructure.DataModel.Context
 {
@@ -20,8 +24,25 @@ namespace Petify.Infrastructure.DataModel.Context
             _currentUserService = currentUserService;
         }
 
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<Action> AccessActions { get; set; }
+        public DbSet<RoleAction> AccessRoleActions { get; set; }
+        public DbSet<Role> AccessRoles { get; set; }
+        public DbSet<User> AccessUsers { get; set; }
+        public DbSet<UserAction> AccessUserActions { get; set; }
+        public DbSet<UserPermission> AccessUserPermissions { get; set; }
+        public DbSet<UserRole> AccessUserRoles { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfiguration(new ActionConfiguration());
+            builder.ApplyConfiguration(new RoleActionConfiguration());
+            builder.ApplyConfiguration(new RoleConfiguration());
+            builder.ApplyConfiguration(new UserActionConfiguration());
+            builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new UserPermissionConfiguration());
+            builder.ApplyConfiguration(new UserRoleConfiguration());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
