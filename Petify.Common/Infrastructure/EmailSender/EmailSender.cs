@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Options;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 
-namespace Petify.IdentityServer.Infrastructure.Services
+namespace Petify.Common.Infrastructure.EmailSender
 {
     public class EmailSender : IEmailSender
     {
@@ -15,9 +14,9 @@ namespace Petify.IdentityServer.Infrastructure.Services
             _options = optionsAccessor.Value;
         }
 
-        public Task SendEmailAsync(string email, string subject, string message)
+        public Task SendEmailAsync(string email, EmailTemplate emailTemplate)
         {
-            return Execute(_options.SendGridKey, subject, message, email);
+            return Execute(_options.SendGridKey, emailTemplate.GetSubject, emailTemplate.GetMessage, email);
         }
 
         public Task Execute(string apiKey, string subject, string message, string email)
@@ -25,7 +24,7 @@ namespace Petify.IdentityServer.Infrastructure.Services
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage
             {
-                From = new EmailAddress(_options.EmailSender),
+                From = new EmailAddress("anna.dzierzawa@op.pl"),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message

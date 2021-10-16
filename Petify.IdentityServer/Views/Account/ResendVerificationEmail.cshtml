@@ -1,14 +1,17 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 @model Petify.IdentityServer.Models.ResendVerificationEmailModel
+@inject IViewLocalizer Localizer
 
-<div>
-    <h1>Email is unverified</h1>
+<div class="info-screen">
+    <div class="info-screen-container card-container">
+        <h1 class="header">@Localizer["Email is unverified"]</h1>
 
-    <form asp-action="ResendVerificationEmail" autocomplete="off">
-        Do you want to resend the verification code?
-        @Html.HiddenFor(m => m.Email)
-        <div class="mt-4 mb-4">
-            <button class="btn btn-primary">Send</button>
-        </div>
-    </form>
+        <form asp-action="ResendVerificationEmail" autocomplete="off">
+            @Localizer["Do you want to resend the verification code?"]
+            @Html.HiddenFor(m => m.Email)
+            <div class="mt-4 mb-4">
+                <button class="btn btn-primary btn-custom">@Localizer["Send"]</button>
+            </div>
+        </form>
+    </div>
 </div>

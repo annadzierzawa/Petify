@@ -1,38 +1,43 @@
 ﻿@model Petify.IdentityServer.Models.LoginViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
-<div class="row">
-    <div class="col-md-4">
 
-        <h1 class="mt-5 mb-3">Login</h1>
+<div class="row login">
+    <div class="col card-container">
 
-        <form asp-route="Login">
-            <input type="hidden" asp-for="ReturnUrl" />
-            <div class="form-group">
-                <label asp-for="Email"></label>
-                <input class="form-control" placeholder="Email" asp-for="Email" autofocus>
-            </div>
+        <div class="login-container">
+            <h1 class="header">@Localizer["Log In"]</h1>
+            <p class="sub-header">@Localizer["Log in to find"]</p>
 
-            <div class="form-group">
-                <label asp-for="Password"></label>
-                <input type="password" class="form-control" placeholder="Password" asp-for="Password" autocomplete="off">
-            </div>
-
-            @if (Model.AllowRememberLogin)
-            {
-                <div class="form-check">
-                    <input type="checkbox" asp-for="RememberLogin" class="form-check-input">
-                    <label asp-for="RememberLogin" class="form-check-label">Remember My Login</label>
+            <form asp-action="Login">
+                <input type="hidden" asp-for="ReturnUrl" />
+                <div class="form-group">
+                    <input class="form-control" placeholder="@Localizer["Email"]" asp-for="Email" autofocus autocomplete="new-login">
                 </div>
-            }
-            <a asp-action="ForgotPassword" class="text-right">Forgot password?</a>
 
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="@Localizer["Password"]" asp-for="Password" autocomplete="off">
+                </div>
 
-            <div class="mt-4 mb-4">
-                <button class="btn btn-primary" name="button" value="login">Login</button>
-                <a asp-action="RegisterLink">Don't have an account?</a>
-            </div>
+                <div class="login-questions-row">
+                    @if (Model.AllowRememberLogin)
+                    {
+                        <div class="form-check remember-login">
+                            <input type="checkbox" asp-for="RememberLogin" class="form-check-input">
+                            <label asp-for="RememberLogin" class="form-check-label small-text">@Localizer["Remember My Login"]</label>
+                        </div>
+                    }
+                    <a asp-action="ForgotPassword" class="small-text text-right">@Localizer["Forgot password?"]</a>
+                </div>
 
-            <partial name="_ValidationSummary" />
-        </form>
+                <div class="mt-4 mb-4">
+                    <button class="btn btn-custom" name="button" value="login">@Localizer["Login"]</button>
+                    <a asp-action="RegisterLink" class="align-left small-text">@Localizer["Don't have an account?"]</a>
+                </div>
+                <partial name="_ValidationSummary" />
+            </form>
+        </div>
     </div>
 </div>
+

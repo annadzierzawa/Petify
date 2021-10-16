@@ -1,21 +1,23 @@
 ﻿using System;
+using System.Globalization;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using IdentityServer4;
 using IdentityServer4.Extensions;
 using IdentityServer4.Services;
-using Petify.Common.Auth;
-using Petify.IdentityServer.Extensions;
-using Petify.IdentityServer.Infrastructure;
-using Petify.IdentityServer.Infrastructure.Data;
-using Petify.IdentityServer.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Petify.Common.Infrastructure.EmailSender;
+using Petify.IdentityServer.Extensions;
+using Petify.IdentityServer.Infrastructure.Data;
+using Petify.IdentityServer.Infrastructure.URLs;
+using Petify.IdentityServer.Models;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace Petify.IdentityServer.Controllers
@@ -27,8 +29,9 @@ namespace Petify.IdentityServer.Controllers
         private readonly IIdentityServerInteractionService _interaction;
         private readonly IPersistedGrantService _persistedGrantService;
         private readonly IEmailSender _emailSender;
-        private readonly AppConfig _appConfig;
         private readonly ILogger _logger;
+        private readonly AppWebSettings _appWebSettings;
+        private readonly IStringLocalizer<AccountController> _localizer;
 
         public AccountController(
             UserManager<AppUser> userManager,
@@ -36,8 +39,9 @@ namespace Petify.IdentityServer.Controllers
             IIdentityServerInteractionService interaction,
             IPersistedGrantService persistedGrantService,
             IEmailSender emailSender,
-            IOptions<AppConfig> appConfig,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger,
+            IOptions<AppWebSettings> applicationUrls,
+            IStringLocalizer<AccountController> localizer)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -45,14 +49,15 @@ namespace Petify.IdentityServer.Controllers
             _persistedGrantService = persistedGrantService;
             _emailSender = emailSender;
             _logger = logger;
-            _appConfig = appConfig.Value;
+            _localizer = localizer;
+            _appWebSettings = applicationUrls.Value;
         }
 
         [HttpGet]
         [AllowAnonymous]
         public IActionResult RegisterLink()
         {
-            return Redirect(_appConfig.ClientUrl + "/register");
+            return Redirect(_appWebSettings.ClientUrl + "/register");
         }
 
         [HttpPost]
@@ -61,7 +66,7 @@ namespace Petify.IdentityServer.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var user = new AppUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber };
+            var user = new AppUser { UserName = model.Email, Email = model.Email };
 
             var result = await _userManager.CreateAsync(user, model.Password);
 
@@ -70,16 +75,19 @@ namespace Petify.IdentityServer.Controllers
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             var callbackUrl = Url.EmailVerificationLink(user.Id, code, model.RedirectUrl, Request.Scheme);
 
-            await _emailSender.SendEmailAsync(user.Email, "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+            var emailTemplate = new EmailTemplate(
+                CultureInfo.CurrentUICulture.Name,
+                "Petify - Confirm your email",
+                "Petify  - Confirm your email in PL",
+                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.",
+                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>. in PL");
 
-            await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("userName", user.UserName));
+            await _emailSender.SendEmailAsync(user.Email, emailTemplate);
+
             await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("email", user.Email));
-            await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("phoneNumber", user.PhoneNumber));
-            await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("role", Roles.Consumer));
 
             _logger.LogInformation($"New user {model.Email} just registered.");
-            return Ok();
+            return Ok(new { userId = user.Id });
         }
 
         [HttpGet]
@@ -89,7 +97,6 @@ namespace Petify.IdentityServer.Controllers
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
-
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
@@ -125,7 +132,7 @@ namespace Petify.IdentityServer.Controllers
         /// </summary>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginInputModel model, string button)
+        public async Task<IActionResult> Login(LoginInputModel model)
         {
             if (ModelState.IsValid)
             {
@@ -151,7 +158,7 @@ namespace Petify.IdentityServer.Controllers
 
                             if (string.IsNullOrEmpty(model.ReturnUrl))
                             {
-                                return Redirect(_appConfig.ClientUrl);
+                                return Redirect(_appWebSettings.ClientUrl);
                             }
 
                             // user might have clicked on a malicious link
@@ -162,21 +169,21 @@ namespace Petify.IdentityServer.Controllers
                         if (result == SignInResult.LockedOut)
                         {
                             _logger.LogError($"User with ID {user.Id} account locked out.");
-                            ModelState.AddModelError(string.Empty, "This account has been locked out, please try again later.");
+                            ModelState.AddModelError(string.Empty, _localizer["This account has been locked out, please try again later."]);
                         }
                         else
                         {
-                            ModelState.AddModelError(string.Empty, AccountOptions.InvalidCredentialsErrorMessage);
+                            ModelState.AddModelError(string.Empty, _localizer[AccountOptions.InvalidCredentialsErrorMessage]);
                         }
                     }
                     else
                     {
-                        ModelState.AddModelError(string.Empty, AccountOptions.InvalidCredentialsErrorMessage);
+                        ModelState.AddModelError(string.Empty, _localizer[AccountOptions.InvalidCredentialsErrorMessage]);
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, AccountOptions.InvalidCredentialsErrorMessage);
+                    ModelState.AddModelError(string.Empty, _localizer[AccountOptions.InvalidCredentialsErrorMessage]);
                 }
             }
 
@@ -237,13 +244,17 @@ namespace Petify.IdentityServer.Controllers
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            var callbackUrl = Url.EmailVerificationLink(user.Id, code, _appConfig.ClientUrl + "/login", Request.Scheme);
+            var callbackUrl = Url.EmailVerificationLink(user.Id, code, _appWebSettings.ClientUrl + "/login", Request.Scheme);
+            var emailTemplate = new EmailTemplate(
+                CultureInfo.CurrentUICulture.Name,
+                "Petify  - Confirm your email",
+                "Petify  - Confirm your email in PL",
+                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.",
+                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>. in PL");
 
-            await _emailSender.SendEmailAsync(user.Email,
-                "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+            await _emailSender.SendEmailAsync(user.Email, emailTemplate);
 
-            return Redirect(_appConfig.ClientUrl);
+            return Redirect(_appWebSettings.ClientUrl);
         }
 
         [HttpGet]
@@ -268,8 +279,14 @@ namespace Petify.IdentityServer.Controllers
 
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, code, Request.Scheme);
+                var emailTemplate = new EmailTemplate(
+                    CultureInfo.CurrentUICulture.Name,
+                    "Petify  - Reset password",
+                    "Petify  - Reset password in PL",
+                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.",
+                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>. in PL");
 
-                await _emailSender.SendEmailAsync(model.Email, "Reset password", $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                await _emailSender.SendEmailAsync(model.Email, emailTemplate);
 
                 _logger.LogInformation($"Reset password token requested for user {user.Id}");
                 return RedirectToAction(nameof(ForgotPasswordConfirmation));
@@ -323,7 +340,7 @@ namespace Petify.IdentityServer.Controllers
             }
 
             _logger.Log(LogLevel.Warning, $"Unsuccessful attempt to reset password for user with ID {user.Id}.");
-            ModelState.AddModelError(string.Empty, "Something went wrong. Please contact technical support.");
+            ModelState.AddModelError(string.Empty, _localizer["Something went wrong. Please contact technical support."]);
 
             return View();
         }
@@ -335,6 +352,24 @@ namespace Petify.IdentityServer.Controllers
             return View();
         }
 
+        [HttpDelete]
+        [Authorize(IdentityServerConstants.LocalApi.PolicyName)]
+        [Route("delete-account")]
+        public async Task<IActionResult> DeleteAccount()
+        {
+            try
+            {
+                var user = await GetUser();
+                await _userManager.DeleteAsync(user);
+                _logger.Log(LogLevel.Warning, $"The User Account with Id {user.Id}, has been deleted from IdentityServer.");
+
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
         /*****************************************/
         /* helper APIs for the AccountController */
@@ -374,6 +409,18 @@ namespace Petify.IdentityServer.Controllers
             };
 
             return vm;
+        }
+
+        private async Task<AppUser> GetUser()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+            {
+                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+
+            return user;
         }
     }
 }

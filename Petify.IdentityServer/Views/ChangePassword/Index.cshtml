@@ -1,0 +1,42 @@
+﻿@model Petify.IdentityServer.Models.ChangePasswordViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@if (Model.HasError)
+{
+    <div class="alert alert-warning">
+        <strong>@Localizer["Password cannot be changed."]</strong>
+        @Localizer["Try again or contact with administrator."]
+    </div>
+}
+
+<div class="row change-password">
+    <div class="col card-container">
+        <div class="change-password-container">
+            <h1 class="header">@Localizer["Change password"]</h1>
+
+            <form asp-route="ChangePassword" CausesValidation="false">
+                <div class="form-group">
+                    <input asp-for="OldPassword" class="form-control" placeholder="@Localizer["Old password"]" autofocus />
+                    <span asp-validation-for="OldPassword" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="NewPassword" placeholder="@Localizer["New password"]" class="form-control" />
+                    <span asp-validation-for="NewPassword" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="ConfirmPassword" placeholder="@Localizer["Confirm new password"]" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+                <button class="btn btn-primary btn-custom submit-button" name="button" value="update">@Localizer["Update password"]</button>
+            </form>
+            <form class="cancel-button-form" method="post">
+                <button formaction="Cancel" class="btn btn-primary btn-custom btn-cancel" name="cancelbutton" value="cancel" CausesValidation="false">@Localizer["Cancel"]</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

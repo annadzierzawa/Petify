@@ -29,6 +29,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Petify.Common\Petify.Common.csproj" />
+        <ProjectReference Include="..\Petify.Infrastructure\Petify.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
