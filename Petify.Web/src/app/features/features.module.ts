@@ -6,7 +6,6 @@ import { LoginModule } from "./account/login/login.module";
 import { LogoutModule } from "./account/logout/logout.module";
 import { RegisterModule } from "./account/register/register.module";
 import { FeaturesRoutingModule } from "./features-routing.module";
-import { SampleComponent } from "./sample/sample.component";
 
 @NgModule({
     imports: [
@@ -18,10 +17,8 @@ import { SampleComponent } from "./sample/sample.component";
         LogoutModule
     ],
     declarations: [
-        SampleComponent
     ],
     exports: [
-        SampleComponent
     ]
 })
 export class FeaturesModule { }
