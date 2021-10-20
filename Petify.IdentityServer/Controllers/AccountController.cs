@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using IdentityServer4;
@@ -76,11 +75,8 @@ namespace Petify.IdentityServer.Controllers
             var callbackUrl = Url.EmailVerificationLink(user.Id, code, model.RedirectUrl, Request.Scheme);
 
             var emailTemplate = new EmailTemplate(
-                CultureInfo.CurrentUICulture.Name,
-                "Petify - Confirm your email",
-                "Petify  - Confirm your email in PL",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>. in PL");
+                "Petify - Potwierdź swój email",
+                $"Potwierdź swój email <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>klikając tutaj</a>");
 
             await _emailSender.SendEmailAsync(user.Email, emailTemplate);
 
@@ -245,12 +241,10 @@ namespace Petify.IdentityServer.Controllers
             var user = await _userManager.FindByEmailAsync(model.Email);
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             var callbackUrl = Url.EmailVerificationLink(user.Id, code, _appWebSettings.ClientUrl + "/login", Request.Scheme);
+
             var emailTemplate = new EmailTemplate(
-                CultureInfo.CurrentUICulture.Name,
-                "Petify  - Confirm your email",
-                "Petify  - Confirm your email in PL",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>. in PL");
+                    "Petify - Potwierdź swój email",
+                    $"Potwierdź swój email <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>klikając tutaj</a>");
 
             await _emailSender.SendEmailAsync(user.Email, emailTemplate);
 
@@ -279,12 +273,10 @@ namespace Petify.IdentityServer.Controllers
 
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, code, Request.Scheme);
+
                 var emailTemplate = new EmailTemplate(
-                    CultureInfo.CurrentUICulture.Name,
-                    "Petify  - Reset password",
-                    "Petify  - Reset password in PL",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>. in PL");
+                    "Petify - Reset hasła",
+                    $"Zresetuj hasło <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>klikając tutaj</a>");
 
                 await _emailSender.SendEmailAsync(model.Email, emailTemplate);
 

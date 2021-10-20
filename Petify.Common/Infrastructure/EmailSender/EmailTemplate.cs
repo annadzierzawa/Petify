@@ -2,29 +2,13 @@
 {
     public class EmailTemplate
     {
-        public string PreferredLanguage { get; set; }
-        public string EnglishSubject { private get; set; }
-        public string PolishSubject { private get; set; }
-        public string EnglishMessage { private get; set; }
-        public string PolishMessage { private get; set; }
+        public string Subject { get; set; }
+        public string Message { get; set; }
 
-        private string PolishLanguage => "pl";
-
-        public EmailTemplate(string preferredLanguage, string englishSubject, string polishSubject, string englishMessage, string polishMessage)
+        public EmailTemplate(string subject, string message)
         {
-            PreferredLanguage = preferredLanguage;
-            EnglishSubject = englishSubject;
-            PolishSubject = polishSubject;
-            EnglishMessage = englishMessage;
-            PolishMessage = polishMessage;
+            Subject = subject;
+            Message = message;
         }
-
-        public string GetMessage => PreferredLanguage == PolishLanguage
-            ? PolishMessage
-            : EnglishMessage;
-
-        public string GetSubject => PreferredLanguage == PolishLanguage
-            ? PolishSubject
-            : EnglishSubject;
     }
 }

@@ -16,7 +16,7 @@ namespace Petify.Common.Infrastructure.EmailSender
 
         public Task SendEmailAsync(string email, EmailTemplate emailTemplate)
         {
-            return Execute(_options.SendGridKey, emailTemplate.GetSubject, emailTemplate.GetMessage, email);
+            return Execute(_options.SendGridKey, emailTemplate.Subject, emailTemplate.Message, email);
         }
 
         public Task Execute(string apiKey, string subject, string message, string email)
