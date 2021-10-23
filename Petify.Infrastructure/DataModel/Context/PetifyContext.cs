@@ -1,14 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Petify.Common.Auth;
 using Petify.Domain.Access;
 using Petify.Domain.Common;
+using Petify.Domain.Pets;
 using Petify.Infrastructure.DataModel.Mappings.Access;
+using Petify.Infrastructure.DataModel.Mappings.Lookups;
 using SRW_CRM.Infrastructure.DataModel.Mappings.Access;
-using System;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
 using Action = Petify.Domain.Access.Action;
 
 namespace Petify.Infrastructure.DataModel.Context
@@ -34,6 +36,8 @@ namespace Petify.Infrastructure.DataModel.Context
         public DbSet<UserPermission> AccessUserPermissions { get; set; }
         public DbSet<UserRole> AccessUserRoles { get; set; }
 
+        public DbSet<Pet> Pets { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new ActionConfiguration());
@@ -43,6 +47,8 @@ namespace Petify.Infrastructure.DataModel.Context
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new UserPermissionConfiguration());
             builder.ApplyConfiguration(new UserRoleConfiguration());
+
+            builder.ApplyConfiguration(new SpeciesTypeConfiguration());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

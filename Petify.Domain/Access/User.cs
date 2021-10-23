@@ -1,6 +1,8 @@
-﻿using EnsureThat;
-using Petify.Domain.Common;
+﻿using System.Collections.Generic;
 using System.Net.Mail;
+using EnsureThat;
+using Petify.Domain.Common;
+using Petify.Domain.Pets;
 
 namespace Petify.Domain.Access
 {
@@ -46,5 +48,9 @@ namespace Petify.Domain.Access
         public string PhoneNumber { get; private set; }
         public string City { get; private set; }
         public bool IsActive { get; private set; }
+
+        //navigation properties
+        public List<Pet> Pets { get; set; }
+
     }
 }
