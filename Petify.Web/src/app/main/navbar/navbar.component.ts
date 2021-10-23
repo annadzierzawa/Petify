@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
     styleUrls: ["./navbar.component.scss"]
 })
 export class NavbarComponent implements OnInit {
-    title = "Sample App";
+    title = "Petify";
     authStatus$!: Observable<boolean>;
 
     constructor(private _authService: AuthService) { }

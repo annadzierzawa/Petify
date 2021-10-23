@@ -7,6 +7,8 @@ body {
 
 .navbar {
     height: $navbar-height !important;
+    background-color: $spearmint-900;
+    color: $light-grey;
 }
 
 mat-card {
@@ -52,4 +54,11 @@ mat-card {
     .content {
         min-height: calc(100vh - #{$navbar-height} - #{$footer-height} - 20px);
     }
+}
+
+.page-title {
+    font-weight: bold;
+    font-size: 25px;
+    color: $spearmint-900;
+    padding-left: 40px;
 }

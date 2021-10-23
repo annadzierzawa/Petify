@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-
+import { MyPetsComponent } from "./my-pets/my-pets.component";
 
 const routes: Routes = [
     {
-        path: "my-pets",
-        loadChildren: () => import("./my-pets/my-pets.module").then(m => m.MyPetsModule)
+        path: "",
+        component: MyPetsComponent
     }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class FeaturesRoutingModule { }
+export class MyPetsRoutingModule { }

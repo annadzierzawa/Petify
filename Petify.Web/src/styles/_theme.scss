@@ -3,21 +3,20 @@
 
 @import '~@angular/material/theming';
 @include mat-core();
-$pet-spearmint: (
-    50: #F3FAF8, 
-    100: #E0F3ED, 
-    200: #CCEBE1, 
-    300: #B7E3D4, 
-    400: #A7DDCB, 
-    500: #98D7C2, 
-    600: #90D3BC, 
-    700: #85CDB4, 
-    800: #7BC7AC, 
-    900: #6ABE9F, 
-    A100: #FFFFFF, 
-    A200: #FFFFFF, 
-    A400: #CDFFEC, 
-    A700: #B3FFE3, 
+$pet-spearmint: (50: #F3FAF8,
+    100: #E0F3ED,
+    200: #CCEBE1,
+    300: #B7E3D4,
+    400: #A7DDCB,
+    500: #98D7C2,
+    600: #90D3BC,
+    700: #85CDB4,
+    800: #7BC7AC,
+    900: #6ABE9F,
+    A100: #FFFFFF,
+    A200: #FFFFFF,
+    A400: #CDFFEC,
+    A700: #B3FFE3,
     contrast: (50: $black-87-opacity,
         100: $black-87-opacity,
         200: $black-87-opacity,
@@ -34,20 +33,19 @@ $pet-spearmint: (
         A700: white,
     ));
 
-$pet-accent: (
-    50: #F8EBEF, 
-    100: #ECCED7, 
-    200: #E0ADBC, 
-    300: #D48CA1, 
-    400: #CA748C, 
-    500: #C15B78, 
-    600: #BB5370, 
-    700: #B34965, 
-    800: #AB405B, 
-    900: #9E2F48, 
-    A100: #FFE4E9, 
-    A200: #FFB1C1, 
-    A400: #FF7E99, 
+$pet-accent: (50: #F8EBEF,
+    100: #ECCED7,
+    200: #E0ADBC,
+    300: #D48CA1,
+    400: #CA748C,
+    500: #C15B78,
+    600: #BB5370,
+    700: #B34965,
+    800: #AB405B,
+    900: #9E2F48,
+    A100: #FFE4E9,
+    A200: #FFB1C1,
+    A400: #FF7E99,
     A700: #FF6485,
     contrast: (50: $black-87-opacity,
         100: $black-87-opacity,
@@ -65,11 +63,10 @@ $pet-accent: (
         A700: white,
     ));
 
-$pet-tealGreen: (
-    50: #E3EFF0 ,
+$pet-tealGreen: (50: #E3EFF0,
     100: #B9D8D9,
     200: #8BBEBF,
-    300: #5CA4A5 ,
+    300: #5CA4A5,
     400: #399192,
     500: #167D7F,
     600: #137577,
@@ -77,11 +74,10 @@ $pet-tealGreen: (
     800: #0C6062,
     900: #064D4F,
     A100: #83FBFF,
-    A200: #50F9FF, 
-    A400: #1DF8FF, 
-    A700: #04F7FF, 
-    contrast: (
-        50: $black-87-opacity,
+    A200: #50F9FF,
+    A400: #1DF8FF,
+    A700: #04F7FF,
+    contrast: (50: $black-87-opacity,
         100: $black-87-opacity,
         200: $black-87-opacity,
         300: $black-87-opacity,
@@ -104,7 +100,6 @@ $pet-palette-warn: mat-palette($pet-accent);
 $pet-theme: mat-light-theme($pet-palette-primary, $pet-palette-accent, $pet-palette-warn);
 
 // $custom-typography: mat-typography-config($font-family: $main-font);
-
 
 // @include angular-material-typography($custom-typography);
 @include angular-material-theme($pet-theme);
