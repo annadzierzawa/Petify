@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Net;
 using IdentityServer4.Services;
-using Petify.Common.Configuration;
-using Petify.IdentityServer.Extensions;
-using Petify.IdentityServer.Infrastructure;
-using Petify.IdentityServer.Infrastructure.Data;
-using Petify.IdentityServer.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Petify.Common.Configuration;
+using Petify.Common.Infrastructure.EmailSender;
+using Petify.IdentityServer.Extensions;
+using Petify.IdentityServer.Infrastructure;
+using Petify.IdentityServer.Infrastructure.Data;
+using Petify.IdentityServer.Infrastructure.Services;
 using Serilog;
 using Twilio;
 
@@ -40,6 +41,7 @@ namespace Petify.IdentityServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Identity")));
+            services.AddDbContext<PetifyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PetifyApi")));
 
             services.AddIdentity<AppUser, IdentityRole>(options =>
                 {
@@ -59,8 +61,13 @@ namespace Petify.IdentityServer
                 .AddEntityFrameworkStores<AppIdentityDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddIdentityServer(options => { options.Authentication.CookieLifetime = TimeSpan.FromMinutes(10); })
-                .AddCertificate(_env.IsDevelopment(), Configuration[CertificateConfigKey])
+            services.AddIdentityServer(options =>
+            {
+                options.Authentication.CookieLifetime = TimeSpan.FromMinutes(10);
+                options.Csp.AddDeprecatedHeader = false;
+                options.Authentication.CheckSessionCookieName = "SRW_CRM.CheckSession";
+            })
+                .AddDeveloperSigningCredential(persistKey: _env.IsDevelopment()) // Only for dev purpose! http://amilspage.com/signing-certificates-idsv4/
                 .AddInMemoryPersistedGrants()
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
                 .AddInMemoryApiResources(Config.GetApiResources())
@@ -118,18 +125,19 @@ namespace Petify.IdentityServer
             });
 
             services.AddTransient<IEmailSender, EmailSender>();
-            services.AddTransient<IPhoneVerificationSender, PhoneVerificationSender>();
             services.AddTransient<IProfileService, IdentityClaimsProfileService>();
 
             services.Configure<AppConfig>(Configuration.GetSection("AppConfig"));
             services.Configure<AuthMessageSenderOptions>(options => Configuration.GetSection("SendGridEmailSettings").Bind(options));
-            services.Configure<TwilioVerifySettings>(Configuration.GetSection("Twilio"));
 
             var accountSid = Configuration["Twilio:AccountSID"];
             var authToken = Configuration["Twilio:AuthToken"];
             TwilioClient.Init(accountSid, authToken);
 
-            services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddRazorPages()
+                .AddRazorRuntimeCompilation()
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                .AddDataAnnotationsLocalization();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)

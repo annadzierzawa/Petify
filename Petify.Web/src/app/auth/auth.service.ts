@@ -9,9 +9,16 @@ import { AuthSettings } from "./auth.config";
 
 interface RegisterCredentials {
     email: string;
-    phoneNumber: string;
     password: string;
     redirectUrl: string;
+}
+
+
+export interface UserDomain {
+    userId: string;
+    name: string;
+    email: string;
+    phoneNumber: string;
 }
 
 @Injectable()

@@ -6,6 +6,15 @@
                   (ngSubmit)="register()">
                 <mat-form-field class="full-width-input">
                     <input matInput
+                           placeholder="Name"
+                           formControlName="name"
+                           required>
+                    <mat-error>
+                        <app-validation-feedback controlName="name"></app-validation-feedback>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width-input">
+                    <input matInput
                            placeholder="Email"
                            formControlName="email"
                            required>
@@ -30,7 +39,8 @@
                            formControlName="password"
                            required>
                     <mat-icon [appPasswordSwitchType]="password"
-                              matSuffix>{{ password.type === 'password' ? 'visibility' : 'visibility_off'}}</mat-icon>
+                              matSuffix>{{ password.type === 'password' ?
+                        'visibility' : 'visibility_off'}}</mat-icon>
                     <mat-error>
                         <app-password-validator-feedback controlName="password"></app-password-validator-feedback>
                     </mat-error>
@@ -43,7 +53,8 @@
                            formControlName="confirmPassword"
                            required>
                     <mat-icon [appPasswordSwitchType]="confirmPassword"
-                              matSuffix>{{ confirmPassword.type === 'password' ? 'visibility' : 'visibility_off'}}
+                              matSuffix>{{ confirmPassword.type === 'password'
+                        ? 'visibility' : 'visibility_off'}}
                     </mat-icon>
                     <mat-error>
                         <app-password-validator-feedback controlName="confirmPassword">

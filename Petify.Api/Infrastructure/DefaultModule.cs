@@ -1,13 +1,16 @@
-﻿using Autofac;
+﻿using System;
+using System.Data;
+using System.Reflection;
+using Autofac;
 using EnsureThat;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Petify.Api.Controllers;
+using Petify.ApplicationServices.UseCases.Users;
 using Petify.Common.Auth;
 using Petify.Infrastructure.DataModel.Context;
+using Petify.Infrastructure.Domain;
 using Petify.Infrastructure.QueryBuilder;
-using System;
-using System.Data;
-using System.Reflection;
 using Module = Autofac.Module;
 
 namespace Petify.Api.Infrastructure
@@ -74,18 +77,18 @@ namespace Petify.Api.Infrastructure
 
         private static void RegisterControllers(ContainerBuilder builder)
         {
-            //RegisterTransientDependenciesAutomatically(
-            //    builder,
-            //    typeof(ValuesController).Assembly,
-            //    "Petify.Api.Controllers");
+            RegisterTransientDependenciesAutomatically(
+                builder,
+                typeof(UsersController).Assembly,
+                "Petify.Api.Controllers");
         }
 
         private static void RegisterUseCases(ContainerBuilder builder)
         {
-            //RegisterTransientDependenciesAutomatically(
-            //    builder,
-            //    typeof(GetSampleUseCase).Assembly,
-            //    "Petify.ApplicationServices.UseCases");
+            RegisterTransientDependenciesAutomatically(
+                builder,
+                typeof(InitUserUseCase).Assembly,
+                "Petify.ApplicationServices.UseCases");
         }
 
         private static void RegisterQueries(ContainerBuilder builder)
@@ -98,10 +101,10 @@ namespace Petify.Api.Infrastructure
 
         private void RegisterRepositories(ContainerBuilder builder)
         {
-            //RegisterTransientDependenciesAutomatically(
-            //    builder,
-            //    typeof(SampleRepository).Assembly,
-            //    "Petify.Infrastructure.Domain");
+            RegisterTransientDependenciesAutomatically(
+                builder,
+                typeof(UsersRepository).Assembly,
+                "Petify.Infrastructure.Domain");
         }
     }
 }

@@ -13,21 +13,22 @@ export class ValidationFeedbackComponent implements OnInit {
     @Input() control: Nullable<AbstractControl>;
     @Input() controlName: Nullable<string>;
 
-    private _validatorErrors: { [key: string]: string };
-
     constructor(@Optional() private _formGroup: FormGroupDirective) { }
 
     getValidationError(): string {
-        if (this.control) {
-            this._validatorErrors = {
-                required: "Field is required.",
-                minlength: `Field has to have at least ${(this.control.getError("minlength") as MinLength)?.requiredLength} characters.`,
-                email: "E-mail format is incorrect."
-            };
-
-            return this._validatorErrors[Object.keys((this.control.errors as any))[0]];
+        if (this.control?.hasError("required")) {
+            return "Field is required.";
+        } else if (this.control?.hasError("minlength")) {
+            return `Field has to have at least ${this.control.getError("minlength").requiredLength} characters.`;
+        } else if (this.control?.hasError("maxlength")) {
+            return `Field exceeds the character limit ${this.control.getError("maxlength").actualLength} / ${this.control.getError("maxlength").requiredLength}`;
+        } else if (this.control?.hasError("email")) {
+            return "E-mail format is incorrect.";
+        } else if (this.control?.hasError("mask")) {
+            return `Incorrect value, required format is ${this.control.getError("mask").requiredMask}`;
+        } else if (this.control?.hasError("greaterThan")) {
+            return this.control.getError("greaterThan");
         }
-
         return "";
     }
 
