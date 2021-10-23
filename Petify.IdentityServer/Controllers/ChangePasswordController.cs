@@ -52,7 +52,6 @@ namespace Petify.IdentityServer.Controllers
             if (button == "cancel")
             {
                 return Redirect(_appWebSettings.Value.ClientUrl);
-
             }
             else
             {
