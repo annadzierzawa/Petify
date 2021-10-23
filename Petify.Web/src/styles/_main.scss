@@ -5,9 +5,13 @@ body {
     font-family: Roboto, sans-serif;
 }
 
+.mat-app-background {
+    background-color: $spearmint-30;
+}
+
 .navbar {
     height: $navbar-height !important;
-    background-color: $spearmint-900;
+    background-color: $tealGreen-800;
     color: $light-grey;
 }
 
@@ -58,7 +62,7 @@ mat-card {
 
 .page-title {
     font-weight: bold;
-    font-size: 25px;
-    color: $spearmint-900;
+    font-size: 30px;
+    color: $tealGreen-900;
     padding-left: 40px;
 }
