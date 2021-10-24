@@ -6,7 +6,7 @@ interface MinLength {
 }
 
 @Component({
-    selector: "app-password-validator-feedback",
+    selector: "petify-password-validator-feedback",
     templateUrl: "./password-validator-feedback.component.html"
 })
 export class PasswordValidatorFeedbackComponent implements OnInit {

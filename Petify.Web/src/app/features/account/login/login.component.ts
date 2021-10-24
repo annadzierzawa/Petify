@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { AuthService } from "@app/auth";
 
 @Component({
-    selector: "app-login",
+    selector: "petify-login",
     templateUrl: "./login.component.html",
     styleUrls: ["./login.component.scss"]
 })

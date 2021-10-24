@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -7,6 +8,8 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 
 @NgModule({
     imports: [
@@ -17,7 +20,8 @@ import { MatToolbarModule } from "@angular/material/toolbar";
         MatGridListModule,
         MatFormFieldModule,
         MatInputModule,
-        MatMenuModule
+        MatMenuModule,
+        MatDatepickerModule
     ],
     exports: [
         MatButtonModule,
@@ -27,7 +31,8 @@ import { MatToolbarModule } from "@angular/material/toolbar";
         MatGridListModule,
         MatFormFieldModule,
         MatInputModule,
-        MatMenuModule
+        MatMenuModule,
+        MatDatepickerModule
     ]
 })
 export class MaterialModule { }

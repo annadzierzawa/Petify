@@ -10,7 +10,7 @@
                            formControlName="name"
                            required>
                     <mat-error>
-                        <app-validation-feedback controlName="name"></app-validation-feedback>
+                        <petify-validation-feedback controlName="name"></petify-validation-feedback>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field class="full-width-input">
@@ -19,7 +19,7 @@
                            formControlName="email"
                            required>
                     <mat-error>
-                        <app-validation-feedback controlName="email"></app-validation-feedback>
+                        <petify-validation-feedback controlName="email"></petify-validation-feedback>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field class="full-width-input">
@@ -28,7 +28,7 @@
                            formControlName="phoneNumber"
                            required>
                     <mat-error>
-                        <app-validation-feedback controlName="phoneNumber"></app-validation-feedback>
+                        <petify-validation-feedback controlName="phoneNumber"></petify-validation-feedback>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field class="full-width-input">
@@ -42,7 +42,7 @@
                               matSuffix>{{ password.type === 'password' ?
                         'visibility' : 'visibility_off'}}</mat-icon>
                     <mat-error>
-                        <app-password-validator-feedback controlName="password"></app-password-validator-feedback>
+                        <petify-password-validator-feedback controlName="password"></petify-password-validator-feedback>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field class="full-width-input">
@@ -57,8 +57,8 @@
                         ? 'visibility' : 'visibility_off'}}
                     </mat-icon>
                     <mat-error>
-                        <app-password-validator-feedback controlName="confirmPassword">
-                        </app-password-validator-feedback>
+                        <petify-password-validator-feedback controlName="confirmPassword">
+                        </petify-password-validator-feedback>
                     </mat-error>
                 </mat-form-field>
                 <div class="margin-top-25">

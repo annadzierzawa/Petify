@@ -11,7 +11,7 @@ import { switchMap } from "rxjs/operators";
 import { PasswordValidator } from "./password-strength.validator";
 
 @Component({
-    selector: "app-register",
+    selector: "petify-register",
     templateUrl: "./register.component.html"
 })
 export class RegisterComponent {

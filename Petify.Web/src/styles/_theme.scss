@@ -104,9 +104,9 @@ $pet-theme: mat-light-theme($pet-palette-primary, $pet-palette-accent, $pet-pale
 // @include angular-material-typography($custom-typography);
 @include angular-material-theme($pet-theme);
 
-$light-primary: mat-palette($mat-blue, 800, 500, 900);
-$light-accent: mat-palette($mat-amber);
-$light-warn: mat-palette($mat-red);
+$light-primary: mat-palette($pet-tealGreen, 800, 500, 900);
+$light-accent: mat-palette($pet-spearmint);
+$light-warn: mat-palette($pet-accent);
 
 $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
 @include angular-material-theme($light-theme);

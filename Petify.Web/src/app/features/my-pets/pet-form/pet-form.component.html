@@ -1,0 +1,68 @@
+<mat-card>
+    <form [formGroup]="petFormGroup">
+        <div class="row">
+            <mat-form-field class="col-12">
+                <mat-label>{{'PetForm.Name' | translate}}</mat-label>
+                <input matInput
+                       formControlName="name"
+                       required>
+                <mat-error>
+                    <petify-validation-feedback controlName="name">
+                    </petify-validation-feedback>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-12">
+                <mat-label>{{'PetForm.Description' | translate}}</mat-label>
+                <textarea matInput
+                          formControlName="description"
+                          required></textarea>
+                <mat-error>
+                    <petify-validation-feedback controlName="description"></petify-validation-feedback>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-12">
+                <mat-label>{{'PetForm.Species' | translate}}</mat-label>
+                <mat-select mat-Input
+                            type="select"
+                            formControlName="speciesId"
+                            required>
+                    <!-- <mat-option *ngFor="let item of species$ | async"
+                                [value]="item.id">{{item.name}}</mat-option> -->
+                </mat-select>
+                <mat-error>
+                    <petify-validation-feedback controlName="speciesId"></petify-validation-feedback>
+                </mat-error>
+            </mat-form-field>
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <mat-form-field>
+                    <mat-label>{{'PetForm.DateOfBirth' | translate}}</mat-label>
+                    <input matInput
+                           [matDatepicker]="dp"
+                           [max]="maxDate"
+                           formControlName="dateOfBirth"
+                           required>
+                    <mat-datepicker-toggle matSuffix
+                                           [for]="dp"></mat-datepicker-toggle>
+                    <mat-datepicker #dp
+                                    startView="multi-year"
+                                    (yearSelected)="chosenYearHandler($event)"
+                                    (monthSelected)="chosenMonthHandler($event, dp)">
+                    </mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="buttons-container">
+                <button mat-raised-button
+                        (click)="onBack()"
+                        color="basic">
+                    {{'Common.Cancel' | translate}}
+                </button>
+                <button mat-raised-button
+                        (click)="onSave()"
+                        color="primary"
+                        [disabled]="isSaveButtonDisabled">
+                    {{'Common.Save' | translate}}
+                </button>
+            </div>
+        </div>
+    </form>
+</mat-card>

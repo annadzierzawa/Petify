@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { MaterialModule } from "@app/material.module";
+import { TranslateModule } from "@ngx-translate/core";
 
 import { PasswordSwitchTypeDirective } from "./password-switch-type.directive";
 import { ValidationFeedbackComponent } from "./validation-feedback/validation-feedback.component";
@@ -8,7 +9,8 @@ import { ValidationFeedbackComponent } from "./validation-feedback/validation-fe
 @NgModule({
     imports: [
         CommonModule,
-        MaterialModule
+        MaterialModule,
+        TranslateModule
     ],
     declarations: [
         ValidationFeedbackComponent,
@@ -16,7 +18,8 @@ import { ValidationFeedbackComponent } from "./validation-feedback/validation-fe
     ],
     exports: [
         ValidationFeedbackComponent,
-        PasswordSwitchTypeDirective
+        PasswordSwitchTypeDirective,
+        TranslateModule
     ]
 })
 export class SharedModule { }

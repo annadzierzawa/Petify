@@ -3,7 +3,7 @@ import { AuthService } from "@app/auth";
 import { Observable } from "rxjs";
 
 @Component({
-    selector: "app-navbar",
+    selector: "petify-navbar",
     templateUrl: "./navbar.component.html",
     styleUrls: ["./navbar.component.scss"]
 })

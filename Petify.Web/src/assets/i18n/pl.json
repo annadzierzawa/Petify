@@ -1,6 +1,18 @@
 {
     "MyPets": {
-        "Title": "Moje zwierzęta"
+        "Title": "Moje zwierzęta",
+        "AddNewPet": "Dodaj zwierzątko"
     },
-    "Navbar": {}
+    "Common": {
+        "Cancel": "Anuluj",
+        "Save": "Zapisz"
+    },
+    "Navbar": {},
+    "PetForm": {
+        "Name": "Nazwa",
+        "Description": "Opis",
+        "Species": "Gatunek",
+        "DateOfBirth": "Data urodzenia",
+        "TheAnimalHasBeenSaved": "Zwierze zostało zapisane."
+    }
 }

@@ -1,8 +1,17 @@
 <div>
     <div class="row">
-        <div class="justify-content-center">
+        <div class="col-7 d-flex justify-content-start">
             <span class="page-title"> {{'MyPets.Title' | translate}}</span>
         </div>
+        <div class="col-5 d-flex justify-content-end">
+            <button mat-raised-button
+                    color="primary"
+                    routerLink="add">
+                <mat-icon>add</mat-icon>{{'MyPets.AddNewPet' | translate}}
+            </button>
+        </div>
     </div>
-    <mat-card>dupa</mat-card>
+    <div class="row">
+        <petify-pet-item></petify-pet-item>
+    </div>
 </div>
