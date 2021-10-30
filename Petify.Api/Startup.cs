@@ -1,9 +1,6 @@
 ﻿using System.Security.Claims;
 using Autofac;
 using IdentityServer4.AccessTokenValidation;
-using Petify.Api.Infrastructure;
-using Petify.Common.Auth;
-using Petify.Common.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -11,6 +8,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Petify.Api.Infrastructure;
+using Petify.Common.Auth;
+using Petify.Common.Configuration;
+using Petify.FilesStorage.Context;
 using Serilog;
 
 namespace Petify.Api
@@ -98,7 +99,16 @@ namespace Petify.Api
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterModule(new DefaultModule(Configuration.GetConnectionString("Petify")));
+            builder.RegisterModule(new DefaultModule(Configuration.GetConnectionString("Petify"), GetMongoSettings()));
+        }
+
+        private MongoDbSettings GetMongoSettings()
+        {
+            return new MongoDbSettings()
+            {
+                ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value,
+                Database = Configuration.GetSection("MongoConnection:Database").Value
+            };
         }
     }
 }

@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Petify.Api.Controllers;
 using Petify.ApplicationServices.UseCases.Users;
 using Petify.Common.Auth;
+using Petify.FilesStorage.Context;
+using Petify.FilesStorage.Repositories.PetImages;
 using Petify.Infrastructure.DataModel.Context;
 using Petify.Infrastructure.Domain;
 using Petify.Infrastructure.Queries;
@@ -19,12 +21,14 @@ namespace Petify.Api.Infrastructure
     public class DefaultModule : Module
     {
         private readonly string _connectionString;
+        private readonly MongoDbSettings _mongoDbSettings;
 
-        public DefaultModule(string connectionString)
+        public DefaultModule(string connectionString, MongoDbSettings mongoDbSettings)
         {
             Ensure.String.IsNotNullOrWhiteSpace(connectionString, nameof(connectionString));
 
             _connectionString = connectionString;
+            _mongoDbSettings = mongoDbSettings;
         }
 
         protected override void Load(ContainerBuilder builder)
@@ -106,6 +110,15 @@ namespace Petify.Api.Infrastructure
                 builder,
                 typeof(UsersRepository).Assembly,
                 "Petify.Infrastructure.Domain");
+
+            RegisterTransientDependenciesAutomatically(
+               builder,
+               typeof(PetImagesMongoRepository).Assembly,
+               "Petify.FilesStorage.Repositories");
+        }
+        private void RegisterMongoDBServices(ContainerBuilder builder)
+        {
+            builder.Register(ctx => new MongoDbContext(_mongoDbSettings)).InstancePerLifetimeScope();
         }
     }
 }

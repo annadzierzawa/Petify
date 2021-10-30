@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Petify.Domain.Tests", "Peti
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database.Scripts", "Database.Scripts\Database.Scripts.sqlproj", "{1F29565D-F142-4FFF-A38A-CB13145DD64F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petify.FilesStorage", "Petify.FilesStorage\Petify.FilesStorage.csproj", "{F3A789B5-61BD-48CF-9576-64E6757AD95E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{1F29565D-F142-4FFF-A38A-CB13145DD64F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F29565D-F142-4FFF-A38A-CB13145DD64F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1F29565D-F142-4FFF-A38A-CB13145DD64F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F3A789B5-61BD-48CF-9576-64E6757AD95E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3A789B5-61BD-48CF-9576-64E6757AD95E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3A789B5-61BD-48CF-9576-64E6757AD95E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3A789B5-61BD-48CF-9576-64E6757AD95E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
