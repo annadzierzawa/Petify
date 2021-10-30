@@ -9,6 +9,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatSelectModule } from "@angular/material/select";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatDialogModule } from "@angular/material/dialog";
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DateAdapter, MatOption, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MAT_NATIVE_DATE_FORMATS } from "@angular/material/core";
 
@@ -29,31 +30,23 @@ const DATE_PICKER_FORMAT = {
     },
 };
 
+const modules = [
+    MatCardModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatMenuModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatDatepickerModule
+];
+
 @NgModule({
-    imports: [
-        MatButtonModule,
-        MatCardModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatGridListModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatMenuModule,
-        MatDatepickerModule,
-        MatSelectModule
-    ],
-    exports: [
-        MatButtonModule,
-        MatCardModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatGridListModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatMenuModule,
-        MatDatepickerModule,
-        MatSelectModule
-    ],
+    imports: modules,
+    exports: modules,
     providers: [
         {
             provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,

@@ -5,7 +5,8 @@
     },
     "Common": {
         "Cancel": "Anuluj",
-        "Save": "Zapisz"
+        "Save": "Zapisz",
+        "UploadFile": "Wgraj plik"
     },
     "Navbar": {},
     "PetForm": {

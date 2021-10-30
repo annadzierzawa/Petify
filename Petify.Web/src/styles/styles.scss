@@ -3,3 +3,7 @@
 @import '~ngx-toastr/toastr';
 @import 'toast';
 @import "bootstrap-4-grid/scss/grid/bootstrap-grid";
+
+.hidden {
+    display: none !important;
+}

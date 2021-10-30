@@ -33,7 +33,8 @@ export class PetFormComponent implements OnInit, OnDestroy {
         name: ["", Validators.required],
         description: ["", Validators.required],
         speciesId: [null, Validators.required],
-        dateOfBirth: [new Date(), Validators.required]
+        dateOfBirth: [new Date(), Validators.required],
+        image: [""],
     });
 
     constructor(private _fb: FormBuilder,

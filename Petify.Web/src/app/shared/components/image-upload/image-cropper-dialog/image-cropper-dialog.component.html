@@ -1,0 +1,19 @@
+<div mat-dialog-content>
+    <image-cropper [imageChangedEvent]="data.event"
+                   [aspectRatio]="data.aspectRatio || defaultConfig.aspectRatio"
+                   [cropperMinWidth]="128"
+                   [roundCropper]="data.roundCropper"
+                   [backgroundColor]="'#F2F2F2'"
+                   [maintainAspectRatio]="data.maintainAspectRatio !== undefined ? data.maintainAspectRatio : defaultConfig.maintainAspectRatio"
+                   (imageCropped)="onImageCropped($event)"></image-cropper>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button
+            color="warn"
+            (click)="onAccept()">{{"Common.Confirm" | translate}}</button>
+    <button mat-raised-button
+            class="cancel-button"
+            [mat-dialog-close]="true"
+            cdkFocusInitial
+            (click)="onCancel()">{{"Common.Cancel" | translate}}</button>
+</div>

@@ -1,0 +1,12 @@
+image-cropper {
+    max-height: 450px;
+    max-width: 1000px;
+    width: 100%;
+    padding: 0px !important;
+
+    div::ng-deep {
+        div.overlay {
+            outline: none !important;
+        }
+    }
+}

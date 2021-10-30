@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { MaterialModule } from "@app/material.module";
 import { TranslateModule } from "@ngx-translate/core";
+import { ImageUploadModule } from "./components/image-upload/image-upload.module";
 
 import { PasswordSwitchTypeDirective } from "./password-switch-type.directive";
 import { ValidationFeedbackComponent } from "./validation-feedback/validation-feedback.component";
@@ -20,7 +21,8 @@ import { ValidationFeedbackComponent } from "./validation-feedback/validation-fe
         ValidationFeedbackComponent,
         PasswordSwitchTypeDirective,
         TranslateModule,
-        MaterialModule
+        MaterialModule,
+        ImageUploadModule
     ]
 })
 export class SharedModule { }
