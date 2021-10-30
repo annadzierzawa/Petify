@@ -41,6 +41,17 @@ namespace Petify.Infrastructure.QueryBuilder
             return Select(columns);
         }
 
+        public SqlQueryBuilder SelectAllProperties<T>(params string[] excludedColumns) where T : class
+        {
+            var properties = typeof(T).GetProperties();
+            var columns = properties.Select(x => x.Name.Trim())
+                .Except(excludedColumns);
+
+            _columnsToSelect.AddRange(columns);
+
+            return this;
+        }
+
         public SqlQueryBuilder From(string dataSource)
         {
             Ensure.String.IsNotNullOrWhiteSpace(dataSource, nameof(dataSource));

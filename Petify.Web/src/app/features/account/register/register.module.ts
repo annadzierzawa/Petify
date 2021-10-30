@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
-import { MaterialModule } from "@app/material.module";
 import { SharedModule } from "@app/shared/shared.module";
 
 import { PasswordValidatorFeedbackComponent } from "./password-validator-feedback/password-validator-feedback.component";
@@ -13,7 +12,6 @@ import { RegisterComponent } from "./register.component";
         CommonModule,
         RegisterRoutingModule,
         ReactiveFormsModule,
-        MaterialModule,
         SharedModule
     ],
     declarations: [

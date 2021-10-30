@@ -10,6 +10,7 @@ using Petify.ApplicationServices.UseCases.Users;
 using Petify.Common.Auth;
 using Petify.Infrastructure.DataModel.Context;
 using Petify.Infrastructure.Domain;
+using Petify.Infrastructure.Queries;
 using Petify.Infrastructure.QueryBuilder;
 using Module = Autofac.Module;
 
@@ -93,10 +94,10 @@ namespace Petify.Api.Infrastructure
 
         private static void RegisterQueries(ContainerBuilder builder)
         {
-            //RegisterTransientDependenciesAutomatically(
-            //    builder,
-            //    typeof(SampleQuery).Assembly,
-            //    "Petify.Infrastructure.Queries");
+            RegisterTransientDependenciesAutomatically(
+                builder,
+                typeof(PetsQuery).Assembly,
+                "Petify.Infrastructure.Queries");
         }
 
         private void RegisterRepositories(ContainerBuilder builder)

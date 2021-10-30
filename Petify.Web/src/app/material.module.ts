@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from "@angular/material-moment-adapter";
+import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from "@angular/material-moment-adapter";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldDefaultOptions, MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
@@ -7,9 +7,10 @@ import { MatGridListModule } from "@angular/material/grid-list";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatMenuModule } from "@angular/material/menu";
+import { MatSelectModule } from "@angular/material/select";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MAT_NATIVE_DATE_FORMATS } from "@angular/material/core";
+import { DateAdapter, MatOption, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MAT_NATIVE_DATE_FORMATS } from "@angular/material/core";
 
 const appearance: MatFormFieldDefaultOptions = {
     appearance: "outline"
@@ -38,7 +39,8 @@ const DATE_PICKER_FORMAT = {
         MatFormFieldModule,
         MatInputModule,
         MatMenuModule,
-        MatDatepickerModule
+        MatDatepickerModule,
+        MatSelectModule
     ],
     exports: [
         MatButtonModule,
@@ -49,7 +51,8 @@ const DATE_PICKER_FORMAT = {
         MatFormFieldModule,
         MatInputModule,
         MatMenuModule,
-        MatDatepickerModule
+        MatDatepickerModule,
+        MatSelectModule
     ],
     providers: [
         {

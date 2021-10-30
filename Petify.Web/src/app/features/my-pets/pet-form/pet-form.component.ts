@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { PetService } from '@app/core/services/pet.service';
 import { ToastrService } from 'ngx-toastr';
+import { LookupDTO } from '@app/shared/models/lookup.model';
 
 @Component({
     selector: 'petify-pet-form',
@@ -19,6 +20,7 @@ export class PetFormComponent implements OnInit, OnDestroy {
 
     species$ = new Observable<any[]>()
     private _destroySubject$ = new Subject();
+    speciesLookup$: Observable<LookupDTO[]>;
 
     now = new Date();
     year = this.now.getFullYear();
@@ -49,6 +51,8 @@ export class PetFormComponent implements OnInit, OnDestroy {
         //         this.petFormGroup.patchValue(data);
         //     });
         // }
+
+        this.speciesLookup$ = this._petService.getSpeciesLookup();
     }
 
     ngOnDestroy(): void {

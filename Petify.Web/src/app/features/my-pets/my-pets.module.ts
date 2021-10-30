@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MyPetsRoutingModule } from './my-pets-routing.module';
 import { MyPetsComponent } from './my-pets/my-pets.component';
-import { MaterialModule } from '@app/material.module';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { PetItemComponent } from './pet-item/pet-item.component';
 import { AddPetComponent } from './add-pet/add-pet.component';
@@ -20,7 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     imports: [
         CommonModule,
         MyPetsRoutingModule,
-        MaterialModule,
+        SharedModule,
         TranslateModule,
         SharedModule,
         ReactiveFormsModule

@@ -19,7 +19,8 @@ import { ValidationFeedbackComponent } from "./validation-feedback/validation-fe
     exports: [
         ValidationFeedbackComponent,
         PasswordSwitchTypeDirective,
-        TranslateModule
+        TranslateModule,
+        MaterialModule
     ]
 })
 export class SharedModule { }

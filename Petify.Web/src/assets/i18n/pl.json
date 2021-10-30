@@ -14,5 +14,21 @@
         "Species": "Gatunek",
         "DateOfBirth": "Data urodzenia",
         "TheAnimalHasBeenSaved": "Zwierze zostało zapisane."
+    },
+    "Lookup": {
+        "SpeciesType": {
+            "Dog": "Pies",
+            "Cat": "Kot",
+            "Bird": "Ptak",
+            "Fish": "Ryba",
+            "Horse": "Koń",
+            "Hamster": "Chomik",
+            "GuineaPig": "Świnka morska",
+            "Pig": "Świnia",
+            "Meerkat": "Surykatka",
+            "Snake": "Wąż",
+            "Rabbit": "Królik",
+            "Spider": "Pająk"
+        }
     }
 }

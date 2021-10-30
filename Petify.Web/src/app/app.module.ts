@@ -11,7 +11,7 @@ import { AppRoutingModule } from "./app.routing.module";
 import { HttpLoaderFactory } from "./bootstrap";
 import { CoreModule } from "./core/core.module";
 import { MainModule } from "./main/main.module";
-import { MaterialModule } from "./material.module";
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
     declarations: [
@@ -20,7 +20,7 @@ import { MaterialModule } from "./material.module";
     imports: [
         BrowserModule,
         AuthModule.forRoot(),
-        MaterialModule,
+        SharedModule,
         BrowserAnimationsModule,
         CoreModule,
         MainModule,

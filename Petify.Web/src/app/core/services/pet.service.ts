@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { LookupDTO } from '@app/shared/models/lookup.model';
 import { PetDTO } from '@app/shared/models/pet.model';
 import { Observable } from 'rxjs/internal/Observable';
 import { ApiClientService } from './api-client.service';
@@ -12,5 +13,9 @@ export class PetService {
 
     add(value: PetDTO): Observable<void> {
         return this._apiClientService.post(`${appConfig.apiUrl}/my-pets/add`, { data: value });
+    }
+
+    getSpeciesLookup(): Observable<LookupDTO[]> {
+        return this._apiClientService.get(`${appConfig.apiUrl}/pets/species-lookup`);
     }
 }
