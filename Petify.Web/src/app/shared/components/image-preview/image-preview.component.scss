@@ -1,0 +1,19 @@
+@import 'variables';
+
+.image-container {
+    position: relative;
+}
+
+.image {
+    object-fit: cover;
+    object-position: center;
+    height: 100%;
+    width: 100%;
+}
+
+mat-icon {
+    font-size: 200px;
+    height: 200px;
+    width: 200px;
+    color: $spearmint-200;
+}

@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { PetService } from '@app/core/services/pet.service';
 import { ToastrService } from 'ngx-toastr';
 import { LookupDTO } from '@app/shared/models/lookup.model';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'petify-pet-form',
@@ -26,6 +27,8 @@ export class PetFormComponent implements OnInit, OnDestroy {
     year = this.now.getFullYear();
     month = this.now.getMonth();
     day = this.now.getDay();
+
+    imageSrc: string;
 
     maxDate = moment({ year: this.year, month: this.month, day: this.day - 1 }).format('YYYY-MM-DD');
 
@@ -54,6 +57,10 @@ export class PetFormComponent implements OnInit, OnDestroy {
         // }
 
         this.speciesLookup$ = this._petService.getSpeciesLookup();
+
+        this.petFormGroup.controls.image.valueChanges.pipe(takeUntil(this._destroySubject$)).subscribe(img => {
+            this.imageSrc = img;
+        })
     }
 
     ngOnDestroy(): void {
