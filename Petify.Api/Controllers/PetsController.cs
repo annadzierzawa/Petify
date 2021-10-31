@@ -33,5 +33,21 @@ namespace Petify.Api.Controllers
             await _commandDispatcher.Dispatch(command);
             return Ok();
         }
+
+        [HttpGet("pets/{id}")]
+        public async Task<IActionResult> GetPet([FromRoute] GetPetParameter query)
+        {
+            var result = await _queryDispatcher.Dispatch(query);
+            return Ok(result);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("pets/images/{fileStorageId}")]
+        public async Task<IActionResult> GetPetImage([FromRoute] GetPetImageParameter query)
+        {
+            var result = await _queryDispatcher.Dispatch(query);
+
+            return File(result, "image/png", "filename.png");
+        }
     }
 }

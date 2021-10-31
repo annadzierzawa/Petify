@@ -10,6 +10,7 @@ using Petify.Domain.Common;
 using Petify.Domain.Pets;
 using Petify.Infrastructure.DataModel.Mappings.Access;
 using Petify.Infrastructure.DataModel.Mappings.Lookups;
+using Petify.Infrastructure.DataModel.Mappings.Pets;
 using SRW_CRM.Infrastructure.DataModel.Mappings.Access;
 using Action = Petify.Domain.Access.Action;
 
@@ -49,6 +50,7 @@ namespace Petify.Infrastructure.DataModel.Context
             builder.ApplyConfiguration(new UserRoleConfiguration());
 
             builder.ApplyConfiguration(new SpeciesTypeConfiguration());
+            builder.ApplyConfiguration(new PetConfiguration());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

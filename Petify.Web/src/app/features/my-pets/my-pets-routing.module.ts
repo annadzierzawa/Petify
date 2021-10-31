@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AddPetComponent } from "./add-pet/add-pet.component";
+import { EditPetComponent } from "./edit-pet/edit-pet.component";
 import { MyPetsComponent } from "./my-pets/my-pets.component";
 
 const routes: Routes = [
@@ -11,6 +12,10 @@ const routes: Routes = [
     {
         path: "add",
         component: AddPetComponent
+    },
+    {
+        path: ":id/edit",
+        component: EditPetComponent
     }
 ];
 

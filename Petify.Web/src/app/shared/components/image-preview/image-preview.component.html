@@ -2,7 +2,7 @@
      [ngStyle]="{'height': height + heightUnit}"
      *ngIf="imageUrl; else imgPlaceholder">
     <img class="image"
-         [src]="imageUrl | sanitize">
+         [src]="imageUrl">
 </div>
 <ng-template #imgPlaceholder>
     <div class="row justify-content-center">

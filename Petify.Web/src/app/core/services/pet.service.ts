@@ -9,6 +9,8 @@ import { ApiClientService } from './api-client.service';
 })
 export class PetService {
 
+    public static petImagesEndpoint = `${appConfig.apiUrl}/pets/images/`;
+
     constructor(private _apiClientService: ApiClientService) { }
 
     add(value: PetDTO): Observable<void> {
@@ -17,5 +19,9 @@ export class PetService {
 
     getSpeciesLookup(): Observable<LookupDTO[]> {
         return this._apiClientService.get(`${appConfig.apiUrl}/pets/species-lookup`);
+    }
+
+    getPet(id: number): Observable<PetDTO> {
+        return this._apiClientService.get(`${appConfig.apiUrl}/pets/{id}`, { segmentParams: { id } });
     }
 }

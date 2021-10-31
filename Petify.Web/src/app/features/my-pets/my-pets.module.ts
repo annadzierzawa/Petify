@@ -8,13 +8,15 @@ import { AddPetComponent } from './add-pet/add-pet.component';
 import { PetFormComponent } from './pet-form/pet-form.component';
 import { SharedModule } from '@app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditPetComponent } from './edit-pet/edit-pet.component';
 
 @NgModule({
     declarations: [
         MyPetsComponent,
         PetItemComponent,
         AddPetComponent,
-        PetFormComponent
+        PetFormComponent,
+        EditPetComponent
     ],
     imports: [
         CommonModule,

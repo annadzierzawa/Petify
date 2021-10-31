@@ -8,6 +8,7 @@ import { PetService } from '@app/core/services/pet.service';
 import { ToastrService } from 'ngx-toastr';
 import { LookupDTO } from '@app/shared/models/lookup.model';
 import { takeUntil } from 'rxjs/operators';
+import { indicate } from '@app/shared/operators';
 
 @Component({
     selector: 'petify-pet-form',
@@ -27,6 +28,8 @@ export class PetFormComponent implements OnInit, OnDestroy {
     year = this.now.getFullYear();
     month = this.now.getMonth();
     day = this.now.getDay();
+
+    isLoading$ = new Subject<boolean>();
 
     imageSrc: string;
 
@@ -48,13 +51,14 @@ export class PetFormComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        // if (this.petId) {
-        //     this._petService.getPet(this.userId,this.petId)
-        //     .pipe(indicate(this.isLoading$))
-        //     .subscribe(data => {
-        //         this.petFormGroup.patchValue(data);
-        //     });
-        // }
+        if (this.petId) {
+            this._petService.getPet(this.petId)
+                .pipe(indicate(this.isLoading$))
+                .subscribe(data => {
+                    this.petFormGroup.patchValue(data);
+                    this.imageSrc = PetService.petImagesEndpoint + data.imageFileStorageId
+                });
+        }
 
         this.speciesLookup$ = this._petService.getSpeciesLookup();
 
