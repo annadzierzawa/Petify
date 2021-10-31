@@ -3,5 +3,6 @@ export interface PetDTO {
     name: string,
     description: string,
     speciesId: number,
-    dateOfBirth: Date
+    dateOfBirth: Date,
+    image: string
 }

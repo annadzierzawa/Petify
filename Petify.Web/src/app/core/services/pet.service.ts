@@ -12,7 +12,7 @@ export class PetService {
     constructor(private _apiClientService: ApiClientService) { }
 
     add(value: PetDTO): Observable<void> {
-        return this._apiClientService.post(`${appConfig.apiUrl}/my-pets/add`, { data: value });
+        return this._apiClientService.post(`${appConfig.apiUrl}/pets`, { data: value });
     }
 
     getSpeciesLookup(): Observable<LookupDTO[]> {

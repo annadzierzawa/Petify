@@ -41,6 +41,10 @@ namespace Petify.Domain.Access
         {
             IsActive = false;
         }
+        public void AddPet(Pet pet)
+        {
+            Pets.Add(pet);
+        }
 
         public string Id { get; init; }
         public string Email { get; init; }

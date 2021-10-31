@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Petify.Common.CQRS;
+using Petify.PublishedLanguage.Commands.Pets;
 using Petify.PublishedLanguage.Queries.Pets;
 
 namespace Petify.Api.Controllers
@@ -24,6 +25,13 @@ namespace Petify.Api.Controllers
         {
             var result = await _queryDispatcher.Dispatch(query);
             return Ok(result);
+        }
+
+        [HttpPost("pets")]
+        public async Task<IActionResult> AddPet([FromBody] AddPetCommand command)
+        {
+            await _commandDispatcher.Dispatch(command);
+            return Ok();
         }
     }
 }

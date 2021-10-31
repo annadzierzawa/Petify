@@ -43,6 +43,7 @@ namespace Petify.Api.Infrastructure
             RegisterUseCases(builder);
             RegisterQueries(builder);
             RegisterRepositories(builder);
+            RegisterMongoDBServices(builder);
         }
 
         private static void RegisterTransientDependenciesAutomatically(
@@ -116,6 +117,7 @@ namespace Petify.Api.Infrastructure
                typeof(PetImagesMongoRepository).Assembly,
                "Petify.FilesStorage.Repositories");
         }
+
         private void RegisterMongoDBServices(ContainerBuilder builder)
         {
             builder.Register(ctx => new MongoDbContext(_mongoDbSettings)).InstancePerLifetimeScope();
