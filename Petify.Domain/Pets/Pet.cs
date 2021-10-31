@@ -20,5 +20,23 @@ namespace Petify.Domain.Pets
             Description = description;
             ImageFileStorageId = imageFileStorageId;
         }
+
+        public void ResetImageFileStorageId()
+        {
+            ImageFileStorageId = string.Empty;
+        }
+
+        public void SetImageFileStorageId(string fileStorageId)
+        {
+            ImageFileStorageId = fileStorageId;
+        }
+
+        public void UpdateFields(string name, int speciesId, DateTime dateOfBirth, string description)
+        {
+            Name = name;
+            SpeciesId = speciesId;
+            DateOfBirth = dateOfBirth;
+            Description = description;
+        }
     }
 }

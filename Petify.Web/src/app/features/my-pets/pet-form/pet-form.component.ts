@@ -75,11 +75,22 @@ export class PetFormComponent implements OnInit, OnDestroy {
     onSave(): void {
         if (this.petFormGroup.valid) {
             this.isSaveButtonDisabled = true;
-            this._petService.add(this.petFormGroup.value).subscribe(_ => {
-                this._toastr.success(this._translate.instant("PetForm.TheAnimalHasBeenSaved"));
-                this.onBack();
-            },
-                _ => this.isSaveButtonDisabled = false);
+            if (this.petId) {
+                this._petService.update({
+                    id: this.petId,
+                    ...this.petFormGroup.value
+                }).subscribe(_ => {
+                    this._toastr.success(this._translate.instant("PetForm.TheAnimalHasBeenSaved"));
+                    this.onBack();
+                },
+                    _ => this.isSaveButtonDisabled = false);
+            } else {
+                this._petService.add(this.petFormGroup.value).subscribe(_ => {
+                    this._toastr.success(this._translate.instant("PetForm.TheAnimalHasBeenSaved"));
+                    this.onBack();
+                },
+                    _ => this.isSaveButtonDisabled = false);
+            }
         }
     }
 

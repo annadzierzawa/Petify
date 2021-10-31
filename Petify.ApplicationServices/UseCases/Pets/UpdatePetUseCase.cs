@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 using Petify.ApplicationServices.Boundaries.Users;
 using Petify.Common.Auth;
 using Petify.Common.CQRS;
 using Petify.Domain;
-using Petify.Domain.Pets;
 using Petify.FilesStorage.Repositories.PetImages;
 using Petify.PublishedLanguage.Commands.Pets;
 
 namespace Petify.ApplicationServices.UseCases.Pets
 {
-    public class AddPetUseCase : ICommandHandler<AddPetCommand>
+    public class UpdatePetUseCase : ICommandHandler<UpdatePetCommand>
     {
         private readonly IPetImagesMongoRepository _petImagesMongoRepository;
         private readonly IUsersRepository _usersRepository;
         private readonly ICurrentUserService _currentUserService;
         private readonly IUnitOfWork _unitOfWork;
 
-        public AddPetUseCase(
+        public UpdatePetUseCase(
             IPetImagesMongoRepository petImagesMongoRepository,
             IUsersRepository usersRepository,
             ICurrentUserService currentUserService,
@@ -29,21 +29,31 @@ namespace Petify.ApplicationServices.UseCases.Pets
             _unitOfWork = unitOfWork;
         }
 
-        public async Task Handle(AddPetCommand command)
+        public async Task Handle(UpdatePetCommand command)
         {
-            var fileStorageId = "";
+            var user = await _usersRepository.GetUser(_currentUserService.UserId);
+            var pet = user.GetPet(command.Id);
+            string oldPetImageFileStorageId = "";
+
             if (!string.IsNullOrEmpty(command.Image))
             {
-                var petImageMongoId = await _petImagesMongoRepository.Insert("", Convert.FromBase64String(command.ImageAsValidBase64));
-                fileStorageId = petImageMongoId.ToString();
+                if (!string.IsNullOrEmpty(pet.ImageFileStorageId))
+                {
+                    oldPetImageFileStorageId = pet.ImageFileStorageId;
+                    pet.ResetImageFileStorageId();
+                }
+                var newImageMongoFileStorageId = await _petImagesMongoRepository.Insert("", Convert.FromBase64String(command.ImageAsValidBase64));
+                pet.SetImageFileStorageId(newImageMongoFileStorageId.ToString());
             }
-            var user = await _usersRepository.GetUser(_currentUserService.UserId);
 
-            var pet = new Pet(command.Name, command.SpeciesId, command.DateOfBirth, command.Description, fileStorageId);
-
-            user.AddPet(pet);
+            pet.UpdateFields(command.Name, command.SpeciesId, command.DateOfBirth, command.Description);
 
             await _unitOfWork.Save();
+
+            if (!string.IsNullOrEmpty(oldPetImageFileStorageId))
+            {
+                await _petImagesMongoRepository.Delete(new ObjectId(oldPetImageFileStorageId));
+            }
         }
     }
 }

@@ -10,5 +10,10 @@ namespace Petify.PublishedLanguage.Commands.Pets
         public int SpeciesId { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Image { get; set; }
+
+        public string ImageAsValidBase64
+        {
+            get => Image.Substring(Image.LastIndexOf(',') + 1);
+        }
     }
 }

@@ -34,6 +34,13 @@ namespace Petify.Api.Controllers
             return Ok();
         }
 
+        [HttpPut("pets")]
+        public async Task<IActionResult> UpdatePet([FromBody] UpdatePetCommand command)
+        {
+            await _commandDispatcher.Dispatch(command);
+            return Ok();
+        }
+
         [HttpGet("pets/{id}")]
         public async Task<IActionResult> GetPet([FromRoute] GetPetParameter query)
         {
