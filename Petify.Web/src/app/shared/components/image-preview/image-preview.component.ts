@@ -9,7 +9,9 @@ export class ImagePreviewComponent implements OnInit {
 
     @Input() imageUrl: Nullable<string>;
     @Input() height: number;
+    @Input() width: number;
     @Input() heightUnit: "px" | "%";
+    @Input() widthUnit: "px" | "%";
 
     constructor() { }
 

@@ -21,9 +21,11 @@
                 </mat-error>
             </mat-form-field>
             <div class="col-6 image-section">
-                <petify-image-preview class="user-image-preview"
+                <petify-image-preview class="user-image-preview col-12 d-flex justify-content-center"
                                       [height]="400"
                                       heightUnit="px"
+                                      [width]="300"
+                                      widthUnit="px"
                                       [imageUrl]="imageSrc">
                 </petify-image-preview>
                 <petify-image-upload formControlName="image"
@@ -31,7 +33,7 @@
                                      [aspectRatio]="4 / 5"></petify-image-upload>
             </div>
             <div class="col-6">
-                <mat-form-field>
+                <mat-form-field class="col-12">
                     <mat-label>{{'PetForm.Species' | translate}}</mat-label>
                     <mat-select mat-Input
                                 type="select"
@@ -44,7 +46,7 @@
                         <petify-validation-feedback controlName="speciesId"></petify-validation-feedback>
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field class="col-12">
                     <mat-label>{{'PetForm.DateOfBirth' | translate}}</mat-label>
                     <mat-label>{{'PetForm.DateOfBirth' | translate}}</mat-label>
                     <input matInput
@@ -65,8 +67,8 @@
                 <button mat-raised-button
                         class="save-button"
                         (click)="onSave()"
-                        color="primary"
-                        [disabled]="isSaveButtonDisabled">
+                        [disabled]="isSending$ | async"
+                        color="primary">
                     {{'Common.Save' | translate}}
                 </button>
             </div>

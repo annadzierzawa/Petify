@@ -1,5 +1,6 @@
 <div class="image-container"
      [ngStyle]="{'height': height + heightUnit}"
+     [ngStyle]="{'width': width + widthUnit}"
      *ngIf="imageUrl; else imgPlaceholder">
     <img class="image"
          [src]="imageUrl">

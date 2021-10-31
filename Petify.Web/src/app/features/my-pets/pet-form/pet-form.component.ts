@@ -18,7 +18,6 @@ import { indicate } from '@app/shared/operators';
 export class PetFormComponent implements OnInit, OnDestroy {
 
     @Input() petId: Nullable<number>;
-    isSaveButtonDisabled = false;
 
     species$ = new Observable<any[]>()
     private _destroySubject$ = new Subject();
@@ -30,6 +29,7 @@ export class PetFormComponent implements OnInit, OnDestroy {
     day = this.now.getDay();
 
     isLoading$ = new Subject<boolean>();
+    isSending$ = new Subject<boolean>();
 
     imageSrc: string;
 
@@ -74,22 +74,24 @@ export class PetFormComponent implements OnInit, OnDestroy {
 
     onSave(): void {
         if (this.petFormGroup.valid) {
-            this.isSaveButtonDisabled = true;
             if (this.petId) {
                 this._petService.update({
                     id: this.petId,
                     ...this.petFormGroup.value
-                }).subscribe(_ => {
+                }).pipe(
+                    indicate(this.isSending$)
+                ).subscribe(_ => {
                     this._toastr.success(this._translate.instant("PetForm.TheAnimalHasBeenSaved"));
                     this.onBack();
-                },
-                    _ => this.isSaveButtonDisabled = false);
+                });
             } else {
-                this._petService.add(this.petFormGroup.value).subscribe(_ => {
-                    this._toastr.success(this._translate.instant("PetForm.TheAnimalHasBeenSaved"));
-                    this.onBack();
-                },
-                    _ => this.isSaveButtonDisabled = false);
+                this._petService.add(this.petFormGroup.value)
+                    .pipe(
+                        indicate(this.isSending$)
+                    ).subscribe(_ => {
+                        this._toastr.success(this._translate.instant("PetForm.TheAnimalHasBeenSaved"));
+                        this.onBack();
+                    });
             }
         }
     }
