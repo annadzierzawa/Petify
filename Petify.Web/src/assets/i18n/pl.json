@@ -1,12 +1,15 @@
 {
     "MyPets": {
         "Title": "Moje zwierzęta",
-        "AddNewPet": "Dodaj zwierzątko"
+        "AddNewPet": "Dodaj zwierzątko",
+        "Age": "Wiek",
+        "Species": "Gatunek"
     },
     "Common": {
         "Cancel": "Anuluj",
         "Save": "Zapisz",
-        "UploadFile": "Wgraj plik"
+        "UploadFile": "Wgraj plik",
+        "NoResults": "Brak wyników"
     },
     "Navbar": {},
     "PetForm": {

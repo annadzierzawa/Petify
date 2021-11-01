@@ -9,6 +9,7 @@ import { PetFormComponent } from './pet-form/pet-form.component';
 import { SharedModule } from '@app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditPetComponent } from './edit-pet/edit-pet.component';
+import { PipesModule } from '@app/shared/pipes/pipes.module';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { EditPetComponent } from './edit-pet/edit-pet.component';
         SharedModule,
         TranslateModule,
         SharedModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        PipesModule
     ]
 })
 export class MyPetsModule { }

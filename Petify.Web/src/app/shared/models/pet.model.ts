@@ -5,9 +5,14 @@ export interface Pet {
     dateOfBirth: Date
 }
 
-export interface PetDTO {
+export interface PetDTO extends Pet {
     id: string;
     imageFileStorageId: string;
+}
+
+export interface PetItemDTO extends PetDTO {
+    speciesName: string;
+    age: number
 }
 
 export interface AddPetCommand extends Pet {

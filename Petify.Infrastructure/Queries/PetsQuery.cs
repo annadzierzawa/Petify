@@ -33,5 +33,14 @@ namespace Petify.Infrastructure.Queries
               .BuildQuery<PetDTO>()
               .ExecuteSingle();
         }
+
+        public async Task<List<PetItemDTO>> GetPets(string userId)
+        {
+            return await _sqlQueryBuilder
+                .SelectAllProperties<PetItemDTO>("Age")
+                .From("Pet.VW_PetItems")
+                .BuildQuery<PetItemDTO>()
+                .ExecuteToList();
+        }
     }
 }

@@ -47,6 +47,13 @@ namespace Petify.Api.Controllers
             var result = await _queryDispatcher.Dispatch(query);
             return Ok(result);
         }
+        
+        [HttpGet("/users/{userId}/pets/my-pets")]
+        public async Task<IActionResult> GetPets([FromRoute] GetPetsParameter query)
+        {
+            var result = await _queryDispatcher.Dispatch(query);
+            return Ok(result);
+        }
 
         [AllowAnonymous]
         [HttpGet("pets/images/{fileStorageId}")]

@@ -4,3 +4,5 @@ GO
 GO
 :r ..\Views\VW_UserPermissions.sql
 GO
+:r ..\Views\VW_PetItems.sql
+GO

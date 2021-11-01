@@ -1,2 +1,23 @@
 <mat-card>
+    <div class="pet-container row">
+        <div *ngIf="pet.imageFileStorageId as image"
+             class="pet-container__image col-3">
+            <petify-image-preview [imageUrl]="image | petImageUrl"
+                                  [height]="200"
+                                  [width]="200 * 4 / 5"
+                                  heightUnit="px"
+                                  widthUnit="px"></petify-image-preview>
+        </div>
+        <div class="col-6">
+            <h1 class="col-12 d-flex justify-content-start mt-0">{{pet.name}}</h1>
+            <div class="pet-container__description col-12">
+                {{pet.description}}
+            </div>
+            <div class=" col-12 mt-3 pet-container__dateOfBirth">{{"MyPets.Age" | translate}}: {{ pet.age}}
+            </div>
+            <div class="col-12 mt-1 pet-container__species">{{"MyPets.Species" | translate}}:
+                {{"Lookup.SpeciesType."+ pet.speciesName | translate}}
+            </div>
+        </div>
+    </div>
 </mat-card>

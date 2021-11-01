@@ -117,4 +117,8 @@ export class AuthService {
     get name(): Nullable<string> {
         return this._user?.profile.name;
     }
+
+    get id(): Nullable<string> {
+        return this._user?.profile.sub;
+    }
 }
