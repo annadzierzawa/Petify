@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="my-0">
     <div class="pet-container row">
         <div *ngIf="pet.imageFileStorageId as image"
              class="pet-container__image col-3">
@@ -18,6 +18,19 @@
             <div class="col-12 mt-1 pet-container__species">{{"MyPets.Species" | translate}}:
                 {{"Lookup.SpeciesType."+ pet.speciesName | translate}}
             </div>
+        </div>
+        <div class="col-3 d-flex justify-content-end">
+            <button mat-mini-fab
+                    class="mr-2"
+                    color="primary"
+                    [routerLink]="[pet.id, 'edit']">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-mini-fab
+                    color="warn"
+                    (click)="onDeletePet()">
+                <mat-icon>delete</mat-icon>
+            </button>
         </div>
     </div>
 </mat-card>

@@ -30,6 +30,7 @@ namespace Petify.Infrastructure.Queries
             return await _sqlQueryBuilder
               .SelectAllProperties<PetDTO>()
               .From("Pet.Pet")
+              .Where("Id", id)
               .BuildQuery<PetDTO>()
               .ExecuteSingle();
         }
@@ -39,6 +40,7 @@ namespace Petify.Infrastructure.Queries
             return await _sqlQueryBuilder
                 .SelectAllProperties<PetItemDTO>("Age")
                 .From("Pet.VW_PetItems")
+                .Where("UserId", userId)
                 .BuildQuery<PetItemDTO>()
                 .ExecuteToList();
         }

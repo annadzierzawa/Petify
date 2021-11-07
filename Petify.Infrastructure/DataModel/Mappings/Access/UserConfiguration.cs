@@ -11,6 +11,8 @@ namespace Petify.Infrastructure.DataModel.Mappings.Access
             builder.ToTable("User", "Access");
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id).ValueGeneratedNever();
+
+            builder.HasMany(e => e.Pets).WithOne().HasForeignKey(p => p.UserId);
         }
     }
 }

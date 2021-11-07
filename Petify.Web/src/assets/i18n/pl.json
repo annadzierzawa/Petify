@@ -3,13 +3,19 @@
         "Title": "Moje zwierzęta",
         "AddNewPet": "Dodaj zwierzątko",
         "Age": "Wiek",
-        "Species": "Gatunek"
+        "Species": "Gatunek",
+        "AreYouSureYouWantToDeleteTheAnimal?": "Czy na pewno chcesz usunąć zwierze?",
+        "TheAnimalHasBeenRemoved": "Zwierze zostało usunięte.",
+        "ConfirmTheOperation": "Potwierdź operację"
     },
     "Common": {
         "Cancel": "Anuluj",
         "Save": "Zapisz",
         "UploadFile": "Wgraj plik",
-        "NoResults": "Brak wyników"
+        "NoResults": "Brak wyników",
+        "Confirm": "Confirm",
+        "Edit": "Edit",
+        "Delete": "Delete"
     },
     "Navbar": {},
     "PetForm": {

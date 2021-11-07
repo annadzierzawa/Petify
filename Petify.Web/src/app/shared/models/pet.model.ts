@@ -6,7 +6,7 @@ export interface Pet {
 }
 
 export interface PetDTO extends Pet {
-    id: string;
+    id: number;
     imageFileStorageId: string;
 }
 

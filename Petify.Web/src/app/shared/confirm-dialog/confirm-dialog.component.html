@@ -1,0 +1,16 @@
+<p mat-dialog-title>{{data.title}}</p>
+<div mat-dialog-content
+     class="description">
+    {{data.message}}
+</div>
+<div mat-dialog-actions
+     style="justify-content: flex-end;">
+    <button class="button-style"
+            mat-raised-button
+            color="warn"
+            (click)="onDismiss()">Nie</button>
+    <button class="button-style"
+            mat-raised-button
+            color="primary"
+            (click)="onConfirm()">Tak</button>
+</div>

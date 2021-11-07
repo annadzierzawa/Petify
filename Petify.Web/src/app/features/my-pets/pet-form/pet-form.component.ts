@@ -97,6 +97,6 @@ export class PetFormComponent implements OnInit, OnDestroy {
     }
 
     onBack(): void {
-        this._router.navigate([".."]);
+        this._router.navigate(["../my-pets"]);
     }
 }

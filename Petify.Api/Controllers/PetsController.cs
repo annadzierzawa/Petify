@@ -47,7 +47,14 @@ namespace Petify.Api.Controllers
             var result = await _queryDispatcher.Dispatch(query);
             return Ok(result);
         }
-        
+
+        [HttpDelete("pets/{id}")]
+        public async Task<IActionResult> RemovePet([FromRoute] RemovePetCommand command)
+        {
+            await _commandDispatcher.Dispatch(command);
+            return Ok();
+        }
+
         [HttpGet("/users/{userId}/pets/my-pets")]
         public async Task<IActionResult> GetPets([FromRoute] GetPetsParameter query)
         {

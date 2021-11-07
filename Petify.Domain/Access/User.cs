@@ -52,6 +52,11 @@ namespace Petify.Domain.Access
             return Pets.FirstOrDefault(p => p.Id == id);
         }
 
+        public void DeletePet(Pet pet)
+        {
+            Pets.Remove(pet);
+        }
+
         public string Id { get; init; }
         public string Email { get; init; }
         public string Name { get; private set; }
