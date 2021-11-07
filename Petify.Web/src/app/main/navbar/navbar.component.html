@@ -1,8 +1,8 @@
 <mat-toolbar class="mat-elevation-z6 navbar">
-
+    <span class="material-icons logo-icon"
+          routerLink="/">pets</span>
     <a class="nav-title"
        routerLink="/">{{title}}</a>
-
     <span class="fill-remaining-space"></span>
 
     <a mat-button
@@ -26,11 +26,6 @@
     </nav>
 
     <nav *ngIf="authStatus$ | async">
-        <a mat-button
-           routerLinkActive="menu-item-active"
-           routerLink="/sample">
-            <mat-icon>mood</mat-icon> Sample
-        </a>
         <a mat-button
            routerLinkActive="menu-item-active"
            (click)="signout()">

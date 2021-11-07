@@ -1,7 +1,7 @@
 {
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "cli": {
-      "analytics": false
+        "analytics": false
     },
     "version": 1,
     "newProjectRoot": "projects",
@@ -10,7 +10,7 @@
             "root": "",
             "sourceRoot": "src",
             "projectType": "application",
-            "prefix": "app",
+            "prefix": "petify",
             "schematics": {
                 "@schematics/angular:component": {
                     "style": "scss",
@@ -50,6 +50,11 @@
                             "src/styles/styles.scss",
                             "node_modules/material-design-icons/iconfont/material-icons.css"
                         ],
+                        "stylePreprocessorOptions": {
+                            "includePaths": [
+                                "src/styles"
+                            ]
+                        },
                         "allowedCommonJsDependencies": [
                             "url-parse",
                             "urijs"
@@ -117,6 +122,11 @@
                         "styles": [
                             "src/styles.css"
                         ],
+                        "stylePreprocessorOptions": {
+                            "includePaths": [
+                                "src/styles"
+                            ]
+                        },
                         "scripts": [],
                         "assets": [
                             "src/favicon.ico",

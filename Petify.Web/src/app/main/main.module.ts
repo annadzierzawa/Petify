@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FeaturesModule } from "@app/features/features.module";
-import { MaterialModule } from "@app/material.module";
+import { SharedModule } from "@app/shared/shared.module";
 
 import { HomeComponent } from "./home/home.component";
 import { MainRoutingModule } from "./main-routing.module";
@@ -12,7 +12,7 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
     imports: [
         CommonModule,
         MainRoutingModule,
-        MaterialModule,
+        SharedModule,
         FeaturesModule
     ],
     declarations: [

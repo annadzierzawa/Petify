@@ -1,0 +1,12 @@
+<div class="image-container"
+     [ngStyle]="{'height': height + heightUnit}"
+     [ngStyle]="{'width': width + widthUnit}"
+     *ngIf="imageUrl; else imgPlaceholder">
+    <img class="image"
+         [src]="imageUrl">
+</div>
+<ng-template #imgPlaceholder>
+    <div class="row justify-content-center">
+        <mat-icon>image</mat-icon>
+    </div>
+</ng-template>

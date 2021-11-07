@@ -65,5 +65,6 @@
     <None Include="Views\SVW_UserPermissions.sql" />
     <None Include="Views\VW_UserPermissions.sql" />
     <None Include="Database.Scripts.publish.xml" />
+    <None Include="Views\VW_PetItems.sql" />
   </ItemGroup>
 </Project>

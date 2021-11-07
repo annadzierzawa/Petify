@@ -1,10 +1,12 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { AuthGuard } from "@app/core/guards/auth.guard";
 
 
 const routes: Routes = [
-
+    {
+        path: "my-pets",
+        loadChildren: () => import("./my-pets/my-pets.module").then(m => m.MyPetsModule)
+    }
 ];
 
 @NgModule({

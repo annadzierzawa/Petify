@@ -204,6 +204,130 @@ namespace Petify.Infrastructure.Migrations
                     b.ToTable("UserRole", "Access");
                 });
 
+            modelBuilder.Entity("Petify.Domain.Lookups.SpeciesType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SpeciesType", "Lookup");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Dog"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Cat"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Hamster"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Horse"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Fish"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "GuineaPig"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Pig"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Meerkat"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Snake"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Rabbit"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Spider"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "Bird"
+                        });
+                });
+
+            modelBuilder.Entity("Petify.Domain.Pets.Pet", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageFileStorageId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SpeciesId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Pet", "Pet");
+                });
+
             modelBuilder.Entity("Petify.Domain.Access.RoleAction", b =>
                 {
                     b.HasOne("Petify.Domain.Access.Action", "Action")
@@ -259,6 +383,20 @@ namespace Petify.Infrastructure.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Petify.Domain.Pets.Pet", b =>
+                {
+                    b.HasOne("Petify.Domain.Access.User", null)
+                        .WithMany("Pets")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Petify.Domain.Access.User", b =>
+                {
+                    b.Navigation("Pets");
                 });
 #pragma warning restore 612, 618
         }

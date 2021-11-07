@@ -6,7 +6,7 @@ interface MinLength {
 }
 
 @Component({
-    selector: "app-validation-feedback",
+    selector: "petify-validation-feedback",
     templateUrl: "./validation-feedback.component.html"
 })
 export class ValidationFeedbackComponent implements OnInit {

@@ -1,6 +1,9 @@
-﻿using EnsureThat;
-using Petify.Domain.Common;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net.Mail;
+using EnsureThat;
+using Petify.Domain.Common;
+using Petify.Domain.Pets;
 
 namespace Petify.Domain.Access
 {
@@ -39,6 +42,20 @@ namespace Petify.Domain.Access
         {
             IsActive = false;
         }
+        public void AddPet(Pet pet)
+        {
+            Pets.Add(pet);
+        }
+
+        public Pet GetPet(int id)
+        {
+            return Pets.FirstOrDefault(p => p.Id == id);
+        }
+
+        public void DeletePet(Pet pet)
+        {
+            Pets.Remove(pet);
+        }
 
         public string Id { get; init; }
         public string Email { get; init; }
@@ -46,5 +63,9 @@ namespace Petify.Domain.Access
         public string PhoneNumber { get; private set; }
         public string City { get; private set; }
         public bool IsActive { get; private set; }
+
+        //navigation properties
+        public List<Pet> Pets { get; set; }
+
     }
 }

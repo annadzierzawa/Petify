@@ -5,8 +5,14 @@ body {
     font-family: Roboto, sans-serif;
 }
 
+.mat-app-background {
+    background-color: $spearmint-30;
+}
+
 .navbar {
     height: $navbar-height !important;
+    background-color: $tealGreen-800;
+    color: $light-grey;
 }
 
 mat-card {
@@ -16,6 +22,10 @@ mat-card {
 
 .fill-remaining-space {
     flex: 1 1 auto;
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }
 
 .margin {
@@ -52,4 +62,11 @@ mat-card {
     .content {
         min-height: calc(100vh - #{$navbar-height} - #{$footer-height} - 20px);
     }
+}
+
+.page-title {
+    font-weight: bold;
+    font-size: 30px;
+    color: $tealGreen-900;
+    padding-left: 40px;
 }

@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { AuthService } from "@app/auth";
 
 @Component({
-    selector: "app-logout",
+    selector: "petify-logout",
     templateUrl: "./logout.component.html",
     styleUrls: ["./logout.component.scss"]
 })

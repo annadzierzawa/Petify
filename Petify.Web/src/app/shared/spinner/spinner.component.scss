@@ -1,0 +1,21 @@
+.container {
+    flex-direction: column;
+    align-items: center;
+
+    &.fill {
+        display: flex;
+        height: -webkit-fill-available;
+        width: -webkit-fill-available;
+    }
+
+    &.auto {
+        display: inline-flex;
+        height: auto;
+        width: auto;
+    }
+
+    .spinner-container {
+        width: auto;
+        height: auto;
+    }
+}

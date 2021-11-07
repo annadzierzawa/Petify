@@ -1,0 +1,44 @@
+{
+    "MyPets": {
+        "Title": "Moje zwierzęta",
+        "AddNewPet": "Dodaj zwierzątko",
+        "Age": "Wiek",
+        "Species": "Gatunek",
+        "AreYouSureYouWantToDeleteTheAnimal?": "Czy na pewno chcesz usunąć zwierze?",
+        "TheAnimalHasBeenRemoved": "Zwierze zostało usunięte.",
+        "ConfirmTheOperation": "Potwierdź operację"
+    },
+    "Common": {
+        "Cancel": "Anuluj",
+        "Save": "Zapisz",
+        "UploadFile": "Wgraj plik",
+        "NoResults": "Brak wyników",
+        "Confirm": "Confirm",
+        "Edit": "Edit",
+        "Delete": "Delete"
+    },
+    "Navbar": {},
+    "PetForm": {
+        "Name": "Nazwa",
+        "Description": "Opis",
+        "Species": "Gatunek",
+        "DateOfBirth": "Data urodzenia",
+        "TheAnimalHasBeenSaved": "Zwierze zostało zapisane."
+    },
+    "Lookup": {
+        "SpeciesType": {
+            "Dog": "Pies",
+            "Cat": "Kot",
+            "Bird": "Ptak",
+            "Fish": "Ryba",
+            "Horse": "Koń",
+            "Hamster": "Chomik",
+            "GuineaPig": "Świnka morska",
+            "Pig": "Świnia",
+            "Meerkat": "Surykatka",
+            "Snake": "Wąż",
+            "Rabbit": "Królik",
+            "Spider": "Pająk"
+        }
+    }
+}

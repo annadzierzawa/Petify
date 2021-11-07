@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Petify.ApplicationServices\Petify.ApplicationServices.csproj" />
+    <ProjectReference Include="..\Petify.FilesStorage\Petify.FilesStorage.csproj" />
     <ProjectReference Include="..\Petify.Infrastructure\Petify.Infrastructure.csproj" />
     <ProjectReference Include="..\Petify.Common\Petify.Common.csproj" />
     <ProjectReference Include="..\Petify.PublishedLanguage\Petify.PublishedLanguage.csproj" />

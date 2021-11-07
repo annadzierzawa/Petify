@@ -24,7 +24,7 @@ namespace Petify.Web.Infrastructure
                     .ImageSources(x =>
                     {
                         x.Self();
-                        x.CustomSources("data:");
+                        x.CustomSources("*", "data:");
                     })
                     .ScriptSources(x => x.Self())
                     .StyleSources(

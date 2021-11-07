@@ -1,0 +1,38 @@
+@import 'variables';
+
+button {
+    &.mat-button-wrapper {
+        mat-icon {
+            margin-right: 5px;
+        }
+    }
+
+    &.mat-mini-fab {
+        span.mat-button-wrapper {
+            line-height: 23px;
+        }
+    }
+
+    &[mat-icon-button] {
+        &:disabled {
+            cursor: not-allowed;
+        }
+
+        &.dual {
+            color: $grey;
+
+            &:hover {
+                background-color: $light-grey;
+                color: $tealGreen-800;
+            }
+        }
+
+        &[color="primary"]:hover {
+            background: rgba($tealGreen-800, 0.04);
+        }
+
+        &[color="accent"]:hover {
+            background: $tealGreen-800;
+        }
+    }
+}
