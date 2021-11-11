@@ -59,6 +59,7 @@ namespace Petify.Infrastructure.DataModel.Context
             builder.ApplyConfiguration(new AdvertisementTypeConfiguration());
             builder.ApplyConfiguration(new CyclicalAssistanceDayConfiguration());
             builder.ApplyConfiguration(new AdvertisementConfiguration());
+            builder.ApplyConfiguration(new PetAdvertisementConfiguration());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

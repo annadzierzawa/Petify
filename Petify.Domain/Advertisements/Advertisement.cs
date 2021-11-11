@@ -9,18 +9,16 @@ namespace Petify.Domain.Advertisements
         public Advertisement(string title,
             string description,
             int advertisementTypeId,
-            int petId,
+            List<Pet> pets,
             string ownerId,
             AdvertisementDates dates,
             List<CyclicalAssistanceDay> cyclicalAssistanceDays)
         {
-            Title = title;
-            Description = description;
-            AdvertisementTypeId = advertisementTypeId;
-            PetId = petId;
             OwnerId = ownerId;
             Dates = dates;
             CyclicalAssistanceDays = cyclicalAssistanceDays;
+
+            SetMainInformations(title, description, advertisementTypeId, pets);
         }
 
         private Advertisement() { }
@@ -29,12 +27,12 @@ namespace Petify.Domain.Advertisements
             string title,
             string description,
             int advertisementTypeId,
-            int petId)
+            List<Pet> pets)
         {
             Title = title;
             Description = description;
             AdvertisementTypeId = advertisementTypeId;
-            PetId = petId;
+            Pets = pets;
         }
 
         public void SetDates(AdvertisementDates dates,
@@ -52,6 +50,6 @@ namespace Petify.Domain.Advertisements
         public string OwnerId { get; set; }
         public AdvertisementDates Dates { get; set; }
         public List<CyclicalAssistanceDay> CyclicalAssistanceDays { get; set; }
-        public Pet Pet { get; set; }
+        public List<Pet> Pets { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Petify.ApplicationServices.Boundaries.Users;
 using Petify.Common.Auth;
 using Petify.Common.CQRS;
@@ -27,12 +28,13 @@ namespace Petify.ApplicationServices.UseCases.Advertisements
         {
             var user = await _usersRepository.GetUser(_currentUserService.UserId);
             var advertisement = user.GetAdvertisement(command.Id);
+            var pets = command.PetIds.Select(id => user.GetPet(id)).ToList();
 
             advertisement.SetMainInformations(
                 command.Title,
                 command.Description,
                 command.AdvertisementTypeId,
-                command.PetId);
+                pets);
 
             advertisement.SetDates(
                 _advertisementDatesService.GetAdvertisementDates(command.AdvertisementTypeId, command.StartDate, command.EndDate),

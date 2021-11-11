@@ -15,7 +15,6 @@ namespace Petify.Infrastructure.DataModel.Mappings.Advertisements
             builder.Property(e => e.Description).IsRequired();
             builder.Property(e => e.PetId).IsRequired();
             builder.Property(e => e.OwnerId).IsRequired();
-            builder.HasOne(e => e.Pet).WithMany().HasForeignKey(e => e.PetId);
             builder.HasOne<AdvertisementType>().WithMany().HasForeignKey(e => e.AdvertisementTypeId);
             builder.HasMany(e => e.CyclicalAssistanceDays).WithOne().HasForeignKey(c => c.AdvertisementId);
             builder.OwnsOne(

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Petify.Common.CQRS;
 
 namespace Petify.PublishedLanguage.Commands.Advertisements
@@ -8,7 +9,7 @@ namespace Petify.PublishedLanguage.Commands.Advertisements
         public string Title { get; set; }
         public string Description { get; set; }
         public int AdvertisementTypeId { get; set; }
-        public int PetId { get; set; }
+        public List<int> PetIds { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 

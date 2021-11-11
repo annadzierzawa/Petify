@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Petify.ApplicationServices.Boundaries.Users;
 using Petify.Common.Auth;
 using Petify.Common.CQRS;
@@ -31,11 +32,13 @@ namespace Petify.ApplicationServices.UseCases.Advertisements
         public async Task Handle(AddAdvertisementCommand command)
         {
             var user = await _usersRepository.GetUser(_currentUserService.UserId);
+            var pets = command.PetIds.Select(id => user.GetPet(id)).ToList();
+
             var advertisement = new Advertisement(
                 command.Title,
                 command.Description,
                 command.AdvertisementTypeId,
-                command.PetId,
+                pets,
                 user.Id,
                 _advertisementDatesService.GetAdvertisementDates(command.AdvertisementTypeId, command.StartDate, command.EndDate),
                 _advertisementDatesService.GetCyclicalAssistanceDays(command.AdvertisementTypeId, command.StartDate, command.EndDate, command.CyclicalAssistanceFrequency));
