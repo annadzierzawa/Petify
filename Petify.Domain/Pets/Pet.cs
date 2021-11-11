@@ -11,7 +11,7 @@ namespace Petify.Domain.Pets
         public DateTime DateOfBirth { get; set; }
         public string Description { get; set; }
         public string ImageFileStorageId { get; set; }
-        public string UserId { get; set; }
+        public string OwnerId { get; set; }
         private Pet() { }
         public Pet(string name, int speciesId, DateTime dateOfBirth, string description, string imageFileStorageId)
         {

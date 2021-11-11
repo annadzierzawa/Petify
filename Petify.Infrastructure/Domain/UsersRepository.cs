@@ -20,6 +20,8 @@ namespace Petify.Infrastructure.Domain
         {
             var user = await _context.Users
                 .Include(u => u.Pets)
+                .Include(u => u.Advertisements).ThenInclude(a => a.Dates)
+                .Include(u => u.Advertisements).ThenInclude(a => a.CyclicalAssistanceDays)
                 .FirstOrDefaultAsync(u => u.Id == userId);
 
             if (user is null)

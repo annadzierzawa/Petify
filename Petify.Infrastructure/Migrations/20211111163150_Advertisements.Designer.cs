@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Petify.Infrastructure.DataModel.Context;
 
 namespace Petify.Infrastructure.Migrations
 {
     [DbContext(typeof(PetifyContext))]
-    partial class PetifyContextModelSnapshot : ModelSnapshot
+    [Migration("20211111163150_Advertisements")]
+    partial class Advertisements
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -224,10 +226,6 @@ namespace Petify.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("OwnerId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("PetId")
                         .HasColumnType("int");
 
@@ -244,8 +242,6 @@ namespace Petify.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AdvertisementTypeId");
-
-                    b.HasIndex("OwnerId");
 
                     b.HasIndex("PetId");
 
@@ -498,12 +494,6 @@ namespace Petify.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Petify.Domain.Access.User", null)
-                        .WithMany("Advertisements")
-                        .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("Petify.Domain.Pets.Pet", "Pet")
                         .WithMany()
                         .HasForeignKey("PetId")
@@ -556,8 +546,6 @@ namespace Petify.Infrastructure.Migrations
 
             modelBuilder.Entity("Petify.Domain.Access.User", b =>
                 {
-                    b.Navigation("Advertisements");
-
                     b.Navigation("Pets");
                 });
 

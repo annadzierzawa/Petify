@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Petify.PublishedLanguage\Petify.PublishedLanguage.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Boundaries\Advertisements\" />
+  </ItemGroup>
+
 </Project>

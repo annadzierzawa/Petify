@@ -13,7 +13,7 @@ namespace Petify.Infrastructure.DataModel.Mappings.Pets
             builder.Property(e => e.Name).IsRequired();
             builder.Property(e => e.Description).IsRequired();
             builder.Property(e => e.SpeciesId).IsRequired();
-            builder.Property(e => e.UserId).IsRequired();
+            builder.Property(e => e.OwnerId).IsRequired();
         }
     }
 }

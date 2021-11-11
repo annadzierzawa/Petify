@@ -6,9 +6,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Petify.Common.Auth;
 using Petify.Domain.Access;
+using Petify.Domain.Advertisements;
 using Petify.Domain.Common;
 using Petify.Domain.Pets;
 using Petify.Infrastructure.DataModel.Mappings.Access;
+using Petify.Infrastructure.DataModel.Mappings.Advertisements;
 using Petify.Infrastructure.DataModel.Mappings.Lookups;
 using Petify.Infrastructure.DataModel.Mappings.Pets;
 using SRW_CRM.Infrastructure.DataModel.Mappings.Access;
@@ -39,6 +41,8 @@ namespace Petify.Infrastructure.DataModel.Context
 
         public DbSet<Pet> Pets { get; set; }
 
+        public DbSet<Advertisement> Advertisements { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new ActionConfiguration());
@@ -51,6 +55,10 @@ namespace Petify.Infrastructure.DataModel.Context
 
             builder.ApplyConfiguration(new SpeciesTypeConfiguration());
             builder.ApplyConfiguration(new PetConfiguration());
+
+            builder.ApplyConfiguration(new AdvertisementTypeConfiguration());
+            builder.ApplyConfiguration(new CyclicalAssistanceDayConfiguration());
+            builder.ApplyConfiguration(new AdvertisementConfiguration());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

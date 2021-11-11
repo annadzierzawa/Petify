@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net.Mail;
 using EnsureThat;
+using Petify.Domain.Advertisements;
 using Petify.Domain.Common;
 using Petify.Domain.Pets;
 
@@ -52,9 +53,24 @@ namespace Petify.Domain.Access
             return Pets.FirstOrDefault(p => p.Id == id);
         }
 
+        public Advertisement GetAdvertisement(int id)
+        {
+            return Advertisements.FirstOrDefault(a => a.Id == id);
+        }
+
         public void DeletePet(Pet pet)
         {
             Pets.Remove(pet);
+        }
+
+        public void DeleteAdvertisement(Advertisement advertisement)
+        {
+            Advertisements.Remove(advertisement);
+        }
+
+        public void AddAdvertisement(Advertisement advertisement)
+        {
+            Advertisements.Add(advertisement);
         }
 
         public string Id { get; init; }
@@ -66,6 +82,7 @@ namespace Petify.Domain.Access
 
         //navigation properties
         public List<Pet> Pets { get; set; }
+        public List<Advertisement> Advertisements { get; set; }
 
     }
 }
