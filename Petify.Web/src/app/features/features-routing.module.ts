@@ -6,6 +6,10 @@ const routes: Routes = [
     {
         path: "my-pets",
         loadChildren: () => import("./my-pets/my-pets.module").then(m => m.MyPetsModule)
+    },
+    {
+        path: "my-advertisements",
+        loadChildren: () => import("./my-advertisements/my-advertisements.module").then(m => m.MyAdvertisementsModule)
     }
 ];
 
