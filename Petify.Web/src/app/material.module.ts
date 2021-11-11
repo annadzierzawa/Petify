@@ -11,6 +11,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DateAdapter, MatOption, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MAT_NATIVE_DATE_FORMATS } from "@angular/material/core";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
@@ -43,7 +44,8 @@ const modules = [
     MatSelectModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatCheckboxModule
 ];
 
 @NgModule({

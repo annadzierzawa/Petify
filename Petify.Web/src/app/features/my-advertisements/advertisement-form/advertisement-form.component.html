@@ -1,0 +1,32 @@
+<mat-card>
+    <form [formGroup]="advertisementFormGroup">
+        <div class="row d-flex justify-content-center">
+            <div clas="col-8"
+                 *ngFor="let pet of pets$ | async">
+                <mat-checkbox></mat-checkbox>
+            </div>
+            <mat-checkbox class="example-margin">Indeterminate</mat-checkbox>
+        </div>
+        <div class="row">
+            <mat-form-field class="col-12">
+                <mat-label>{{'PetForm.Name' | translate}}</mat-label>
+                <input matInput
+                       formControlName="name"
+                       required>
+                <mat-error>
+                    <petify-validation-feedback controlName="name">
+                    </petify-validation-feedback>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-12">
+                <mat-label>{{'PetForm.Description' | translate}}</mat-label>
+                <textarea matInput
+                          formControlName="description"
+                          required></textarea>
+                <mat-error>
+                    <petify-validation-feedback controlName="description"></petify-validation-feedback>
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+</mat-card>
