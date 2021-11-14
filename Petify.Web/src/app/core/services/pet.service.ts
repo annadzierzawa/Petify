@@ -30,7 +30,7 @@ export class PetService {
     }
 
     getPets(userId: string): Observable<PetItemDTO[]> {
-        return this._apiClientService.get(`${appConfig.apiUrl}/users/{userId}/pets/my-pets`, { segmentParams: { userId } })
+        return this._apiClientService.get(`${appConfig.apiUrl}/users/{userId}/pets`, { segmentParams: { userId } })
     }
 
     removePet(petId: number): Observable<PetDTO> {

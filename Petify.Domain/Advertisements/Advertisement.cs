@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Petify.Domain.Advertisements.Parameters;
 using Petify.Domain.Common;
 using Petify.Domain.Pets;
 
@@ -11,13 +13,11 @@ namespace Petify.Domain.Advertisements
             int advertisementTypeId,
             List<Pet> pets,
             string ownerId,
-            AdvertisementDates dates,
+            AdvertisementDatesParameter dates,
             List<CyclicalAssistanceDay> cyclicalAssistanceDays)
         {
             OwnerId = ownerId;
-            Dates = dates;
-            CyclicalAssistanceDays = cyclicalAssistanceDays;
-
+            SetDates(dates, cyclicalAssistanceDays);
             SetMainInformations(title, description, advertisementTypeId, pets);
         }
 
@@ -35,10 +35,11 @@ namespace Petify.Domain.Advertisements
             Pets = pets;
         }
 
-        public void SetDates(AdvertisementDates dates,
+        public void SetDates(AdvertisementDatesParameter dates,
             List<CyclicalAssistanceDay> cyclicalAssistanceDays)
         {
-            Dates = dates;
+            StartDate = dates.StartDate;
+            EndDate = dates.EndDate;
             CyclicalAssistanceDays = cyclicalAssistanceDays;
         }
 
@@ -48,7 +49,8 @@ namespace Petify.Domain.Advertisements
         public int AdvertisementTypeId { get; set; }
         public int PetId { get; set; }
         public string OwnerId { get; set; }
-        public AdvertisementDates Dates { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public List<CyclicalAssistanceDay> CyclicalAssistanceDays { get; set; }
         public List<Pet> Pets { get; set; }
     }

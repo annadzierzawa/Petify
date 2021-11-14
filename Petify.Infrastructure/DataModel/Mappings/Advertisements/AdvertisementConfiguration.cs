@@ -15,15 +15,10 @@ namespace Petify.Infrastructure.DataModel.Mappings.Advertisements
             builder.Property(e => e.Description).IsRequired();
             builder.Property(e => e.PetId).IsRequired();
             builder.Property(e => e.OwnerId).IsRequired();
+            builder.Property(dd => dd.StartDate).IsRequired(false);
+            builder.Property(dd => dd.EndDate).IsRequired(false);
             builder.HasOne<AdvertisementType>().WithMany().HasForeignKey(e => e.AdvertisementTypeId);
             builder.HasMany(e => e.CyclicalAssistanceDays).WithOne().HasForeignKey(c => c.AdvertisementId);
-            builder.OwnsOne(
-                e => e.Dates,
-                d =>
-                {
-                    d.Property(dd => dd.StartDate).IsRequired(false);
-                    d.Property(dd => dd.EndDate).IsRequired(false);
-                });
         }
     }
 }

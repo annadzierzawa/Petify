@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using Petify.Domain.Advertisements;
+using Petify.Domain.Advertisements.Parameters;
 using static Petify.Common.Lookups.AdvertisementTypeLookup;
 
 namespace Petify.Domain.Services
 {
     public class AdvertisementDatesService : IAdvertisementDatesService
     {
-        public AdvertisementDates GetAdvertisementDates(int advertisementTypeId, DateTime? startDate, DateTime? endDate)
+        public AdvertisementDatesParameter GetAdvertisementDates(int advertisementTypeId, DateTime? startDate, DateTime? endDate)
         {
             if ((advertisementTypeId == (int)AdvertisementTypeEnum.OneTimeHelp) || (advertisementTypeId == (int)AdvertisementTypeEnum.Adoption))
             {
-                return new AdvertisementDates(startDate, startDate);
+                return new AdvertisementDatesParameter(startDate, startDate);
             }
             else
             {
-                return new AdvertisementDates(startDate, endDate);
+                return new AdvertisementDatesParameter(startDate, endDate);
             }
         }
 

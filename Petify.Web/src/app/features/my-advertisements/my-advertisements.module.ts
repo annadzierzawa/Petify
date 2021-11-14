@@ -6,7 +6,8 @@ import { AddAdvertisementComponent } from './add-advertisement/add-advertisement
 import { MyAdvertisementsRoutingModule } from './my-advertisements-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@app/shared/shared.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PipesModule } from '@app/shared/pipes/pipes.module';
 
 
 
@@ -22,6 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         TranslateModule,
         SharedModule,
         ReactiveFormsModule,
+        PipesModule,
+        FormsModule
     ]
 })
 export class MyAdvertisementsModule { }

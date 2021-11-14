@@ -25,6 +25,17 @@
         "DateOfBirth": "Data urodzenia",
         "TheAnimalHasBeenSaved": "Zwierze zostało zapisane."
     },
+    "AdvertisementForm": {
+        "CheckAnimals": "Zaznacz zwierzęta, których dotyczy ogłoszenie",
+        "AdvertisementTypeQuestion": "Jakiego rodzaju ogłoszenie chcesz dodać?",
+        "AdvertisementTypeDescription": {
+            "Adoption": "Mój zwierzak szuka nowego domu",
+            "CyclicalAssistance": "Potrzebuję regularnej pomocy w opiece nad moim zwierzakiem(np. wyprowadzanie na spacer)",
+            "OneTimeHelp": "Potrzebuję jednorazowej pomocy w opiece nad moim zwierzakiem(np. coś Ci wyskoczyło, a masz umówioną wizytę u weterynarza i potrzebujesz kogoś, kto zabierze go tam za Ciebie)",
+            "TemporaryAdoption": "Potrzebuję miejsca, gdzie mogę oddać mojego zwierzaka na jakiś czas(np. podczas wakacji)"
+        },
+        "AdvertisementData": "Dane na temat ogłoszenia"
+    },
     "Lookup": {
         "SpeciesType": {
             "Dog": "Pies",

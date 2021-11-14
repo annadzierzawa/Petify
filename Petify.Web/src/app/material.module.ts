@@ -14,6 +14,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DateAdapter, MatOption, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MAT_NATIVE_DATE_FORMATS } from "@angular/material/core";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatRadioModule } from '@angular/material/radio';
 
 const appearance: MatFormFieldDefaultOptions = {
     appearance: "outline"
@@ -45,7 +46,8 @@ const modules = [
     MatDialogModule,
     MatDatepickerModule,
     MatProgressSpinnerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatRadioModule
 ];
 
 @NgModule({

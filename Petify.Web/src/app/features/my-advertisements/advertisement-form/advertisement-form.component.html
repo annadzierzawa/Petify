@@ -1,32 +1,89 @@
 <mat-card>
     <form [formGroup]="advertisementFormGroup">
-        <div class="row d-flex justify-content-center">
-            <div clas="col-8"
+        <div class="row d-flex justify-content-start">
+            <h1 class="check-animals ml-5">{{"AdvertisementForm.CheckAnimals" | translate}}</h1>
+            <div class="checkbox-item col-10 row mt-5"
                  *ngFor="let pet of pets$ | async">
-                <mat-checkbox></mat-checkbox>
+                <mat-checkbox class="col-2"
+                              [(ngModel)]="pet.isChecked">
+                </mat-checkbox>
+                <petify-image-preview [imageUrl]="pet.imageFileStorageId | petImageUrl"
+                                      [height]="150"
+                                      [width]="150 * 4 / 5"
+                                      heightUnit="px"
+                                      class="col-4"
+                                      widthUnit="px"></petify-image-preview>
+                <div class="col-4">
+                    <h1 class="col-12 d-flex justify-content-start mt-0">{{pet.name}}</h1>
+                    <div class="col-12">
+                        {{pet.description}}
+                    </div>
+                </div>
             </div>
-            <mat-checkbox class="example-margin">Indeterminate</mat-checkbox>
-        </div>
-        <div class="row">
-            <mat-form-field class="col-12">
-                <mat-label>{{'PetForm.Name' | translate}}</mat-label>
-                <input matInput
-                       formControlName="name"
-                       required>
-                <mat-error>
-                    <petify-validation-feedback controlName="name">
-                    </petify-validation-feedback>
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field class="col-12">
-                <mat-label>{{'PetForm.Description' | translate}}</mat-label>
-                <textarea matInput
-                          formControlName="description"
-                          required></textarea>
-                <mat-error>
-                    <petify-validation-feedback controlName="description"></petify-validation-feedback>
-                </mat-error>
-            </mat-form-field>
+            <h1 class="check-animals ml-5 my-5">{{"AdvertisementForm.AdvertisementTypeQuestion" | translate}}</h1>
+            <mat-radio-group formControlName="advertisementTypeId"
+                             class="col-12 row">
+                <div class="col-12 row px-5">
+                    <mat-radio-button class="col-1"
+                                      [value]="AdvertisementTypes.CyclicalAssistance">
+                    </mat-radio-button>
+                    <span class="radio-text col-11">
+                        {{"AdvertisementForm.AdvertisementTypeDescription.CyclicalAssistance" | translate}}
+                    </span>
+                </div>
+                <div class="col-12 row px-5">
+                    <mat-radio-button class="col-1"
+                                      [value]="AdvertisementTypes.OneTimeHelp">
+                    </mat-radio-button>
+                    <span class="radio-text col-11">
+                        {{"AdvertisementForm.AdvertisementTypeDescription.OneTimeHelp" | translate}}
+                    </span>
+                </div>
+                <div class="col-12 row px-5">
+                    <mat-radio-button class="col-1"
+                                      [value]="AdvertisementTypes.TemporaryAdoption">
+                    </mat-radio-button>
+                    <span class="radio-text col-11">
+                        {{"AdvertisementForm.AdvertisementTypeDescription.TemporaryAdoption" | translate}}
+                    </span>
+                </div>
+                <div class="col-12 row px-5">
+                    <mat-radio-button class="col-1"
+                                      [value]="AdvertisementTypes.Adoption">
+                    </mat-radio-button>
+                    <span class="col-11 radio-text">
+                        {{"AdvertisementForm.AdvertisementTypeDescription.Adoption" | translate}}
+                    </span>
+                </div>
+            </mat-radio-group>
+            <h1 class="check-animals ml-5 my-5">{{"AdvertisementForm.AdvertisementData" | translate}}</h1>
+            <div class="col-12 row justify-content-center">
+                <mat-form-field class="col-10">
+                    <mat-label>{{'PetForm.Name' | translate}}</mat-label>
+                    <input matInput
+                           formControlName="name"
+                           required>
+                    <mat-error>
+                        <petify-validation-feedback controlName="name">
+                        </petify-validation-feedback>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-10">
+                    <mat-label>{{'PetForm.Description' | translate}}</mat-label>
+                    <textarea matInput
+                              formControlName="description"
+                              required></textarea>
+                    <mat-error>
+                        <petify-validation-feedback controlName="description"></petify-validation-feedback>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-12 row justify-content-center">
+                <mat-form-field>
+                    <mat-label>adadas</mat-label>
+                    <mat-date-range-input></mat-date-range-input>
+                </mat-form-field>
+            </div>
         </div>
     </form>
 </mat-card>

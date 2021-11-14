@@ -55,7 +55,7 @@ namespace Petify.Api.Controllers
             return Ok();
         }
 
-        [HttpGet("/users/{userId}/pets/my-pets")]
+        [HttpGet("/users/{userId}/pets")]
         public async Task<IActionResult> GetPets([FromRoute] GetPetsParameter query)
         {
             var result = await _queryDispatcher.Dispatch(query);

@@ -3,8 +3,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { UrlSegment } from '@angular/router';
 import { AuthService } from '@app/auth';
 import { PetService } from '@app/core/services/pet.service';
-import { PetItemDTO } from '@app/shared/models/pet.model';
+import { AdvertisementTypes, PetItemDTO } from '@app/shared/models/pet.model';
 import { Observable } from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
 
 @Component({
     selector: 'petify-advertisement-form',
@@ -13,6 +14,8 @@ import { Observable } from 'rxjs';
 })
 export class AdvertisementFormComponent implements OnInit {
     pets$: Observable<PetItemDTO[]>;
+
+    AdvertisementTypes = AdvertisementTypes;
 
     advertisementFormGroup = this._fb.group({
         name: ["", Validators.required],
@@ -31,7 +34,6 @@ export class AdvertisementFormComponent implements OnInit {
 
     ngOnInit(): void {
         const userId = this._authService.id as string;
-        this.pets$ = this._petService.getPets(userId);
+        this.pets$ = this._petService.getPets(userId).pipe(shareReplay());
     }
-
 }

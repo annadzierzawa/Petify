@@ -1,18 +1,16 @@
 ﻿using System;
 
-namespace Petify.Domain.Advertisements
+namespace Petify.Domain.Advertisements.Parameters
 {
-    public class AdvertisementDates
+    public class AdvertisementDatesParameter
     {
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
 
-        public AdvertisementDates(DateTime? startDate, DateTime? endDate)
+        public AdvertisementDatesParameter(DateTime? startDate, DateTime? endDate)
         {
             StartDate = startDate;
             EndDate = endDate;
         }
-
-        private AdvertisementDates() { }
     }
 }

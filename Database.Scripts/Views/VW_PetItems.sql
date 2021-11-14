@@ -6,7 +6,7 @@ SELECT
 	  pet.[SpeciesId],
 	  pet.[DateOfBirth],
 	  pet.[Description],
-	  pet.[UserId],
+	  pet.[OwnerId],
 	  pet.[CreatedBy],
 	  pet.[CreatedOn],
 	  pet.[UpdatedBy],
