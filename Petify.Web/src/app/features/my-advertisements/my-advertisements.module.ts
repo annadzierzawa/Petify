@@ -23,6 +23,7 @@ import { PipesModule } from '@app/shared/pipes/pipes.module';
         TranslateModule,
         SharedModule,
         ReactiveFormsModule,
+        FormsModule,
         PipesModule,
         FormsModule
     ]
