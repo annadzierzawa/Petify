@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Petify.Infrastructure.DataModel.Context;
 
 namespace Petify.Infrastructure.Migrations
 {
     [DbContext(typeof(PetifyContext))]
-    partial class PetifyContextModelSnapshot : ModelSnapshot
+    [Migration("20211121184519_PetAdvertisementRelationFix")]
+    partial class PetAdvertisementRelationFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

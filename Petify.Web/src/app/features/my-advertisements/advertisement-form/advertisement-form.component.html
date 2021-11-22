@@ -60,12 +60,12 @@
             <h1 class="check-animals ml-5 my-5">{{"AdvertisementForm.AdvertisementData" | translate}}</h1>
             <div class="col-12 row pl-5">
                 <mat-form-field class="col-12">
-                    <mat-label>{{'PetForm.Name' | translate}}</mat-label>
+                    <mat-label>{{'PetForm.Title' | translate}}</mat-label>
                     <input matInput
-                           formControlName="name"
+                           formControlName="title"
                            required>
                     <mat-error>
-                        <petify-validation-feedback controlName="name">
+                        <petify-validation-feedback controlName="title">
                         </petify-validation-feedback>
                     </mat-error>
                 </mat-form-field>
@@ -108,6 +108,20 @@
                                            [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
                 </mat-form-field>
+            </div>
+            <div class="buttons-container col-12 d-flex justify-content-end">
+                <button mat-raised-button
+                        (click)="onBack()"
+                        color="basic">
+                    {{'Common.Cancel' | translate}}
+                </button>
+                <button mat-raised-button
+                        class="save-button"
+                        (click)="onSave()"
+                        [disabled]="isSending$ | async"
+                        color="primary">
+                    {{'Common.Save' | translate}}
+                </button>
             </div>
         </div>
     </form>

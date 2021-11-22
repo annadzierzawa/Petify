@@ -3,36 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Petify.Infrastructure.DataModel.Context;
 
 namespace Petify.Infrastructure.Migrations
 {
     [DbContext(typeof(PetifyContext))]
-    partial class PetifyContextModelSnapshot : ModelSnapshot
+    [Migration("20211121172100_AdverdisementDomainFix")]
+    partial class AdverdisementDomainFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("AdvertisementPet", b =>
-                {
-                    b.Property<int>("AdvertisementsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PetsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AdvertisementsId", "PetsId");
-
-                    b.HasIndex("PetsId");
-
-                    b.ToTable("AdvertisementPet");
-                });
 
             modelBuilder.Entity("Petify.Domain.Access.Action", b =>
                 {
@@ -291,6 +278,21 @@ namespace Petify.Infrastructure.Migrations
                     b.ToTable("CyclicalAssistanceDay", "Advertisement");
                 });
 
+            modelBuilder.Entity("Petify.Domain.Advertisements.PetAdvertisement", b =>
+                {
+                    b.Property<int>("AdvertisementId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PetId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AdvertisementId", "PetId");
+
+                    b.HasIndex("PetId");
+
+                    b.ToTable("PetAdvertisement", "Advertisement");
+                });
+
             modelBuilder.Entity("Petify.Domain.Lookups.AdvertisementType", b =>
                 {
                     b.Property<int>("Id")
@@ -412,6 +414,9 @@ namespace Petify.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("AdvertisementId")
+                        .HasColumnType("int");
+
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -447,24 +452,11 @@ namespace Petify.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AdvertisementId");
+
                     b.HasIndex("OwnerId");
 
                     b.ToTable("Pet", "Pet");
-                });
-
-            modelBuilder.Entity("AdvertisementPet", b =>
-                {
-                    b.HasOne("Petify.Domain.Advertisements.Advertisement", null)
-                        .WithMany()
-                        .HasForeignKey("AdvertisementsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Petify.Domain.Pets.Pet", null)
-                        .WithMany()
-                        .HasForeignKey("PetsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Petify.Domain.Access.RoleAction", b =>
@@ -548,8 +540,31 @@ namespace Petify.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Petify.Domain.Advertisements.PetAdvertisement", b =>
+                {
+                    b.HasOne("Petify.Domain.Advertisements.Advertisement", "Advertisement")
+                        .WithMany()
+                        .HasForeignKey("AdvertisementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Petify.Domain.Pets.Pet", "Pet")
+                        .WithMany()
+                        .HasForeignKey("PetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Advertisement");
+
+                    b.Navigation("Pet");
+                });
+
             modelBuilder.Entity("Petify.Domain.Pets.Pet", b =>
                 {
+                    b.HasOne("Petify.Domain.Advertisements.Advertisement", null)
+                        .WithMany("Pets")
+                        .HasForeignKey("AdvertisementId");
+
                     b.HasOne("Petify.Domain.Access.User", null)
                         .WithMany("Pets")
                         .HasForeignKey("OwnerId")
@@ -567,6 +582,8 @@ namespace Petify.Infrastructure.Migrations
             modelBuilder.Entity("Petify.Domain.Advertisements.Advertisement", b =>
                 {
                     b.Navigation("CyclicalAssistanceDays");
+
+                    b.Navigation("Pets");
                 });
 #pragma warning restore 612, 618
         }

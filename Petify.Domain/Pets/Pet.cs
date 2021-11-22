@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Petify.Domain.Advertisements;
 using Petify.Domain.Common;
 
 namespace Petify.Domain.Pets
@@ -39,5 +41,6 @@ namespace Petify.Domain.Pets
             DateOfBirth = dateOfBirth;
             Description = description;
         }
+        public ICollection<Advertisement> Advertisements { get; set; }
     }
 }

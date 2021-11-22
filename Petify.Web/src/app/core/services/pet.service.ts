@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
-import { LookupDTO } from '@app/shared/models/lookup.model';
-import { AddPetCommand, PetDTO, PetItemDTO, UpdatePetCommand } from '@app/shared/models/pet.model';
-import { Observable } from 'rxjs/internal/Observable';
-import { ApiClientService } from './api-client.service';
+import { Injectable } from "@angular/core";
+import { LookupDTO } from "@app/shared/models/lookup.model";
+import { AddPetCommand, PetDTO, PetItemDTO, UpdatePetCommand } from "@app/shared/models/pet.model";
+import { Observable } from "rxjs/internal/Observable";
+
+import { ApiClientService } from "./api-client.service";
 
 @Injectable({
     providedIn: 'root'
@@ -29,8 +30,8 @@ export class PetService {
         return this._apiClientService.get(`${appConfig.apiUrl}/pets/{id}`, { segmentParams: { id } });
     }
 
-    getPets(userId: string): Observable<PetItemDTO[]> {
-        return this._apiClientService.get(`${appConfig.apiUrl}/users/{userId}/pets`, { segmentParams: { userId } })
+    getPets(userId: string, advertisementId: Nullable<number> = null): Observable<PetItemDTO[]> {
+        return this._apiClientService.get(`${appConfig.apiUrl}/users/{userId}/pets`, { segmentParams: { userId }, queryParams: { userId, advertisementId } })
     }
 
     removePet(petId: number): Observable<PetDTO> {

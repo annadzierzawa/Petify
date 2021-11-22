@@ -40,6 +40,7 @@ namespace Petify.ApplicationServices.UseCases.Advertisements
                 command.AdvertisementTypeId,
                 pets,
                 user.Id,
+                command.CyclicalAssistanceFrequency,
                 _advertisementDatesService.GetAdvertisementDates(command.AdvertisementTypeId, command.StartDate, command.EndDate),
                 _advertisementDatesService.GetCyclicalAssistanceDays(command.AdvertisementTypeId, command.StartDate, command.EndDate, command.CyclicalAssistanceFrequency));
 

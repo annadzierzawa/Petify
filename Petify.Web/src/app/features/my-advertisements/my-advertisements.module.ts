@@ -8,6 +8,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PipesModule } from '@app/shared/pipes/pipes.module';
+import { EditAdvertisementComponent } from './edit-advertisement/edit-advertisement.component';
+import { AdvertisementItemComponent } from './advertisement-item/advertisement-item.component';
 
 
 
@@ -15,7 +17,9 @@ import { PipesModule } from '@app/shared/pipes/pipes.module';
     declarations: [
         MyAdvertisementsComponent,
         AdvertisementFormComponent,
-        AddAdvertisementComponent
+        AddAdvertisementComponent,
+        EditAdvertisementComponent,
+        AdvertisementItemComponent
     ],
     imports: [
         CommonModule,

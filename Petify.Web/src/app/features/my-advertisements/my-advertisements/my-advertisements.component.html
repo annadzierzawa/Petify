@@ -1,1 +1,35 @@
-<p>my-advertisements works!</p>
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-12">
+        <div class="row">
+            <div class="col-7 d-flex justify-content-start">
+                <span class="page-title"> {{'MyAdvertisements.Title' | translate}}</span>
+            </div>
+            <div class="col-5 d-flex justify-content-end">
+                <button mat-raised-button
+                        color="primary"
+                        routerLink="add">
+                    <mat-icon>add</mat-icon>{{'MyAdvertisements.AddNewAdvertisements' | translate}}
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div *ngLet="(advertisements$ | async) as advertisements"
+                 class="container">
+                <ng-container *petifyLoading="isLoading$ | async">
+                    <div *ngIf="!!advertisements && advertisements.length > 0; else noResults">
+                        <petify-advertisement-item *ngFor="let advertisement of advertisements; index as i"
+                                                   class="col-md-12"
+                                                   (advertisementRemoved)="onAdvertisementRemoved()"
+                                                   [advertisement]="advertisement">
+                        </petify-advertisement-item>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #noResults>
+    <div class="no-results-message">
+        {{"Common.NoResults"|translate}}
+    </div>
+</ng-template>

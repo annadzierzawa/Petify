@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Petify.Api.Controllers;
 using Petify.ApplicationServices.UseCases.Users;
 using Petify.Common.Auth;
+using Petify.Domain.Services;
 using Petify.FilesStorage.Context;
 using Petify.FilesStorage.Repositories.PetImages;
 using Petify.Infrastructure.DataModel.Context;
@@ -79,6 +80,7 @@ namespace Petify.Api.Infrastructure
         private void RegisterServices(ContainerBuilder builder)
         {
             builder.RegisterType<CurrentUserService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<AdvertisementDatesService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
 
         private static void RegisterControllers(ContainerBuilder builder)

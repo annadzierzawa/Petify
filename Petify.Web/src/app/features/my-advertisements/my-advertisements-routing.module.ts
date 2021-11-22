@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+
 import { AddAdvertisementComponent } from "./add-advertisement/add-advertisement.component";
+import { EditAdvertisementComponent } from "./edit-advertisement/edit-advertisement.component";
 import { MyAdvertisementsComponent } from "./my-advertisements/my-advertisements.component";
 
 const routes: Routes = [
@@ -11,6 +13,10 @@ const routes: Routes = [
     {
         path: "add",
         component: AddAdvertisementComponent
+    },
+    {
+        path: ":id/edit",
+        component: EditAdvertisementComponent
     }
 ];
 

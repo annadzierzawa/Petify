@@ -44,5 +44,22 @@ namespace Petify.Infrastructure.Queries
                 .BuildQuery<PetItemDTO>()
                 .ExecuteToList();
         }
+
+        //public async Task<List<PetAdvertisimentItemDTO>> GetPetsForAdvertisiment(int Advertisement)
+        //{
+        //    var pets = await _sqlQueryBuilder
+        //        .SelectAllProperties<PetItemDTO>("Age")
+        //        .From("Pet.VW_PetItems")
+        //        .Where("OwnerId", userId)
+        //        .BuildQuery<PetItemDTO>()
+        //        .ExecuteToList();
+
+        //    return await _sqlQueryBuilder
+        //        .SelectAllProperties<PetAdvertisimentItemDTO>("Age")
+        //        .From("Advertisement.VW_PetsAdvertisements")
+        //        .Where("OwnerId", userId)
+        //        .BuildQuery<PetAdvertisimentItemDTO>()
+        //        .ExecuteToList();
+        //}
     }
 }

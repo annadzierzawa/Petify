@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Petify.Common.CQRS;
 using Petify.PublishedLanguage.Commands.Advertisements;
+using Petify.PublishedLanguage.Queries.Advertisements;
 
 namespace Petify.Api.Controllers
 {
@@ -15,6 +16,20 @@ namespace Petify.Api.Controllers
         {
             _commandDispatcher = commandDispatcher;
             _queryDispatcher = queryDispatcher;
+        }
+
+        [HttpGet("/users/{userId}/advertisements")]
+        public async Task<IActionResult> GetAdvertisements([FromRoute] GetAdvertisementsParameter query)
+        {
+            var result = await _queryDispatcher.Dispatch(query);
+            return Ok(result);
+        }
+
+        [HttpGet("/users/{userId}/advertisements/{id}/editing-data")]
+        public async Task<IActionResult> GetAdvertisementEditingData([FromRoute] GetAdvertisementEditingDataParameter query)
+        {
+            var result = await _queryDispatcher.Dispatch(query);
+            return Ok(result);
         }
 
         [HttpPost("advertisements")]

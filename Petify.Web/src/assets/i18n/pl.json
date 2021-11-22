@@ -19,7 +19,7 @@
     },
     "Navbar": {},
     "PetForm": {
-        "Name": "Nazwa",
+        "Title": "Tytuł ogłoszenia",
         "Description": "Opis",
         "Species": "Gatunek",
         "DateOfBirth": "Data urodzenia",
@@ -34,7 +34,8 @@
             "OneTimeHelp": "Potrzebuję jednorazowej pomocy w opiece nad moim zwierzakiem(np. coś Ci wyskoczyło, a masz umówioną wizytę u weterynarza i potrzebujesz kogoś, kto zabierze go tam za Ciebie)",
             "TemporaryAdoption": "Potrzebuję miejsca, gdzie mogę oddać mojego zwierzaka na jakiś czas(np. podczas wakacji)"
         },
-        "AdvertisementData": "Dane na temat ogłoszenia"
+        "AdvertisementData": "Dane na temat ogłoszenia",
+        "TheAdvertisementHasBeenSaved": "Ogłoszenie zostało zapisane."
     },
     "Lookup": {
         "SpeciesType": {
