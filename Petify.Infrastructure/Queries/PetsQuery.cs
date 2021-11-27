@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Petify.ApplicationServices.Boundaries.Pets;
 using Petify.Infrastructure.QueryBuilder;
@@ -45,21 +46,33 @@ namespace Petify.Infrastructure.Queries
                 .ExecuteToList();
         }
 
-        //public async Task<List<PetAdvertisimentItemDTO>> GetPetsForAdvertisiment(int Advertisement)
-        //{
-        //    var pets = await _sqlQueryBuilder
-        //        .SelectAllProperties<PetItemDTO>("Age")
-        //        .From("Pet.VW_PetItems")
-        //        .Where("OwnerId", userId)
-        //        .BuildQuery<PetItemDTO>()
-        //        .ExecuteToList();
+        public async Task<List<PetAdvertisimentItemDTO>> GetPetsForAdvertisiment(string userId, int advertisementId)
+        {
+            var petsInAdvertisement = await _sqlQueryBuilder
+                .SelectAllProperties<PetAdvertisimentQueryItem>("Age")
+                .From("Advertisement.VW_PetsAdvertisements")
+                .Where("OwnerId", userId)
+                .BuildQuery<PetAdvertisimentQueryItem>()
+                .ExecuteToList();
 
-        //    return await _sqlQueryBuilder
-        //        .SelectAllProperties<PetAdvertisimentItemDTO>("Age")
-        //        .From("Advertisement.VW_PetsAdvertisements")
-        //        .Where("OwnerId", userId)
-        //        .BuildQuery<PetAdvertisimentItemDTO>()
-        //        .ExecuteToList();
-        //}
+            var result = petsInAdvertisement
+                .GroupBy(
+                pet => new { pet.Id, pet.Name, pet.SpeciesId, pet.DateOfBirth, pet.Description, pet.ImageFileStorageId, pet.SpeciesName },
+                pet => pet,
+                (pet, pets) => new PetAdvertisimentItemDTO
+                {
+                    Id = pet.Id,
+                    Name = pet.Name,
+                    SpeciesId = pet.SpeciesId,
+                    SpeciesName = pet.SpeciesName,
+                    DateOfBirth = pet.DateOfBirth,
+                    Description = pet.Description,
+                    ImageFileStorageId = pet.ImageFileStorageId,
+                    IsChecked = pets.Any(p => p.AdvertisementId == advertisementId)
+                }
+                ).ToList();
+
+            return result;
+        }
     }
 }

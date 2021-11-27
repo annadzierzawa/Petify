@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Petify.Domain.Advertisements.Parameters;
 using Petify.Domain.Common;
 using Petify.Domain.Pets;
@@ -19,7 +20,8 @@ namespace Petify.Domain.Advertisements
         {
             OwnerId = ownerId;
             SetDates(dates, cyclicalAssistanceDays);
-            SetMainInformations(title, description, advertisementTypeId, pets, cyclicalAssistanceFrequency);
+            SetMainInformations(title, description, advertisementTypeId, cyclicalAssistanceFrequency);
+            SetPets(pets);
         }
 
         private Advertisement() { }
@@ -28,14 +30,25 @@ namespace Petify.Domain.Advertisements
             string title,
             string description,
             int advertisementTypeId,
-            List<Pet> pets,
             int? cyclicalAssistanceFrequency)
         {
             Title = title;
             Description = description;
             AdvertisementTypeId = advertisementTypeId;
-            Pets = pets;
             CyclicalAssistanceFrequency = cyclicalAssistanceFrequency;
+        }
+
+        public void SetPets(List<Pet> pets)
+        {
+            var petsToRemove = Pets.Where(p => !pets.Any(pet => pet.Id == p.Id)).ToList();
+            foreach (var pet in petsToRemove)
+            {
+                Pets.Remove(pet);
+            }
+
+            var petsToAdd = pets.Where(p => !Pets.Any(pet => pet.Id == p.Id)).ToList();
+
+            Pets.AddRange(petsToAdd);
         }
 
         public void SetDates(AdvertisementDatesParameter dates,

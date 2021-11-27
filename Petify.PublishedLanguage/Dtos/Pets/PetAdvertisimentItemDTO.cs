@@ -4,4 +4,9 @@
     {
         public bool IsChecked { get; set; }
     }
+
+    public class PetAdvertisimentQueryItem : PetItemDTO
+    {
+        public int AdvertisementId { get; set; }
+    }
 }

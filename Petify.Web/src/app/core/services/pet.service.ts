@@ -30,8 +30,13 @@ export class PetService {
         return this._apiClientService.get(`${appConfig.apiUrl}/pets/{id}`, { segmentParams: { id } });
     }
 
-    getPets(userId: string, advertisementId: Nullable<number> = null): Observable<PetItemDTO[]> {
-        return this._apiClientService.get(`${appConfig.apiUrl}/users/{userId}/pets`, { segmentParams: { userId }, queryParams: { userId, advertisementId } })
+    getPets(userId: string): Observable<PetItemDTO[]> {
+        return this._apiClientService.get(`${appConfig.apiUrl}/users/{userId}/pets`, { segmentParams: { userId } })
+    }
+
+    getPetsForAdvertisement(userId: string, advertisementId: number): Observable<PetItemDTO[]> {
+        return this._apiClientService.get(`${appConfig.apiUrl}/users/{userId}/advertisements/{advertisementId}/pets`,
+            { segmentParams: { userId, advertisementId } })
     }
 
     removePet(petId: number): Observable<PetDTO> {

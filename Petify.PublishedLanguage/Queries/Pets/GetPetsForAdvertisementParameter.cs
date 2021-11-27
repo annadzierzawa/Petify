@@ -4,8 +4,9 @@ using Petify.PublishedLanguage.Dtos.Pets;
 
 namespace Petify.PublishedLanguage.Queries.Pets
 {
-    public class GetPetsParameter : IQuery<List<PetItemDTO>>
+    public class GetPetsForAdvertisementParameter : IQuery<List<PetAdvertisimentItemDTO>>
     {
         public string UserId { get; set; }
+        public int AdvertisementId { get; set; }
     }
 }

@@ -55,8 +55,16 @@ namespace Petify.Api.Controllers
             return Ok();
         }
 
-        [HttpGet("/users/{userId}/pets")]
-        public async Task<IActionResult> GetPets([FromQuery] GetPetsParameter query)
+        [HttpGet("users/{userId}/pets")]
+        public async Task<IActionResult> GetPets([FromRoute] GetPetsParameter query)
+        {
+            var result = await _queryDispatcher.Dispatch(query);
+            return Ok(result);
+        }
+
+
+        [HttpGet("users/{userId}/advertisements/{advertisementId}/pets")]
+        public async Task<IActionResult> GetPetsForAdvertisement([FromRoute] GetPetsForAdvertisementParameter query)
         {
             var result = await _queryDispatcher.Dispatch(query);
             return Ok(result);

@@ -34,8 +34,9 @@ namespace Petify.ApplicationServices.UseCases.Advertisements
                 command.Title,
                 command.Description,
                 command.AdvertisementTypeId,
-                pets,
                 command.CyclicalAssistanceFrequency);
+
+            advertisement.SetPets(pets);
 
             advertisement.SetDates(
                 _advertisementDatesService.GetAdvertisementDates(command.AdvertisementTypeId, command.StartDate, command.EndDate),

@@ -17,4 +17,4 @@ SELECT
 FROM
 	  Pet.Pet pet
 	  JOIN Lookup.SpeciesType speciesType ON pet.SpeciesId = speciesType.Id
-	  JOIN dbo.AdvertisementPet ap ON ap.PetsId = pet.Id
+	  LEFT JOIN dbo.AdvertisementPet ap ON ap.PetsId = pet.Id

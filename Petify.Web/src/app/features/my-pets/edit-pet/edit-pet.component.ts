@@ -3,8 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: 'petify-edit-pet',
-    templateUrl: './edit-pet.component.html',
-    styleUrls: ['./edit-pet.component.scss']
+    templateUrl: './edit-pet.component.html'
 })
 export class EditPetComponent {
 

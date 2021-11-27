@@ -32,7 +32,7 @@ export class AdvertisementFormComponent implements OnInit, OnDestroy {
         description: ["", Validators.required],
         advertisementTypeId: [null, Validators.required],
         pets: this._fb.array([]),
-        startDate: null,
+        startDate: [null, Validators.required],
         endDate: null,
         cyclicalAssistanceFrequency: null
     })
@@ -50,7 +50,10 @@ export class AdvertisementFormComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         const userId = this._authService.id as string;
-        this.pets$ = this._petService.getPets(userId).pipe(shareReplay());
+        this.pets$ = !!this.advertisementId
+            ?
+            this._petService.getPetsForAdvertisement(userId, this.advertisementId).pipe(shareReplay())
+            : this._petService.getPets(userId).pipe(shareReplay());
 
         if (!!this.advertisementId) {
             this._advertisementService.getAdvertisementForEditing(userId, this.advertisementId)
@@ -60,14 +63,35 @@ export class AdvertisementFormComponent implements OnInit, OnDestroy {
                 });
         }
 
+        this.advertisementFormGroup.controls.advertisementTypeId.valueChanges
+            .pipe(takeUntil(this._destroySubject$))
+            .subscribe(typeId => {
+                if (typeId === AdvertisementTypes.CyclicalAssistance) {
+                    this.advertisementFormGroup.controls.cyclicalAssistanceFrequency.addValidators(Validators.required);
+                    this.advertisementFormGroup.controls.endDate.addValidators(Validators.required);
+                    return;
+                } else if (typeId === AdvertisementTypes.TemporaryAdoption) {
+                    this.advertisementFormGroup.controls.endDate.addValidators(Validators.required);
+                    return;
+                }
+                this.advertisementFormGroup.controls.endDate.removeValidators(Validators.required);
+                this.advertisementFormGroup.controls.cyclicalAssistanceFrequency.removeValidators(Validators.required);
+                this.advertisementFormGroup.updateValueAndValidity();
+            })
+
         this.advertisementTypeId$ = this.advertisementFormGroup.controls.advertisementTypeId.valueChanges.pipe(shareReplay());
     }
 
     ngOnDestroy(): void {
         this._destroySubject$.next()
+        this._destroySubject$.complete()
     }
 
     datesFilter: DateFilterFn<Date | null> = (date: any | null) => {
+        if (this.advertisementFormGroup.value.advertisementTypeId !== AdvertisementTypes.CyclicalAssistance) {
+            return true;
+        }
+
         const frequency = this.advertisementFormGroup.value.cyclicalAssistanceFrequency;
         const startDate = new Date(this.advertisementFormGroup.value.startDate);
 
@@ -82,6 +106,7 @@ export class AdvertisementFormComponent implements OnInit, OnDestroy {
     }
 
     onSave(): void {
+        this.advertisementFormGroup.markAllAsTouched();
         if (this.advertisementFormGroup.valid) {
             if (this.advertisementId) {
                 this.pets$.pipe(map(pets => pets.filter(p => p.isChecked)),

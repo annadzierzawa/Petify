@@ -10,5 +10,6 @@ namespace Petify.ApplicationServices.Boundaries.Pets
         Task<List<LookupDTO>> GetSpeciesLookup();
         Task<PetDTO> GetPet(int id);
         Task<List<PetItemDTO>> GetPets(string userId);
+        Task<List<PetAdvertisimentItemDTO>> GetPetsForAdvertisiment(string userId, int advertisementId);
     }
 }

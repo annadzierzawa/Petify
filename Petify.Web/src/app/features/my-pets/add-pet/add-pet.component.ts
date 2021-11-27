@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'petify-add-pet',
-  templateUrl: './add-pet.component.html',
-  styleUrls: ['./add-pet.component.scss']
+    selector: 'petify-add-pet',
+    templateUrl: './add-pet.component.html'
 })
 export class AddPetComponent implements OnInit {
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
 }
