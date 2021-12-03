@@ -66,16 +66,14 @@ export class AdvertisementFormComponent implements OnInit, OnDestroy {
         this.advertisementFormGroup.controls.advertisementTypeId.valueChanges
             .pipe(takeUntil(this._destroySubject$))
             .subscribe(typeId => {
+                this.advertisementFormGroup.controls.endDate.removeValidators(Validators.required);
+                this.advertisementFormGroup.controls.cyclicalAssistanceFrequency.removeValidators(Validators.required);
                 if (typeId === AdvertisementTypes.CyclicalAssistance) {
                     this.advertisementFormGroup.controls.cyclicalAssistanceFrequency.addValidators(Validators.required);
                     this.advertisementFormGroup.controls.endDate.addValidators(Validators.required);
-                    return;
                 } else if (typeId === AdvertisementTypes.TemporaryAdoption) {
                     this.advertisementFormGroup.controls.endDate.addValidators(Validators.required);
-                    return;
                 }
-                this.advertisementFormGroup.controls.endDate.removeValidators(Validators.required);
-                this.advertisementFormGroup.controls.cyclicalAssistanceFrequency.removeValidators(Validators.required);
                 this.advertisementFormGroup.updateValueAndValidity();
             })
 
