@@ -13,7 +13,6 @@ namespace Petify.Infrastructure.DataModel.Mappings.Advertisements
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Title).IsRequired();
             builder.Property(e => e.Description).IsRequired();
-            builder.Property(e => e.OwnerId).IsRequired();
             builder.Property(dd => dd.StartDate).IsRequired(false);
             builder.Property(dd => dd.EndDate).IsRequired(false);
             builder.HasOne<AdvertisementType>().WithMany().HasForeignKey(e => e.AdvertisementTypeId);

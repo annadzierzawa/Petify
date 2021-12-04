@@ -35,8 +35,4 @@
     <ProjectReference Include="..\Petify.Domain\Petify.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

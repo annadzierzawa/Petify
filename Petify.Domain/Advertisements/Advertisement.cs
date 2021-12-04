@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Petify.Domain.Access;
 using Petify.Domain.Advertisements.Parameters;
 using Petify.Domain.Common;
 using Petify.Domain.Pets;
@@ -70,6 +71,7 @@ namespace Petify.Domain.Advertisements
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public int? CyclicalAssistanceFrequency { get; set; }
+        public User Owner { get; set; }
         public List<CyclicalAssistanceDay> CyclicalAssistanceDays { get; set; }
         public List<Pet> Pets { get; set; }
     }

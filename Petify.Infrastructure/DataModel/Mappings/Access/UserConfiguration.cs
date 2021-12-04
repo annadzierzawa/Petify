@@ -13,7 +13,7 @@ namespace Petify.Infrastructure.DataModel.Mappings.Access
             builder.Property(e => e.Id).ValueGeneratedNever();
 
             builder.HasMany(e => e.Pets).WithOne().HasForeignKey(p => p.OwnerId);
-            builder.HasMany(e => e.Advertisements).WithOne().HasForeignKey(p => p.OwnerId).OnDelete(DeleteBehavior.NoAction);
+            builder.HasMany(e => e.Advertisements).WithOne(e => e.Owner).HasForeignKey(p => p.OwnerId).IsRequired();
         }
     }
 }

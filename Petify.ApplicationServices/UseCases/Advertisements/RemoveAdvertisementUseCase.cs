@@ -10,12 +10,18 @@ namespace Petify.ApplicationServices.UseCases.Advertisements
     public class RemoveAdvertisementUseCase : ICommandHandler<RemoveAdvertisementCommand>
     {
         private readonly IUsersRepository _usersRepository;
+        private readonly IAdvertisementRepository _advertisementsRepository;
         private readonly ICurrentUserService _currentUserService;
         private readonly IUnitOfWork _unitOfWork;
 
-        public RemoveAdvertisementUseCase(IUsersRepository usersRepository, ICurrentUserService currentUserService, IUnitOfWork unitOfWork)
+        public RemoveAdvertisementUseCase(
+            IUsersRepository usersRepository,
+            IAdvertisementRepository advertisementsRepository,
+            ICurrentUserService currentUserService,
+            IUnitOfWork unitOfWork)
         {
             _usersRepository = usersRepository;
+            _advertisementsRepository = advertisementsRepository;
             _currentUserService = currentUserService;
             _unitOfWork = unitOfWork;
         }
@@ -25,6 +31,7 @@ namespace Petify.ApplicationServices.UseCases.Advertisements
             var user = await _usersRepository.GetUser(_currentUserService.UserId);
             var advertisement = user.GetAdvertisement(command.Id);
             user.DeleteAdvertisement(advertisement);
+            _advertisementsRepository.RemoveAdvertisement(advertisement);
 
             await _unitOfWork.Save();
         }
