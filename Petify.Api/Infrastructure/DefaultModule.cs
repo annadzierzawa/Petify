@@ -3,7 +3,6 @@ using System.Data;
 using System.Reflection;
 using Autofac;
 using EnsureThat;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Petify.Api.Controllers;
 using Petify.ApplicationServices.UseCases.Users;
@@ -13,8 +12,9 @@ using Petify.FilesStorage.Context;
 using Petify.FilesStorage.Repositories.PetImages;
 using Petify.Infrastructure.DataModel.Context;
 using Petify.Infrastructure.Domain;
+using Petify.Infrastructure.Factories;
 using Petify.Infrastructure.Queries;
-using Petify.Infrastructure.QueryBuilder;
+using SRW_CRM.Infrastructure.QueryBuilder;
 using Module = Autofac.Module;
 
 namespace Petify.Api.Infrastructure
@@ -70,11 +70,18 @@ namespace Petify.Api.Infrastructure
         private void RegisterDatabaseAccess(ContainerBuilder builder)
         {
             builder
-                .Register<IDbConnection>(c => new SqlConnection(_connectionString))
-                .InstancePerLifetimeScope();
-            builder
                 .RegisterType<SqlQueryBuilder>()
                 .InstancePerDependency();
+
+            builder.Register(ctx => new DbConnectionFactory(_connectionString))
+                .Named<DbConnectionFactory>(nameof(DbConnectionFactory))
+                .InstancePerDependency();
+
+            builder.Register<Func<DbConnectionFactory>>(c =>
+            {
+                var cc = c.Resolve<IComponentContext>();
+                return () => cc.ResolveNamed<DbConnectionFactory>(nameof(DbConnectionFactory));
+            });
         }
 
         private void RegisterServices(ContainerBuilder builder)

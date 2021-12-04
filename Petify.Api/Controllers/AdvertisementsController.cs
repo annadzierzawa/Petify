@@ -52,5 +52,12 @@ namespace Petify.Api.Controllers
             await _commandDispatcher.Dispatch(command);
             return Ok();
         }
+
+        [HttpGet("advertisements/search")]
+        public async Task<IActionResult> GetAdvertisementsForSearch([FromQuery] GetAdvertisementsForSearchParameter query)
+        {
+            var result = await _queryDispatcher.Dispatch(query);
+            return Ok(result);
+        }
     }
 }
