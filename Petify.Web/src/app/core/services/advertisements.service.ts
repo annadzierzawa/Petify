@@ -27,6 +27,10 @@ export class AdvertisementsService {
         });
     }
 
+    removeAdvertisement(id: number): Observable<void> {
+        return this._apiClientService.delete(`${appConfig.apiUrl}/advertisements/{id}`, { segmentParams: { id } });
+    }
+
     getAdvertisements(userId: string): Observable<AdvertisementDTO[]> {
         return this._apiClientService.get(`${appConfig.apiUrl}/users/{userId}/advertisements`, { segmentParams: { userId } })
     }

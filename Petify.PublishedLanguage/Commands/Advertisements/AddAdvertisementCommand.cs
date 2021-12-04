@@ -11,8 +11,8 @@ namespace Petify.PublishedLanguage.Commands.Advertisements
         public int AdvertisementTypeId { get; set; }
         public List<int> PetIds { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
-        public int CyclicalAssistanceFrequency { get; set; }
+        public int? CyclicalAssistanceFrequency { get; set; }
     }
 }

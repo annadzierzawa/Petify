@@ -1,13 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { PetDTO, PetItemDTO } from '@app/shared/models/pet.model';
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
+import { PetService } from "@app/core/services/pet.service";
+import { ConfirmDialogComponent } from "@app/shared/confirm-dialog/confirm-dialog.component";
+import { PetItemDTO } from "@app/shared/models/pet.model";
+import { indicate } from "@app/shared/operators";
+import { TranslateService } from "@ngx-translate/core";
 import { ToastrService } from "ngx-toastr";
-import { ConfirmDialogComponent } from '@app/shared/confirm-dialog/confirm-dialog.component';
-import { TranslateService } from '@ngx-translate/core';
-import { indicate } from '@app/shared/operators';
-import { BehaviorSubject } from 'rxjs';
-import { PetService } from '@app/core/services/pet.service';
-import { filter, switchMapTo } from 'rxjs/operators';
+import { BehaviorSubject } from "rxjs";
+import { filter, switchMapTo } from "rxjs/operators";
 
 @Component({
     selector: 'petify-pet-item',
@@ -31,7 +31,7 @@ export class PetItemComponent {
             maxWidth: "450px",
             panelClass: "dialog-panel-styles",
             data: {
-                title: this._translate.instant("MyPets.ConfirmTheOperation"),
+                title: this._translate.instant("Common.ConfirmTheOperation"),
                 message: this._translate.instant("MyPets.AreYouSureYouWantToDeleteTheAnimal?"),
             }
         }).afterClosed().pipe(

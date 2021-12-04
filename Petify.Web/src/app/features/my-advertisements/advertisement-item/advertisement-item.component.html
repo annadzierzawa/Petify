@@ -1,3 +1,25 @@
 <mat-card class="my-0">
-
+    <mat-card-title>
+        <span class="d-flex justify-content-between">{{advertisement.title}}
+            <span>
+                <button mat-mini-fab
+                        class="mr-2"
+                        color="primary"
+                        [routerLink]="[advertisement.id, 'edit']">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-mini-fab
+                        color="warn"
+                        (click)="deleteAdvertisementClicked()">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </span>
+        </span>
+    </mat-card-title>
+    <mat-card-content>
+        <p>{{advertisement.startDate | date:"dd.MM.yyyy"}}
+            <ng-container *ngIf="!!advertisement.endDate"> - {{advertisement.endDate | date:"dd.MM.yyyy"}}
+            </ng-container>
+        </p>
+    </mat-card-content>
 </mat-card>

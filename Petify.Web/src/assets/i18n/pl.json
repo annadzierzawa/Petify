@@ -5,8 +5,7 @@
         "Age": "Wiek",
         "Species": "Gatunek",
         "AreYouSureYouWantToDeleteTheAnimal?": "Czy na pewno chcesz usunąć zwierze?",
-        "TheAnimalHasBeenRemoved": "Zwierze zostało usunięte.",
-        "ConfirmTheOperation": "Potwierdź operację"
+        "TheAnimalHasBeenRemoved": "Zwierze zostało usunięte."
     },
     "Common": {
         "Cancel": "Anuluj",
@@ -15,7 +14,8 @@
         "NoResults": "Brak wyników",
         "Confirm": "Confirm",
         "Edit": "Edit",
-        "Delete": "Delete"
+        "Delete": "Delete",
+        "ConfirmTheOperation": "Potwierdź operację"
     },
     "Navbar": {},
     "PetForm": {
@@ -36,6 +36,12 @@
         },
         "AdvertisementData": "Dane na temat ogłoszenia",
         "TheAdvertisementHasBeenSaved": "Ogłoszenie zostało zapisane."
+    },
+    "MyAdvertisements": {
+        "Title": "Moje ogłoszenia",
+        "AddNewAdvertisements": "Dodaj ogłoszenie",
+        "AreYouSureYouWantToDeleteTheAdvertisement": "Czy na pewno chcesz usunąć ogłoszenie",
+        "TheAdertisementHasBeenRemoved": "Ogłoszenie zostało usunięte"
     },
     "Lookup": {
         "SpeciesType": {

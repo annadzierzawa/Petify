@@ -74,7 +74,8 @@ export class AdvertisementFormComponent implements OnInit, OnDestroy {
                 } else if (typeId === AdvertisementTypes.TemporaryAdoption) {
                     this.advertisementFormGroup.controls.endDate.addValidators(Validators.required);
                 }
-                this.advertisementFormGroup.updateValueAndValidity();
+                this.advertisementFormGroup.controls.endDate.updateValueAndValidity();
+                this.advertisementFormGroup.controls.cyclicalAssistanceFrequency.updateValueAndValidity();
             })
 
         this.advertisementTypeId$ = this.advertisementFormGroup.controls.advertisementTypeId.valueChanges.pipe(shareReplay());

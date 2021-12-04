@@ -21,6 +21,8 @@ namespace Petify.Domain.Advertisements
             OwnerId = ownerId;
             SetDates(dates, cyclicalAssistanceDays);
             SetMainInformations(title, description, advertisementTypeId, cyclicalAssistanceFrequency);
+
+            Pets = new List<Pet>();
             SetPets(pets);
         }
 
@@ -41,6 +43,7 @@ namespace Petify.Domain.Advertisements
         public void SetPets(List<Pet> pets)
         {
             var petsToRemove = Pets.Where(p => !pets.Any(pet => pet.Id == p.Id)).ToList();
+
             foreach (var pet in petsToRemove)
             {
                 Pets.Remove(pet);

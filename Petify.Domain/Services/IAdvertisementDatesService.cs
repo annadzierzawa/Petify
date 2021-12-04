@@ -8,7 +8,7 @@ namespace Petify.Domain.Services
     public interface IAdvertisementDatesService
     {
         public AdvertisementDatesParameter GetAdvertisementDates(int advertisementTypeId, DateTime? startDate, DateTime? endDate);
-        public List<CyclicalAssistanceDay> GetCyclicalAssistanceDays(int advertisementTypeId, DateTime startDate, DateTime endDate, int cyclicalAssistanceFrequency);
+        public List<CyclicalAssistanceDay> GetCyclicalAssistanceDays(int advertisementTypeId, DateTime startDate, DateTime? endDate, int? cyclicalAssistanceFrequency);
 
     }
 }
