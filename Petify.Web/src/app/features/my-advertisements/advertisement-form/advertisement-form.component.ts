@@ -40,13 +40,13 @@ export class AdvertisementFormComponent implements OnInit, OnDestroy {
     private _destroySubject$ = new Subject();
 
     constructor(
-        private _fb: FormBuilder,
-        private _authService: AuthService,
+        private readonly _fb: FormBuilder,
+        private readonly _authService: AuthService,
         private readonly _router: Router,
         private readonly _toastr: ToastrService,
         private readonly _translate: TranslateService,
-        private _petService: PetService,
-        private _advertisementService: AdvertisementsService) { }
+        private readonly _petService: PetService,
+        private readonly _advertisementService: AdvertisementsService) { }
 
     ngOnInit(): void {
         const userId = this._authService.id as string;

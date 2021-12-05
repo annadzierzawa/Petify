@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { NgSelectConfig } from "@ng-select/ng-select";
 import { TranslateService } from "@ngx-translate/core";
 
 @Component({
@@ -8,8 +9,14 @@ import { TranslateService } from "@ngx-translate/core";
 export class AppComponent {
 
     constructor(
+        private _config: NgSelectConfig,
         private _translate: TranslateService
     ) {
         this._translate.use("pl");
+        this.setNgSelectConfig();
+    }
+
+    private setNgSelectConfig(): void {
+        this._config.appearance = "outline";
     }
 }

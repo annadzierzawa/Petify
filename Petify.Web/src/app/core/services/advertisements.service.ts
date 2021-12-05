@@ -2,8 +2,11 @@ import { Injectable } from "@angular/core";
 import {
     AddAdvertisementCommand,
     AdvertisementDTO,
+    AdvertisementItemDTO,
+    SearchAdvertisementsSearchCriteria,
     UpdateAdvertisementCommand
 } from "@app/shared/models/advertisement.model";
+import { Page } from "@app/shared/models/page.model";
 import { Observable } from "rxjs";
 
 import { ApiClientService } from "./api-client.service";
@@ -37,5 +40,9 @@ export class AdvertisementsService {
 
     getAdvertisementForEditing(userId: string, advertisementId: number): Observable<AdvertisementDTO> {
         return this._apiClientService.get(`${appConfig.apiUrl}/users/{userId}/advertisements/{advertisementId}/editing-data`, { segmentParams: { userId, advertisementId } })
+    }
+
+    getAdvertisementsForSearch(criteria: SearchAdvertisementsSearchCriteria): Observable<Page<AdvertisementItemDTO>> {
+        return this._apiClientService.get(`${appConfig.apiUrl}/advertisements/search`, { queryParams: criteria });
     }
 }

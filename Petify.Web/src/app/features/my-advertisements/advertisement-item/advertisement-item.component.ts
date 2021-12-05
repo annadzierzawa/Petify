@@ -16,7 +16,6 @@ export class AdvertisementItemComponent {
     @Input() advertisement: AdvertisementDTO;
     @Output() advertisementRemoved = new EventEmitter();
 
-
     constructor(
         private readonly _matDialog: MatDialog,
         private readonly _toastr: ToastrService,

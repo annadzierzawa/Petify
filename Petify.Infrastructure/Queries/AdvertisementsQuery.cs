@@ -42,13 +42,24 @@ namespace Petify.Infrastructure.Queries
         public async Task<Page<AdvertisementSearchDTO>> GetAdvertisementsForSearch(GetAdvertisementsForSearchParameter query)
         {
             return await _sqlQueryBuilder
-              .SelectAllProperties<AdvertisementSearchDTO>()
-              .From("Advertisement.VW_Advertisements")
-              .When(query.SpeciesIds.Any(), q => q.FilterInMultipleValues("SpeciesIdsAsString", query.SpeciesIds))
-              .When(query.TypeIds.Any(), q => q.WhereIn("AdvertisementTypeId", query.TypeIds))
-              .Where("EndDate", query.StartDate, SqlComparisonOperator.LessOrEqual)
+              .SelectAllProperties<AdvertisementSearchDTO>("PetImageFileStorageIds")
+              .From("Advertisement.VW_AdvertisementsForSearch")
+              .When(query.SpeciesIds.Any(), q => SearchByTagsOr(q, "SpeciesIdsAsString", query.SpeciesIds))
+              .When(query.TypeIds.Any(), q => SearchByTagsOr(q, "AdvertisementTypeId", query.TypeIds))
               .BuildPagedQuery<AdvertisementSearchDTO>(query)
               .Execute();
+        }
+
+        private static SqlQueryBuilder SearchByTagsOr<T>(SqlQueryBuilder builder, string columnName, List<T> searchvalues)
+        {
+            var tags = searchvalues.Select(x => x.ToString());
+
+            IEnumerable<string> columns = tags.Select(x => columnName);
+            IEnumerable<ValueToFilter> values = tags.Select(tag => ValueToFilter.IsLike(tag));
+
+            builder.WhereMultipleOrConditions(columns.ToArray(), values.ToArray());
+
+            return builder;
         }
     }
 }

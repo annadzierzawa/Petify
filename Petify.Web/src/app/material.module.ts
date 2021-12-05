@@ -2,19 +2,31 @@ import { NgModule } from "@angular/core";
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from "@angular/material-moment-adapter";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
-import { MatFormFieldDefaultOptions, MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import {
+    DateAdapter,
+    MAT_DATE_FORMATS,
+    MAT_DATE_LOCALE,
+    MAT_NATIVE_DATE_FORMATS,
+    MatNativeDateModule
+} from "@angular/material/core";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatDialogModule } from "@angular/material/dialog";
+import {
+    MAT_FORM_FIELD_DEFAULT_OPTIONS,
+    MatFormFieldDefaultOptions,
+    MatFormFieldModule
+} from "@angular/material/form-field";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatMenuModule } from "@angular/material/menu";
-import { MatSelectModule } from "@angular/material/select";
-import { MatToolbarModule } from "@angular/material/toolbar";
-import { MatDialogModule } from "@angular/material/dialog";
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { DateAdapter, MatNativeDateModule, MatOption, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MAT_NATIVE_DATE_FORMATS } from "@angular/material/core";
+import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { MatRadioModule } from '@angular/material/radio';
+import { MatRadioModule } from "@angular/material/radio";
+import { MatSelectModule } from "@angular/material/select";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatToolbarModule } from "@angular/material/toolbar";
 
 const appearance: MatFormFieldDefaultOptions = {
     appearance: "outline"
@@ -48,7 +60,9 @@ const modules = [
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatTabsModule
 ];
 
 @NgModule({

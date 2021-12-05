@@ -1,3 +1,5 @@
+import { SearchCriteria } from "./page.model";
+
 export interface AddAdvertisementCommand extends AdvertisementFormDTO { }
 
 export interface UpdateAdvertisementCommand extends AddAdvertisementCommand {
@@ -21,4 +23,15 @@ export interface AdvertisementFormDTO {
     startDate: Date;
     endDate: Date;
     cyclicalAssistanceFrequency: number;
+}
+
+export interface AdvertisementItemDTO extends AdvertisementDTO {
+    description: string;
+    petImageFileStorageIds: string[];
+}
+
+export interface SearchAdvertisementsSearchCriteria extends SearchCriteria {
+    typeIds: number[];
+    speciesIds: number[];
+    startDate: Date;
 }

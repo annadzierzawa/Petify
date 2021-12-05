@@ -3,28 +3,29 @@ import { AdvertisementsService } from "@app/core/services/advertisements.service
 import { AdvertisementItemDTO, SearchAdvertisementsSearchCriteria } from "@app/shared/models/advertisement.model";
 import { Page } from "@app/shared/models/page.model";
 import { AdvertisementTypes, ALL_SPECIES_ARRAY } from "@app/shared/models/pet.model";
-import { BehaviorSubject, Observable, Subject } from "rxjs";
+import { indicate } from "@app/shared/operators";
+import { BehaviorSubject, Subject } from "rxjs";
+import { Observable } from "rxjs/internal/Observable";
 import { switchMap } from "rxjs/operators";
 
 @Component({
-    selector: 'petify-adoption-tab',
-    templateUrl: './adoption-tab.component.html',
-    styleUrls: ['./adoption-tab.component.scss']
+    selector: 'petify-other-advertisement-tab',
+    templateUrl: './other-advertisement-tab.component.html',
+    styleUrls: ['./other-advertisement-tab.component.scss']
 })
-export class AdoptionTabComponent implements OnInit {
-
+export class OtherAdvertisementTabComponent implements OnInit {
     pageSize = 10;
     sortCriteria = "StartDate";
+    typeIdsForSerach = [AdvertisementTypes.CyclicalAssistance, AdvertisementTypes.OneTimeHelp, AdvertisementTypes.TemporaryAdoption];
 
     ads$: Observable<Page<AdvertisementItemDTO>>;
     isLoading$ = new Subject<boolean>();
-
     private _searchCriteria$ = new BehaviorSubject<SearchAdvertisementsSearchCriteria>({
         pageNumber: 1,
         pageSize: this.pageSize,
         startDate: new Date(),
         speciesIds: ALL_SPECIES_ARRAY,
-        typeIds: [AdvertisementTypes.Adoption],
+        typeIds: this.typeIdsForSerach,
         orderBy: this.sortCriteria
     })
 
@@ -32,7 +33,8 @@ export class AdoptionTabComponent implements OnInit {
 
     ngOnInit(): void {
         this.ads$ = this._searchCriteria$.pipe(
-            switchMap(criteria => this._advertisementService.getAdvertisementsForSearch(criteria))
+            switchMap(criteria => this._advertisementService.getAdvertisementsForSearch(criteria)),
+            indicate(this.isLoading$)
         );
     }
 

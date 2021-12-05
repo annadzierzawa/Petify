@@ -43,6 +43,15 @@
         "AreYouSureYouWantToDeleteTheAdvertisement": "Czy na pewno chcesz usunąć ogłoszenie",
         "TheAdertisementHasBeenRemoved": "Ogłoszenie zostało usunięte"
     },
+    "AdvertisementsSearch": {
+        "Species": "Gatunki",
+        "PossibleStartDate": "Od kiedy chcesz pomagać?",
+        "AdvertisementTypeDescription": {
+            "CyclicalAssistance": "Chcę udzielać regularnej pomocy w opiece nad czyimś pupilem",
+            "OneTimeHelp": "Chcę czasami pomóc komuś w opiece nad zwierzakiem",
+            "TemporaryAdoption": "Chcę dać zwierzakowi dach nad głową na jakiś czas(np. podczas wyjazdu służbowego właściciela)"
+        }
+    },
     "Lookup": {
         "SpeciesType": {
             "Dog": "Pies",

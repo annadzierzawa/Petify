@@ -1,0 +1,10 @@
+<div [hidden]="hidden">
+    <mat-paginator #paginator
+                   [length]="totalCount"
+                   [pageSize]="pageSize"
+                   [hidePageSize]="true"
+                   (page)="onPageChanged($event)"
+                   [showFirstLastButtons]="true"
+                   [pageIndex]>
+    </mat-paginator>
+</div>
