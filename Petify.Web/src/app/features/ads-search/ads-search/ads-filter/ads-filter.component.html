@@ -1,38 +1,46 @@
 <mat-card [formGroup]="filtersFormGroup">
-    <mat-form-field class="col-6">
-        <mat-label>{{'AdvertisementsSearch.PossibleStartDate' | translate}}</mat-label>
-        <input matInput
-               formControlName="startDate"
-               [matDatepicker]="picker1">
-        <mat-datepicker-toggle matSuffix
-                               [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
-    </mat-form-field>
-    <ng-select [multiple]="true"
-               [placeholder]="'AdvertisementsSearch.Species' | translate"
-               formControlName="species"
-               class="col-6"
-               bindLabel="name">
-        <ng-option *ngFor="let s of species$ | async"
-                   [value]="s.id">
-            {{"Lookup.SpeciesType." + s.name | translate}}
-        </ng-option>
-    </ng-select>
-    <section>
-        <mat-checkbox [(ngModel)]="cyclicalAssistance"
-                      (change)="checkboxesChanged()"
-                      [ngModelOptions]="{standalone:true}">
-            {{"AdvertisementsSearch.AdvertisementTypeDescription.CyclicalAssistance" | translate}}
-        </mat-checkbox>
-        <mat-checkbox [(ngModel)]="oneTimeHelp"
-                      (change)="checkboxesChanged()"
-                      [ngModelOptions]="{standalone:true}">
-            {{"AdvertisementsSearch.AdvertisementTypeDescription.OneTimeHelp" | translate}}
-        </mat-checkbox>
-        <mat-checkbox [(ngModel)]="temporaryAdoption"
-                      (change)="checkboxesChanged()"
-                      [ngModelOptions]="{standalone:true}">
-            {{"AdvertisementsSearch.AdvertisementTypeDescription.TemporaryAdoption" | translate}}
-        </mat-checkbox>
-    </section>
+    <div class="row">
+        <mat-form-field *ngIf="!isForAdpotion"
+                        class="col-6">
+            <mat-label>{{'AdvertisementsSearch.PossibleStartDate' | translate}}</mat-label>
+            <input matInput
+                   formControlName="startDate"
+                   [matDatepicker]="picker1">
+            <mat-datepicker-toggle matSuffix
+                                   [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <ng-select [multiple]="true"
+                   [placeholder]="'AdvertisementsSearch.Species' | translate"
+                   formControlName="speciesIds"
+                   color="primary"
+                   class="col-6"
+                   bindLabel="name">
+            <ng-option *ngFor="let s of species$ | async"
+                       [value]="s.id">
+                {{"Lookup.SpeciesType." + s.name | translate}}
+            </ng-option>
+        </ng-select>
+        <section *ngIf="!isForAdpotion"
+                 class="col-12 px-4 mt-2">
+            <mat-checkbox [(ngModel)]="cyclicalAssistance"
+                          (ngModelChange)="onFiltersChanged()"
+                          class="py-1"
+                          [ngModelOptions]="{standalone:true}">
+                {{"AdvertisementsSearch.AdvertisementTypeDescription.CyclicalAssistance" | translate}}
+            </mat-checkbox>
+            <mat-checkbox [(ngModel)]="oneTimeHelp"
+                          (ngModelChange)="onFiltersChanged()"
+                          class="py-1"
+                          [ngModelOptions]="{standalone:true}">
+                {{"AdvertisementsSearch.AdvertisementTypeDescription.OneTimeHelp" | translate}}
+            </mat-checkbox>
+            <mat-checkbox [(ngModel)]="temporaryAdoption"
+                          (ngModelChange)="onFiltersChanged()"
+                          class="py-1"
+                          [ngModelOptions]="{standalone:true}">
+                {{"AdvertisementsSearch.AdvertisementTypeDescription.TemporaryAdoption" | translate}}
+            </mat-checkbox>
+        </section>
+    </div>
 </mat-card>

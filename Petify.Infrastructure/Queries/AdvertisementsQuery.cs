@@ -7,6 +7,7 @@ using Petify.Infrastructure.QueryBuilder;
 using Petify.PublishedLanguage.Dtos.Advertisements;
 using Petify.PublishedLanguage.Queries.Advertisements;
 using SRW_CRM.Infrastructure.QueryBuilder;
+using static Petify.Common.Lookups.AdvertisementTypeLookup;
 
 namespace Petify.Infrastructure.Queries
 {
@@ -44,8 +45,10 @@ namespace Petify.Infrastructure.Queries
             return await _sqlQueryBuilder
               .SelectAllProperties<AdvertisementSearchDTO>("PetImageFileStorageIds")
               .From("Advertisement.VW_AdvertisementsForSearch")
-              .When(query.SpeciesIds.Any(), q => SearchByTagsOr(q, "SpeciesIdsAsString", query.SpeciesIds))
-              .When(query.TypeIds.Any(), q => SearchByTagsOr(q, "AdvertisementTypeId", query.TypeIds))
+              .When(query.SpeciesIds is not null && query.SpeciesIds.Any(), q => SearchByTagsOr(q, "SpeciesIdsAsString", query.SpeciesIds))
+              .When(query.TypeIds is not null && query.TypeIds.Any(), q => SearchByTagsOr(q, "AdvertisementTypeId", query.TypeIds))
+              .When(query.TypeIds is null, q => q.Where("AdvertisementTypeId", ((int)AdvertisementTypeEnum.Adoption).ToString(), SqlComparisonOperator.NotLike))
+              .Where("EndDate", query.StartDate, SqlComparisonOperator.GreaterOrEqual)
               .BuildPagedQuery<AdvertisementSearchDTO>(query)
               .Execute();
         }

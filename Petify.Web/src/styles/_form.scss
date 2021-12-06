@@ -1,0 +1,109 @@
+@import 'variables';
+
+$form-font-size: 14px;
+
+ng-select {
+    &.ng-select {
+        .ng-spinner-loader {
+            top: 18px;
+            position: absolute;
+            right: 25px;
+        }
+
+        &.ng-invalid.ng-touched {
+            .ng-select-container {
+                &:after {
+                    border: 1px solid $tealGreen-900;
+                }
+
+                .ng-placeholder {
+                    color: $tealGreen-900;
+                }
+            }
+        }
+
+        &[required] {
+            .ng-placeholder {
+                &:after {
+                    content: " *";
+                }
+            }
+        }
+
+        &.ng-select-focused .ng-select-container.ng-appearance-outline {
+
+            &:after,
+            &:hover:after {
+                border-color: $tealGreen-800;
+                border-width: 2px;
+            }
+
+            .ng-value-container .ng-placeholder {
+                color: $tealGreen-800;
+            }
+
+            .ng-arrow-wrapper .ng-arrow {
+                color: $tealGreen-800;
+            }
+        }
+
+        &.ng-select-single .ng-select-container.ng-appearance-outline {
+            margin-top: -5px;
+
+            .ng-arrow-wrapper {
+                bottom: 13px;
+            }
+
+            .ng-clear-wrapper {
+                bottom: 10px;
+            }
+        }
+
+        &.ng-select-multiple .ng-select-container.ng-appearance-outline {
+            margin-top: -5px;
+
+            &.ng-has-value .ng-arrow-wrapper {
+                top: 1px;
+            }
+
+            .ng-arrow-wrapper {
+                top: -5px;
+            }
+
+            .ng-value {
+                background-color: $tealGreen-800;
+            }
+        }
+
+        &.ng-select-single,
+        &.ng-select-multiple {
+            &.ng-select-opened .ng-select-container {
+                border-color: $tealGreen-800;
+                border-width: 2px;
+
+                &:hover {
+                    border-color: $tealGreen-800;
+                }
+            }
+
+            .ng-select-container {
+                min-height: 67px;
+                cursor: pointer;
+            }
+
+        }
+
+        .ng-select-container .ng-value-container {
+            padding: 0.35em 0;
+
+            .ng-placeholder {
+                color: $black;
+                font-size: $form-font-size;
+            }
+
+            .ng-input>input {
+                cursor: pointer;
+            }
+        }
+    }
+}

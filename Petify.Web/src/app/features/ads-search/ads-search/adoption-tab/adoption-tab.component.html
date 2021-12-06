@@ -1,21 +1,27 @@
-<div *ngLet="(ads$ | async) as ads"
-     class="container">
-    <ng-container *petifyLoading="isLoading$ | async">
-        <div *ngIf="!!ads && ads.items.length > 0; else noResults">
-            <petify-ads-result-item *ngFor="let advertisement of ads.items; index as i"
-                                    class="col-md-12"
-                                    [advertisement]="advertisement">
-            </petify-ads-result-item>
-        </div>
-    </ng-container>
-</div>
-<petify-paginator [data]="ads$ | async"
-                  [pageSize]="pageSize"
-                  (pageChanged)="onPageChanged($event)">
-</petify-paginator>
+<div class="tab">
+    <petify-ads-filter [isForAdpotion]="true"
+                       (filtersChanged)="onFiltersChanged($event)"></petify-ads-filter>
 
-<ng-template #noResults>
-    <div class="no-results-message">
-        {{"Common.NoResults"|translate}}
+    <div *ngLet="(ads$ | async) as ads"
+         class="container">
+        <ng-container *petifyLoading="isLoading$ | async">
+            <div *ngIf="!!ads && ads.items.length > 0; else noResults">
+                <petify-ads-result-item *ngFor="let advertisement of ads.items; index as i"
+                                        class="col-md-12"
+                                        [advertisement]="advertisement">
+                </petify-ads-result-item>
+            </div>
+        </ng-container>
     </div>
-</ng-template>
+    <petify-paginator [data]="ads$ | async"
+                      [pageSize]="pageSize"
+                      (pageChanged)="onPageChanged($event)">
+    </petify-paginator>
+
+    <ng-template #noResults>
+        <div class="no-results-message">
+            {{"Common.NoResults"|translate}}
+        </div>
+    </ng-template>
+
+</div>

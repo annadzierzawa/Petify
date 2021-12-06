@@ -8,6 +8,7 @@
         LessOrEqual,
         GreaterOrEqual,
         Less,
-        Greater
+        Greater,
+        NotLike
     }
 }

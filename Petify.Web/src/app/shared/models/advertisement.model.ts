@@ -30,7 +30,9 @@ export interface AdvertisementItemDTO extends AdvertisementDTO {
     petImageFileStorageIds: string[];
 }
 
-export interface SearchAdvertisementsSearchCriteria extends SearchCriteria {
+export interface SearchAdvertisementsSearchCriteria extends SearchCriteria, AdvertisementsFilters { }
+
+export interface AdvertisementsFilters {
     typeIds: number[];
     speciesIds: number[];
     startDate: Date;

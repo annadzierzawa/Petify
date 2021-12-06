@@ -107,6 +107,9 @@ namespace SRW_CRM.Infrastructure.QueryBuilder
                 case SqlComparisonOperator.Like:
                     _whereConditions.Add(string.Concat(column, " LIKE '%' + ", paramName, " + '%'"));
                     break;
+                case SqlComparisonOperator.NotLike:
+                    _whereConditions.Add(string.Concat(column, " NOT LIKE '%' + ", paramName, " + '%'"));
+                    break;
                 case SqlComparisonOperator.LessOrEqual:
                     _whereConditions.Add(string.Concat(column, " <= ", paramName));
                     break;
