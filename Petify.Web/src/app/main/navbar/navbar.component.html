@@ -8,20 +8,35 @@
     <a mat-button
        routerLinkActive="menu-item-active"
        [routerLinkActiveOptions]="{ exact: true }"
-       routerLink="/">
-        <mat-icon>home</mat-icon> Home
+       routerLink="/search">
+        <mat-icon>search</mat-icon> {{"Navbar.Search" | translate}}
+    </a>
+
+    <a *ngIf="(authStatus$ | async)"
+       mat-button
+       routerLinkActive="menu-item-active"
+       [routerLinkActiveOptions]="{ exact: true }"
+       routerLink="/my-pets">
+        <mat-icon>pets</mat-icon> {{"Navbar.MyPets" | translate}}
+    </a>
+    <a *ngIf="(authStatus$ | async)"
+       mat-button
+       routerLinkActive="menu-item-active"
+       [routerLinkActiveOptions]="{ exact: true }"
+       routerLink="/my-advertisements">
+        <mat-icon>list_alt</mat-icon> {{"Navbar.MyAdvertisements" | translate}}
     </a>
 
     <nav *ngIf="(authStatus$ | async) === false">
         <a mat-button
            routerLinkActive="menu-item-active"
            routerLink="/login">
-            <mat-icon>security</mat-icon> Login
+            <mat-icon>security</mat-icon> {{"Navbar.Login" | translate}}
         </a>
         <a mat-button
            routerLinkActive="menu-item-active"
            routerLink="/register">
-            <mat-icon>call_made</mat-icon> Register
+            <mat-icon>call_made</mat-icon> {{"Navbar.Register" | translate}}
         </a>
     </nav>
 
@@ -29,7 +44,7 @@
         <a mat-button
            routerLinkActive="menu-item-active"
            (click)="signout()">
-            <mat-icon>exit_to_app</mat-icon> Signout {{getUserName()}}
+            <mat-icon>exit_to_app</mat-icon> {{"Navbar.Signout" | translate}} {{getUserName()}}
         </a>
     </nav>
 </mat-toolbar>

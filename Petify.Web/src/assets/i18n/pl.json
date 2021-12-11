@@ -17,7 +17,14 @@
         "Delete": "Delete",
         "ConfirmTheOperation": "Potwierdź operację"
     },
-    "Navbar": {},
+    "Navbar": {
+        "MyPets": "Moje zwierzaki",
+        "MyAdvertisements": "Moje ogłoszenia",
+        "Search": "Wyszukiwanie ogłoszeń",
+        "Signout": "Wyloguj",
+        "Register": "Utwórz konto",
+        "Login": "Zaloguj"
+    },
     "PetForm": {
         "Title": "Tytuł ogłoszenia",
         "Description": "Opis",

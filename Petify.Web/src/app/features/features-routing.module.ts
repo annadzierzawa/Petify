@@ -4,6 +4,11 @@ import { RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
     {
+        path: "",
+        redirectTo: "search",
+        pathMatch: "full"
+    },
+    {
         path: "my-pets",
         loadChildren: () => import("./my-pets/my-pets.module").then(m => m.MyPetsModule)
     },
