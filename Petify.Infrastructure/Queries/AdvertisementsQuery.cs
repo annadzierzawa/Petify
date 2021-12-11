@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Petify.ApplicationServices.Boundaries.Advertisements;
 using Petify.Common.Infrastructure.QueryBuilder;
 using Petify.Infrastructure.QueryBuilder;
 using Petify.PublishedLanguage.Dtos.Advertisements;
+using Petify.PublishedLanguage.Dtos.Pets;
 using Petify.PublishedLanguage.Queries.Advertisements;
 using SRW_CRM.Infrastructure.QueryBuilder;
 using static Petify.Common.Lookups.AdvertisementTypeLookup;
@@ -28,6 +30,35 @@ namespace Petify.Infrastructure.Queries
                .Where("OwnerId", userId)
                .BuildQuery<AdvertisementDTO>()
                .ExecuteToList();
+        }
+
+        public async Task<AdvertisementDetailsDTO> GetAdvertisement(int id)
+        {
+            var result = await _sqlQueryBuilder
+              .SelectAllProperties<AdvertisementDetailsDTO>("OwnerPhoneNumber", "Pets", "CyclicalAssistanceDates")
+              .From("Advertisement.Advertisement")
+              .Where("Id", id)
+              .BuildQuery<AdvertisementDetailsDTO>()
+              .ExecuteSingle();
+
+            result.Pets = await _sqlQueryBuilder
+                .SelectAllProperties<PetItemDTO>("Age")
+                .From("Pet.VW_PetsWithAdvertisements")
+                .Where("AdvertisementId", id)
+                .BuildQuery<PetItemDTO>()
+                .ExecuteToList();
+
+            if (result.AdvertisementTypeId == (int)AdvertisementTypeEnum.CyclicalAssistance)
+            {
+                result.CyclicalAssistanceDates = await _sqlQueryBuilder
+                    .Select("Date")
+                    .From("Advertisement.CyclicalAssistanceDay")
+                    .Where("AdvertisementId", id)
+                    .BuildQuery<DateTime>()
+                    .ExecuteToList();
+            }
+
+            return result;
         }
 
         public async Task<AdvertisementEditingDataDTO> GetAdvertisementEditingData(int id)

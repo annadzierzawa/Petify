@@ -14,6 +14,10 @@ const routes: Routes = [
     {
         path: "search",
         loadChildren: () => import("./ads-search/ads-search.module").then(m => m.AdsSearchModule)
+    },
+    {
+        path: "advertisement",
+        loadChildren: () => import("./advertisement-page/advertisement-page.module").then(m => m.AdvertisementPageModule)
     }
 ];
 

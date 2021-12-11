@@ -9,6 +9,7 @@ namespace Petify.ApplicationServices.Boundaries.Advertisements
     public interface IAdvertisementsQuery
     {
         Task<List<AdvertisementDTO>> GetAdvertisements(string userId);
+        Task<AdvertisementDetailsDTO> GetAdvertisement(int id);
         Task<AdvertisementEditingDataDTO> GetAdvertisementEditingData(int id);
         Task<Page<AdvertisementSearchDTO>> GetAdvertisementsForSearch(GetAdvertisementsForSearchParameter query);
     }

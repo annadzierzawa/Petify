@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import {
     AddAdvertisementCommand,
+    AdvertisementDetails,
     AdvertisementDTO,
     AdvertisementItemDTO,
     SearchAdvertisementsSearchCriteria,
@@ -44,5 +45,10 @@ export class AdvertisementsService {
 
     getAdvertisementsForSearch(criteria: SearchAdvertisementsSearchCriteria): Observable<Page<AdvertisementItemDTO>> {
         return this._apiClientService.get(`${appConfig.apiUrl}/advertisements/search`, { queryParams: criteria });
+    }
+
+    getAdvertisement(id: number): Observable<AdvertisementDetails> {
+        return this._apiClientService.get(`${appConfig.apiUrl}/advertisements/{id}`, { segmentParams: { id } });
+
     }
 }

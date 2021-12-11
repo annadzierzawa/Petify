@@ -10,6 +10,5 @@ namespace Petify.PublishedLanguage.Dtos.Advertisements
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int CyclicalAssistanceFrequency { get; set; }
-
     }
 }

@@ -1,4 +1,5 @@
 import { SearchCriteria } from "./page.model";
+import { PetItemDTO } from "./pet.model";
 
 export interface AddAdvertisementCommand extends AdvertisementFormDTO { }
 
@@ -13,6 +14,13 @@ export interface AdvertisementDTO {
     startDate: Date;
     endDate: Date;
     cyclicalAssistanceFrequency: number;
+}
+
+export interface AdvertisementDetails extends AdvertisementDTO {
+    description: string;
+    ownerPhoneNumber: string;
+    pets: PetItemDTO[];
+    cyclicalAssistanceDates: Date;
 }
 
 export interface AdvertisementFormDTO {

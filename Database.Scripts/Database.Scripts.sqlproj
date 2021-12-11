@@ -67,5 +67,6 @@
     <None Include="Views\VW_Advertisements.sql" />
     <None Include="Views\VW_PetsAdvertisements.sql" />
     <None Include="Views\VW_AdvertisementsForSearch.sql" />
+    <None Include="Views\VW_PetsWithAdvertisements.sql" />
   </ItemGroup>
 </Project>

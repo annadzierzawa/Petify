@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Petify.Common.CQRS;
 using Petify.PublishedLanguage.Commands.Advertisements;
@@ -53,8 +54,17 @@ namespace Petify.Api.Controllers
             return Ok();
         }
 
+        [AllowAnonymous]
         [HttpGet("advertisements/search")]
         public async Task<IActionResult> GetAdvertisementsForSearch([FromQuery] GetAdvertisementsForSearchParameter query)
+        {
+            var result = await _queryDispatcher.Dispatch(query);
+            return Ok(result);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("advertisements/{id}")]
+        public async Task<IActionResult> GetAdvertisement([FromRoute] GetAdvertisementParameter query)
         {
             var result = await _queryDispatcher.Dispatch(query);
             return Ok(result);

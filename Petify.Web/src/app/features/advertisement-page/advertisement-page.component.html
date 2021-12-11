@@ -1,0 +1,20 @@
+<ng-container *ngIf="advertisement$ | async as ad; else loader">
+    <mat-card>
+        <mat-card-title>{{ad.title}}</mat-card-title>
+        <mat-card-content>
+            <div class="row">
+                <div class="col-6">
+                    {{ad.description}}
+                </div>
+                <div class="col-6">
+                    {{ad.ownerPhoneNumber}}
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</ng-container>
+<ng-template #loader>
+    <div class="spinner-container">
+        <petify-spinner></petify-spinner>
+    </div>
+</ng-template>

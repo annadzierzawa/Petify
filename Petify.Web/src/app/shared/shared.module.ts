@@ -34,7 +34,8 @@ import { ValidationFeedbackComponent } from "./validation-feedback/validation-fe
         DirectivesModule,
         ImageUploadModule,
         ImagePreviewModule,
-        PaginatorModule
+        PaginatorModule,
+        SpinnerComponent
     ]
 })
 export class SharedModule { }
