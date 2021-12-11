@@ -52,6 +52,11 @@
             "TemporaryAdoption": "Chcę dać zwierzakowi dach nad głową na jakiś czas(np. podczas wyjazdu służbowego właściciela)"
         }
     },
+    "AdvertisementPage": {
+        "Pets": "Zwierzęta",
+        "Description": "Opis",
+        "OwnerData": "Dane właściciela"
+    },
     "Lookup": {
         "SpeciesType": {
             "Dog": "Pies",

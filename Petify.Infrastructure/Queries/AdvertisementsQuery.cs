@@ -35,8 +35,8 @@ namespace Petify.Infrastructure.Queries
         public async Task<AdvertisementDetailsDTO> GetAdvertisement(int id)
         {
             var result = await _sqlQueryBuilder
-              .SelectAllProperties<AdvertisementDetailsDTO>("OwnerPhoneNumber", "Pets", "CyclicalAssistanceDates")
-              .From("Advertisement.Advertisement")
+              .SelectAllProperties<AdvertisementDetailsDTO>("Pets", "CyclicalAssistanceDates")
+              .From("Advertisement.VW_AdvertisementsDetails")
               .Where("Id", id)
               .BuildQuery<AdvertisementDetailsDTO>()
               .ExecuteSingle();

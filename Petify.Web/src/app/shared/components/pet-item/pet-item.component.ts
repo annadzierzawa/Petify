@@ -16,6 +16,7 @@ import { filter, switchMapTo } from "rxjs/operators";
 })
 export class PetItemComponent {
     @Input() pet: PetItemDTO;
+    @Input() forSearch = false;
     @Output() petRemoved = new EventEmitter();
     loading$ = new BehaviorSubject<boolean>(false);
 

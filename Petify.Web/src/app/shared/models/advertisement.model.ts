@@ -19,6 +19,7 @@ export interface AdvertisementDTO {
 export interface AdvertisementDetails extends AdvertisementDTO {
     description: string;
     ownerPhoneNumber: string;
+    ownerName: string;
     pets: PetItemDTO[];
     cyclicalAssistanceDates: Date;
 }

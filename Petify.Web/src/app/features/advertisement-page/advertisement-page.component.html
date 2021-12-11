@@ -1,14 +1,30 @@
 <ng-container *ngIf="advertisement$ | async as ad; else loader">
     <mat-card>
-        <mat-card-title>{{ad.title}}</mat-card-title>
+        <mat-card-title>
+            <h2>{{ad.title}}</h2>
+        </mat-card-title>
         <mat-card-content>
             <div class="row">
                 <div class="col-6">
-                    {{ad.description}}
+                    <h3> {{"AdvertisementPage.Description" | translate}}: </h3>
+                    <p class="px-2">
+                        {{ad.description}}
+                    </p>
                 </div>
-                <div class="col-6">
-                    {{ad.ownerPhoneNumber}}
+                <div class="col-6 px-2">
+                    <h3> {{"AdvertisementPage.OwnerData" | translate}}: </h3>
+                    <p class="px-2">
+                        {{ad.ownerName}}
+                    </p>
+                    <p class="px-2">
+                        {{ad.ownerPhoneNumber}}
+                    </p>
                 </div>
+                <h3 class="col-12">{{"AdvertisementPage.Pets" | translate}}:</h3>
+                <petify-pet-item class="col-8 mx-2"
+                                 *ngFor="let pet of ad.pets"
+                                 [pet]="pet"
+                                 [forSearch]="true"></petify-pet-item>
             </div>
         </mat-card-content>
     </mat-card>

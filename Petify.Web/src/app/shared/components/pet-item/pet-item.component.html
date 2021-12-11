@@ -19,7 +19,8 @@
                 {{"Lookup.SpeciesType."+ pet.speciesName | translate}}
             </div>
         </div>
-        <div class="col-3 d-flex justify-content-end">
+        <div *ngIf="!forSearch"
+             class="col-3 d-flex justify-content-end">
             <button mat-mini-fab
                     class="mr-2"
                     color="primary"
