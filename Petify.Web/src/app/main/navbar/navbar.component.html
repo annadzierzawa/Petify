@@ -19,12 +19,21 @@
        routerLink="/my-pets">
         <mat-icon>pets</mat-icon> {{"Navbar.MyPets" | translate}}
     </a>
+
     <a *ngIf="(authStatus$ | async)"
        mat-button
        routerLinkActive="menu-item-active"
        [routerLinkActiveOptions]="{ exact: true }"
        routerLink="/my-advertisements">
         <mat-icon>list_alt</mat-icon> {{"Navbar.MyAdvertisements" | translate}}
+    </a>
+
+    <a *ngIf="(authStatus$ | async)"
+       mat-button
+       routerLinkActive="menu-item-active"
+       [routerLinkActiveOptions]="{ exact: true }"
+       routerLink="/settings">
+        <mat-icon>account_circle</mat-icon> {{"Navbar.AccountSettings" | translate}}
     </a>
 
     <nav *ngIf="(authStatus$ | async) === false">

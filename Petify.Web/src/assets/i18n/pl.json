@@ -23,7 +23,15 @@
         "Search": "Wyszukiwanie ogłoszeń",
         "Signout": "Wyloguj",
         "Register": "Utwórz konto",
-        "Login": "Zaloguj"
+        "Login": "Zaloguj",
+        "AccountSettings": "Ustawienia konta"
+    },
+    "AccountSettings": {
+        "Title": "Ustawienia konta",
+        "Name": "Imię i nazwisko",
+        "PhoneNumber": "Number telefonu",
+        "Save": "Zapisz",
+        "DataUpdated": "Ustawienia konta zostały zmienione!"
     },
     "PetForm": {
         "Title": "Tytuł ogłoszenia",

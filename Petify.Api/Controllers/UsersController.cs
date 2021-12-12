@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Petify.Common.CQRS;
 using Petify.PublishedLanguage.Commands.Users;
+using Petify.PublishedLanguage.Queries.Users;
 
 namespace Petify.Api.Controllers
 {
@@ -21,6 +22,20 @@ namespace Petify.Api.Controllers
         [AllowAnonymous]
         [HttpPost("users/init-user")]
         public async Task<IActionResult> InitUser([FromBody] InitUserCommand command)
+        {
+            await _commandDispatcher.Dispatch(command);
+            return Ok();
+        }
+
+        [HttpGet("account-settings-data")]
+        public async Task<IActionResult> GetAccountSettingsData([FromQuery] GetAccountSettingsDataParameter query)
+        {
+            var result = await _queryDispatcher.Dispatch(query);
+            return Ok(result);
+        }
+
+        [HttpPost("account-settings")]
+        public async Task<IActionResult> GetAccountSettingsData([FromBody] UpdateAccountSettingsCommand command)
         {
             await _commandDispatcher.Dispatch(command);
             return Ok();

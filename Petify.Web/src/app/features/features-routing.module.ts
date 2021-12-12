@@ -23,6 +23,10 @@ const routes: Routes = [
     {
         path: "advertisement",
         loadChildren: () => import("./advertisement-page/advertisement-page.module").then(m => m.AdvertisementPageModule)
+    },
+    {
+        path: "settings",
+        loadChildren: () => import("./account/account-settings/account-settings.module").then(m => m.AccountSettingsModule)
     }
 ];
 

@@ -39,6 +39,15 @@ namespace Petify.Domain.Access
             Name = name;
         }
 
+        public void UpdateAccountSettings(string name, string phoneNumber)
+        {
+            EnsureArg.IsNotNullOrWhiteSpace(name, nameof(name));
+            EnsureArg.IsNotNullOrWhiteSpace(phoneNumber, nameof(phoneNumber));
+
+            Name = name;
+            PhoneNumber = phoneNumber;
+        }
+
         public void DeactivateUser()
         {
             IsActive = false;
