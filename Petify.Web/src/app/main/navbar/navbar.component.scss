@@ -1,3 +1,5 @@
+@import "variables";
+
 mat-toolbar {
     position: fixed;
     top: 0;
@@ -21,4 +23,16 @@ mat-toolbar {
     padding-left: 135px;
     cursor: pointer;
     margin-bottom: 7px;
+}
+
+.nav-description {
+    @media screen and (max-width: $large-screen-up) {
+        visibility: hidden;
+    }
+}
+
+.button-class {
+    @media screen and (max-width: $large-screen-up) {
+        max-width: 20px;
+    }
 }

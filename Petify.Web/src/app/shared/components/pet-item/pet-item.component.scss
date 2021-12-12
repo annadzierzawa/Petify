@@ -3,3 +3,11 @@
 .pet-container {
     color: $tealGreen-900;
 }
+
+.inverted-colors {
+    background-color: $tealGreen-600;
+
+    .pet-container {
+        color: white;
+    }
+}

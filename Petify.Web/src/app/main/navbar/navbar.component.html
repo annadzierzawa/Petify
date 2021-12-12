@@ -5,47 +5,54 @@
        routerLink="/">{{title}}</a>
     <span class="fill-remaining-space"></span>
 
-    <a mat-button
+    <a class="button-class"
+       mat-button
        routerLinkActive="menu-item-active"
        [routerLinkActiveOptions]="{ exact: true }"
        routerLink="/search">
-        <mat-icon>search</mat-icon> {{"Navbar.Search" | translate}}
+        <mat-icon>search</mat-icon> <span class="nav-description"> {{"Navbar.Search" | translate}}</span>
     </a>
 
     <a *ngIf="(authStatus$ | async)"
+       class="button-class"
        mat-button
        routerLinkActive="menu-item-active"
        [routerLinkActiveOptions]="{ exact: true }"
        routerLink="/my-pets">
-        <mat-icon>pets</mat-icon> {{"Navbar.MyPets" | translate}}
+        <mat-icon>pets</mat-icon><span class="nav-description"> {{"Navbar.MyPets" | translate}}</span>
     </a>
 
     <a *ngIf="(authStatus$ | async)"
+       class="button-class"
        mat-button
        routerLinkActive="menu-item-active"
        [routerLinkActiveOptions]="{ exact: true }"
        routerLink="/my-advertisements">
-        <mat-icon>list_alt</mat-icon> {{"Navbar.MyAdvertisements" | translate}}
+        <mat-icon>list_alt</mat-icon><span class="nav-description"> {{"Navbar.MyAdvertisements" | translate}}</span>
     </a>
 
     <a *ngIf="(authStatus$ | async)"
+       class="button-class"
        mat-button
        routerLinkActive="menu-item-active"
        [routerLinkActiveOptions]="{ exact: true }"
        routerLink="/settings">
-        <mat-icon>account_circle</mat-icon> {{"Navbar.AccountSettings" | translate}}
+        <mat-icon>account_circle</mat-icon><span class="nav-description"> {{"Navbar.AccountSettings" |
+            translate}}</span>
     </a>
 
     <nav *ngIf="(authStatus$ | async) === false">
-        <a mat-button
+        <a class="button-class"
+           mat-button
            routerLinkActive="menu-item-active"
            routerLink="/login">
-            <mat-icon>security</mat-icon> {{"Navbar.Login" | translate}}
+            <mat-icon>security</mat-icon><span class="nav-description"> {{"Navbar.Login" | translate}}</span>
         </a>
-        <a mat-button
+        <a class="button-class"
+           mat-button
            routerLinkActive="menu-item-active"
            routerLink="/register">
-            <mat-icon>call_made</mat-icon> {{"Navbar.Register" | translate}}
+            <mat-icon>call_made</mat-icon><span class="nav-description"> {{"Navbar.Register" | translate}}</span>
         </a>
     </nav>
 
@@ -53,7 +60,8 @@
         <a mat-button
            routerLinkActive="menu-item-active"
            (click)="signout()">
-            <mat-icon>exit_to_app</mat-icon> {{"Navbar.Signout" | translate}} {{getUserName()}}
+            <mat-icon>exit_to_app</mat-icon><span class="nav-description"> {{"Navbar.Signout" | translate}}
+                {{getUserName()}}</span>
         </a>
     </nav>
 </mat-toolbar>

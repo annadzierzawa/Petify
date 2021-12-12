@@ -1,14 +1,15 @@
-<mat-card class="my-0">
+<mat-card class="my-0"
+          [ngClass]="forSearch?'inverted-colors':''">
     <div class="pet-container row">
         <div *ngIf="pet.imageFileStorageId as image"
-             class="pet-container__image col-3">
+             class="pet-container__image col-xl-3 col-sm-12">
             <petify-image-preview [imageUrl]="image | petImageUrl"
                                   [height]="200"
                                   [width]="200 * 4 / 5"
                                   heightUnit="px"
                                   widthUnit="px"></petify-image-preview>
         </div>
-        <div class="col-6">
+        <div class="col-xl-6 col-sm-12">
             <h1 class="col-12 d-flex justify-content-start mt-0">{{pet.name}}</h1>
             <div class="pet-container__description col-12">
                 {{pet.description}}
@@ -20,7 +21,7 @@
             </div>
         </div>
         <div *ngIf="!forSearch"
-             class="col-3 d-flex justify-content-end">
+             class="col-xl-3 col-sm-12 d-flex justify-content-end">
             <button mat-mini-fab
                     class="mr-2"
                     color="primary"
