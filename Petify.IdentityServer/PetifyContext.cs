@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Petify.Domain.Access;
+using Petify.IdentityServer.Infrastructure.Data;
 
 namespace Petify.IdentityServer
 {

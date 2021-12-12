@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Petify.Common.Auth.Access.Attributes;
+using Petify.Common.Auth.Access.Lookups;
 using Petify.Common.CQRS;
 using Petify.PublishedLanguage.Commands.Pets;
 using Petify.PublishedLanguage.Queries.Pets;
@@ -27,6 +29,7 @@ namespace Petify.Api.Controllers
             return Ok(result);
         }
 
+        [RequireFullAccessLevel(Actions.ManageMyPets)]
         [HttpPost("pets")]
         public async Task<IActionResult> AddPet([FromBody] AddPetCommand command)
         {
@@ -34,6 +37,7 @@ namespace Petify.Api.Controllers
             return Ok();
         }
 
+        [RequireFullAccessLevel(Actions.ManageMyPets)]
         [HttpPut("pets")]
         public async Task<IActionResult> UpdatePet([FromBody] UpdatePetCommand command)
         {
@@ -41,6 +45,7 @@ namespace Petify.Api.Controllers
             return Ok();
         }
 
+        [RequireFullAccessLevel(Actions.ManageMyPets)]
         [HttpGet("pets/{id}")]
         public async Task<IActionResult> GetPet([FromRoute] GetPetParameter query)
         {
@@ -48,6 +53,7 @@ namespace Petify.Api.Controllers
             return Ok(result);
         }
 
+        [RequireFullAccessLevel(Actions.ManageMyPets)]
         [HttpDelete("pets/{id}")]
         public async Task<IActionResult> RemovePet([FromRoute] RemovePetCommand command)
         {
@@ -55,6 +61,7 @@ namespace Petify.Api.Controllers
             return Ok();
         }
 
+        [RequireFullAccessLevel(Actions.ManageMyPets)]
         [HttpGet("users/{userId}/pets")]
         public async Task<IActionResult> GetPets([FromRoute] GetPetsParameter query)
         {
@@ -62,7 +69,7 @@ namespace Petify.Api.Controllers
             return Ok(result);
         }
 
-
+        [RequireFullAccessLevel(Actions.ManageMyPets)]
         [HttpGet("users/{userId}/advertisements/{advertisementId}/pets")]
         public async Task<IActionResult> GetPetsForAdvertisement([FromRoute] GetPetsForAdvertisementParameter query)
         {

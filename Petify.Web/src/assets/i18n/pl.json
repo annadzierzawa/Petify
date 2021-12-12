@@ -35,6 +35,7 @@
     },
     "PetForm": {
         "Title": "Tytuł ogłoszenia",
+        "Name": "Imię",
         "Description": "Opis",
         "Species": "Gatunek",
         "DateOfBirth": "Data urodzenia",

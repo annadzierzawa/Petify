@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Petify.Domain.Access;
 
 namespace Petify.ApplicationServices.Boundaries.Users
@@ -7,5 +8,6 @@ namespace Petify.ApplicationServices.Boundaries.Users
     {
         Task Store(User user);
         Task<User> GetUser(string userId);
+        void StoreUserRoles(IEnumerable<UserRole> roles);
     }
 }

@@ -19,10 +19,12 @@ namespace Petify.Infrastructure.DataModel.Mappings.Access
         private void SeedData(EntityTypeBuilder<RoleAction> builder)
         {
             builder.HasData(new RoleAction { RoleId = (int)Roles.Admin, ActionId = (int)Actions.ManageUsers, Level = AccessLevel.Full.Id });
+            builder.HasData(new RoleAction { RoleId = (int)Roles.Admin, ActionId = (int)Actions.ManageUsersAdvertisements, Level = AccessLevel.Full.Id });
+            builder.HasData(new RoleAction { RoleId = (int)Roles.Admin, ActionId = (int)Actions.ManageMyAdvertisements, Level = AccessLevel.Full.Id });
+            builder.HasData(new RoleAction { RoleId = (int)Roles.Admin, ActionId = (int)Actions.ManageMyPets, Level = AccessLevel.Full.Id });
 
-
-            builder.HasData(new RoleAction { RoleId = (int)Roles.RegularUser, ActionId = (int)Actions.Announcements, Level = AccessLevel.Full.Id });
-            builder.HasData(new RoleAction { RoleId = (int)Roles.RegularUser, ActionId = (int)Actions.Reviews, Level = AccessLevel.Full.Id });
+            builder.HasData(new RoleAction { RoleId = (int)Roles.RegularUser, ActionId = (int)Actions.ManageMyAdvertisements, Level = AccessLevel.Full.Id });
+            builder.HasData(new RoleAction { RoleId = (int)Roles.RegularUser, ActionId = (int)Actions.ManageMyPets, Level = AccessLevel.Full.Id });
         }
     }
 }

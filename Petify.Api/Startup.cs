@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Petify.Api.Infrastructure;
 using Petify.Common.Auth;
+using Petify.Common.Auth.Access;
 using Petify.Common.Configuration;
 using Petify.FilesStorage.Context;
 using Serilog;
@@ -100,6 +101,14 @@ namespace Petify.Api
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterModule(new DefaultModule(Configuration.GetConnectionString("Petify"), GetMongoSettings()));
+
+            builder.RegisterType<RequireAccessLevelHandler>()
+               .AsImplementedInterfaces()
+               .InstancePerLifetimeScope();
+
+            builder.RegisterType<AuthorizationPolicyProvider>()
+                .AsImplementedInterfaces()
+                .SingleInstance();
         }
 
         private MongoDbSettings GetMongoSettings()

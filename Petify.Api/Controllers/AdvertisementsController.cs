@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Petify.Common.Auth.Access.Attributes;
+using Petify.Common.Auth.Access.Lookups;
 using Petify.Common.CQRS;
 using Petify.PublishedLanguage.Commands.Advertisements;
 using Petify.PublishedLanguage.Queries.Advertisements;
@@ -19,6 +21,7 @@ namespace Petify.Api.Controllers
             _queryDispatcher = queryDispatcher;
         }
 
+        [RequireFullAccessLevel(Actions.ManageMyAdvertisements)]
         [HttpGet("/users/{userId}/advertisements")]
         public async Task<IActionResult> GetAdvertisements([FromRoute] GetAdvertisementsParameter query)
         {
@@ -26,6 +29,7 @@ namespace Petify.Api.Controllers
             return Ok(result);
         }
 
+        [RequireFullAccessLevel(Actions.ManageMyAdvertisements)]
         [HttpGet("/users/{userId}/advertisements/{id}/editing-data")]
         public async Task<IActionResult> GetAdvertisementEditingData([FromRoute] GetAdvertisementEditingDataParameter query)
         {
@@ -33,6 +37,7 @@ namespace Petify.Api.Controllers
             return Ok(result);
         }
 
+        [RequireFullAccessLevel(Actions.ManageMyAdvertisements)]
         [HttpPost("advertisements")]
         public async Task<IActionResult> AddAdvertisement([FromBody] AddAdvertisementCommand command)
         {
@@ -40,6 +45,7 @@ namespace Petify.Api.Controllers
             return Ok();
         }
 
+        [RequireFullAccessLevel(Actions.ManageMyAdvertisements)]
         [HttpPut("advertisements/{id}")]
         public async Task<IActionResult> UpdateAdvertisement([FromBody] UpdateAdvertisementCommand command)
         {
@@ -47,6 +53,7 @@ namespace Petify.Api.Controllers
             return Ok();
         }
 
+        [RequireFullAccessLevel(Actions.ManageMyAdvertisements)]
         [HttpDelete("advertisements/{id}")]
         public async Task<IActionResult> RemoveAdvertisement([FromRoute] RemoveAdvertisementCommand command)
         {

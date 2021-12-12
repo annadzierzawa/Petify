@@ -45,9 +45,10 @@ namespace Petify.IdentityServer.Infrastructure.Services
             context.IssuedClaims = claims;
         }
 
-        private IEnumerable<Domain.Access.UserPermission> GetAllowedActions(AppUser user)
+        private IEnumerable<UserPermission> GetAllowedActions(AppUser user)
         {
-            return _petifyContext.UserPermission.Where(x => x.UserId == user.Id).ToList();
+            var allowedActions = _petifyContext.UserPermission.Where(x => x.UserId == user.Id).ToList();
+            return allowedActions;
         }
 
         public async Task IsActiveAsync(IsActiveContext context)

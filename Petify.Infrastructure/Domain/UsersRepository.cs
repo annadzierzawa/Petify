@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Petify.ApplicationServices.Boundaries.Users;
@@ -35,6 +36,11 @@ namespace Petify.Infrastructure.Domain
         public async Task Store(User user)
         {
             await _context.Users.AddAsync(user);
+        }
+
+        public void StoreUserRoles(IEnumerable<UserRole> roles)
+        {
+            _context.AccessUserRoles.AddRange(roles);
         }
     }
 }

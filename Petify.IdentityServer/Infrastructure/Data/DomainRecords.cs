@@ -2,7 +2,7 @@
 
 namespace Petify.IdentityServer.Infrastructure.Data
 {
-    public record User(string Id, bool IsActive, long? CompanyId, string AnalyticsId);
+    public record User(string Id, bool IsActive, string PhoneNumber);
 
     public record UserPermission(string UserId, int ActionId, string ActionName, string Level)
     {
