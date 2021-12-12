@@ -1,5 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { AdvertisementDTO } from "@app/shared/models/advertisement.model";
+import { AdvertisementTypes } from "@app/shared/models/pet.model";
 
 @Component({
     selector: 'petify-ads-result-item',
@@ -8,4 +9,5 @@ import { AdvertisementDTO } from "@app/shared/models/advertisement.model";
 })
 export class AdsResultItemComponent {
     @Input() advertisement: AdvertisementDTO;
+    AdvertisementTypes = AdvertisementTypes;
 }

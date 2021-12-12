@@ -79,7 +79,8 @@ namespace Petify.Infrastructure.Queries
               .When(query.SpeciesIds is not null && query.SpeciesIds.Any(), q => SearchByTagsOr(q, "SpeciesIdsAsString", query.SpeciesIds))
               .When(query.TypeIds is not null && query.TypeIds.Any(), q => SearchByTagsOr(q, "AdvertisementTypeId", query.TypeIds))
               .When(query.TypeIds is null, q => q.Where("AdvertisementTypeId", ((int)AdvertisementTypeEnum.Adoption).ToString(), SqlComparisonOperator.NotLike))
-              .Where("EndDate", query.StartDate, SqlComparisonOperator.GreaterOrEqual)
+              .When(query.TypeIds is not null && query.TypeIds.Any(t => t == (int)AdvertisementTypeEnum.CyclicalAssistance || t == (int)AdvertisementTypeEnum.TemporaryAdoption),
+                q => q.Where("EndDate", query.StartDate, SqlComparisonOperator.GreaterOrEqual))
               .BuildPagedQuery<AdvertisementSearchDTO>(query)
               .Execute();
         }

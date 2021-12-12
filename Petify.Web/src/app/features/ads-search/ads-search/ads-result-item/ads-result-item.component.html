@@ -4,8 +4,12 @@
         </span>
     </mat-card-title>
     <mat-card-content>
-        <p>{{advertisement.startDate | date:"dd.MM.yyyy"}}
-            <ng-container *ngIf="!!advertisement.endDate"> - {{advertisement.endDate | date:"dd.MM.yyyy"}}
+        <p>
+            <ng-container *ngIf="advertisement.advertisementTypeId != AdvertisementTypes.OneTimeHelp">{{"Common.From" |
+                translate}} </ng-container> {{advertisement.startDate | date:"dd.MM.yyyy"}}
+            <ng-container
+                          *ngIf="advertisement.advertisementTypeId == AdvertisementTypes.CyclicalAssistance || advertisement.advertisementTypeId == AdvertisementTypes.TemporaryAdoption">
+                {{"Common.To" | translate}} {{advertisement.endDate | date:"dd.MM.yyyy"}}
             </ng-container>
         </p>
     </mat-card-content>

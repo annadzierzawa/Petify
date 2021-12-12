@@ -20,6 +20,7 @@ using Petify.IdentityServer.Extensions;
 using Petify.IdentityServer.Infrastructure;
 using Petify.IdentityServer.Infrastructure.Data;
 using Petify.IdentityServer.Infrastructure.Services;
+using Petify.IdentityServer.Infrastructure.URLs;
 using Serilog;
 using Twilio;
 
@@ -133,6 +134,7 @@ namespace Petify.IdentityServer
             var accountSid = Configuration["Twilio:AccountSID"];
             var authToken = Configuration["Twilio:AuthToken"];
             TwilioClient.Init(accountSid, authToken);
+            services.Configure<AppWebSettings>(Configuration.GetSection("AppWebSettings"));
 
             services.AddRazorPages()
                 .AddRazorRuntimeCompilation()

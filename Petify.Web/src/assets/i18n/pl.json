@@ -15,7 +15,9 @@
         "Confirm": "Confirm",
         "Edit": "Edit",
         "Delete": "Delete",
-        "ConfirmTheOperation": "Potwierdź operację"
+        "ConfirmTheOperation": "Potwierdź operację",
+        "From": "Od",
+        "To": "do"
     },
     "Navbar": {
         "MyPets": "Moje zwierzaki",
