@@ -39,8 +39,11 @@ namespace Petify.Domain.Services
 
                 while (date < endDate)
                 {
-                    date = date.AddDays(days);
-                    dates.Add(new CyclicalAssistanceDay(date));
+                    date = date.AddDays((int)cyclicalAssistanceFrequency);
+                    if (date <= endDate)
+                    {
+                        dates.Add(new CyclicalAssistanceDay(date));
+                    }
                     days += (int)cyclicalAssistanceFrequency;
                 }
 
