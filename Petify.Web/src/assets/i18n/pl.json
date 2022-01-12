@@ -31,7 +31,7 @@
     "AccountSettings": {
         "Title": "Ustawienia konta",
         "Name": "Imię i nazwisko",
-        "PhoneNumber": "Number telefonu",
+        "PhoneNumber": "Numer telefonu",
         "Save": "Zapisz",
         "DataUpdated": "Ustawienia konta zostały zmienione!"
     },
